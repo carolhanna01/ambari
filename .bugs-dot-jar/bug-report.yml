@@ -1,0 +1,168 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      aggregateprogress:
+        '@percentage': '100'
+        currentProgress:
+          row:
+          - '@backgroundColor': '#51a825'
+            '@percentage': '100'
+          - '@backgroundColor': '#ec8e00'
+            '@percentage': '0'
+        originalProgress:
+          row:
+          - '@backgroundColor': '#89afd7'
+            '@percentage': '0'
+          - '@backgroundColor': transparent
+            '@percentage': '100'
+      assignee:
+        '#text': Robert Levas
+        '@username': rlevas
+      attachments: null
+      comments:
+        comment:
+          '#text': "<p>SUCCESS: Integrated in Jenkins build Ambari-branch-2.7 #190\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-branch-2.7/190/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-branch-2.7/190/</a>)<br/>\n<a href=\"\
+            https://issues.apache.org/jira/browse/AMBARI-24507\" title=\"Remove dependency\
+            \ on org.bouncycastle bcprov-jdk15on before version 1.6.0 for Ambari Server\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-24507\"><del>AMBARI-24507</del></a>\
+            \ Remove dependency on org.bouncycastle bcprov-jdk15on (rlevas: <a href=\"\
+            https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=9ffd67ff3b39a8d4bdeb9a9428ae7196a3fffd48\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=9ffd67ff3b39a8d4bdeb9a9428ae7196a3fffd48</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/ldap/service/ads/DefaultLdapConfigurationService.java</li>\n\
+            \t<li>(delete) ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariLdapAuthenticationProviderBaseTest.java</li>\n\
+            \t<li>(delete) ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariLdapAuthenticationProviderForDuplicateUserTest.java</li>\n\
+            \t<li>(delete) ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariLdapAuthenticationProviderForDNWithSpaceTest.java</li>\n\
+            \t<li>(edit) ambari-server/pom.xml</li>\n\t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/ldap/service/ads/detectors/GroupMemberAttrDetectorTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariLdapAuthenticationProviderTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 21 Aug 2018 10:25:29 +0000
+          '@id': '16587263'
+      component: ambari-server
+      created: Mon, 20 Aug 2018 21:19:23 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '0.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 6 years, 49 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i3x8lb:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>Remove dependency on org.bouncycastle bcprov-jdk15on before\
+        \ version 1.6.0 for Ambari Server security concerns. See </p>\n<ul>\n\t<li>CVE-2018-1000180\
+        \ - <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2018-1000180\" class=\"\
+        external-link\" target=\"_blank\" rel=\"nofollow noopener\">https://nvd.nist.gov/vuln/detail/CVE-2018-1000180</a></li>\n\
+        </ul>\n\n\n<p>This dependency is compiled into the apacheds-all.jar from </p>\n\
+        \n<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent\
+        \ panelContent\">\n<pre class=\"code-java\">\n    &lt;dependency&gt;\n   \
+        \   &lt;groupId&gt;org.apache.directory.server&lt;/groupId&gt;\n      &lt;artifactId&gt;apacheds-all&lt;/artifactId&gt;\n\
+        \      &lt;version&gt;2.0.0-M24&lt;/version&gt;\n    &lt;/dependency&gt;\n\
+        </pre>\n</div></div>\n\n<p>The relevant parts of this need to be broken out\
+        \ and the offending bouncy castle JAR needs to be excluded as needed. </p>"
+      due: null
+      environment: null
+      fixVersion: 2.7.1
+      key:
+        '#text': AMBARI-24507
+        '@id': '13180069'
+      labels:
+        label: pull-request-available
+      link: https://issues.apache.org/jira/browse/AMBARI-24507
+      priority:
+        '#text': Blocker
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/blocker.svg
+        '@id': '1'
+      progress:
+        '@percentage': '100'
+        currentProgress:
+          row:
+          - '@backgroundColor': '#51a825'
+            '@percentage': '100'
+          - '@backgroundColor': '#ec8e00'
+            '@percentage': '0'
+        originalProgress:
+          row:
+          - '@backgroundColor': '#89afd7'
+            '@percentage': '0'
+          - '@backgroundColor': transparent
+            '@percentage': '100'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Robert Levas
+        '@username': rlevas
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 21 Aug 2018 09:34:35 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Remove dependency on org.bouncycastle bcprov-jdk15on before version
+        1.6.0 for Ambari Server
+      timeestimate:
+        '#text': 0h
+        '@seconds': '0'
+      timespent:
+        '#text': 1h
+        '@seconds': '3600'
+      title: '[AMBARI-24507] Remove dependency on org.bouncycastle bcprov-jdk15on
+        before version 1.6.0 for Ambari Server'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 21 Aug 2018 10:25:29 +0000
+      version: 2.7.1
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
