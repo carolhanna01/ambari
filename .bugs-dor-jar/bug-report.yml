@@ -1,0 +1,217 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      aggregateprogress:
+        '@percentage': '100'
+        currentProgress:
+          row:
+          - '@backgroundColor': '#51a825'
+            '@percentage': '100'
+          - '@backgroundColor': '#ec8e00'
+            '@percentage': '0'
+        originalProgress:
+          row:
+          - '@backgroundColor': '#89afd7'
+            '@percentage': '0'
+          - '@backgroundColor': transparent
+            '@percentage': '100'
+      assignee:
+        '#text': Sandor Molnar
+        '@username': smolnar
+      attachments: null
+      comments:
+        comment:
+        - '#text': "<p>SUCCESS: Integrated in Jenkins build Ambari-branch-2.7 #192\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-branch-2.7/192/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-branch-2.7/192/</a>)<br/>\n<a href=\"\
+            https://issues.apache.org/jira/browse/AMBARI-24513\" title=\"NPE when\
+            \ migrating users table during upgrade to Ambari 2.7.0 with Oracle DB\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-24513\"><del>AMBARI-24513</del></a>.\
+            \ Using current timestamp as created_time in case there is (oleewere:\
+            \ <a href=\"https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=542475f62c1a77997fe38dcc7f5d404891b198e3\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=542475f62c1a77997fe38dcc7f5d404891b198e3</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog270.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog270Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 21 Aug 2018 13:40:18 +0000
+          '@id': '16587447'
+        - '#text': "<p>FAILURE: Integrated in Jenkins build Ambari-trunk-Commit #9876\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-trunk-Commit/9876/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-Commit/9876/</a>)<br/>\n<a\
+            \ href=\"https://issues.apache.org/jira/browse/AMBARI-24513\" title=\"\
+            NPE when migrating users table during upgrade to Ambari 2.7.0 with Oracle\
+            \ DB\" class=\"issue-link\" data-issue-key=\"AMBARI-24513\"><del>AMBARI-24513</del></a>\
+            \ Using current timestamp as created_time in case there is (oleewere:\
+            \ <a href=\"https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=93818f3412267ddd21ac2e5193240b71e201d2b9\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=93818f3412267ddd21ac2e5193240b71e201d2b9</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog270.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog270Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 21 Aug 2018 13:48:14 +0000
+          '@id': '16587451'
+      component: ambari-server
+      created: Tue, 21 Aug 2018 07:38:53 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '0.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 6 years, 49 weeks, 4 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i3x91b:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>NPE when migrating users table during upgrade to Ambari 2.7.0\
+        \ with Oracle DB:</p>\n<div class=\"preformatted panel\" style=\"border-width:\
+        \ 1px;\"><div class=\"preformattedContent panelContent\">\n<pre>2018-08-20\
+        \ 11:36:46,395 ERROR [main] SchemaUpgradeHelper:207 - Upgrade failed. \njava.lang.NullPointerException\n\
+        \tat org.apache.ambari.server.upgrade.UpgradeCatalog270.convertUserCreationTimeToLong(UpgradeCatalog270.java:595)\n\
+        \tat org.apache.ambari.server.upgrade.UpgradeCatalog270.upgradeUserTables(UpgradeCatalog270.java:342)\n\
+        \tat org.apache.ambari.server.upgrade.UpgradeCatalog270.executeDDLUpdates(UpgradeCatalog270.java:318)\n\
+        \tat org.apache.ambari.server.upgrade.AbstractUpgradeCatalog.upgradeSchema(AbstractUpgradeCatalog.java:970)\n\
+        \tat org.apache.ambari.server.upgrade.SchemaUpgradeHelper.executeUpgrade(SchemaUpgradeHelper.java:205)\n\
+        \tat org.apache.ambari.server.upgrade.SchemaUpgradeHelper.main(SchemaUpgradeHelper.java:448)\n\
+        2018-08-20 11:36:46,395 ERROR [main] SchemaUpgradeHelper:473 - Exception occurred\
+        \ during upgrade, failed\norg.apache.ambari.server.AmbariException\n\tat org.apache.ambari.server.upgrade.SchemaUpgradeHelper.executeUpgrade(SchemaUpgradeHelper.java:208)\n\
+        \tat org.apache.ambari.server.upgrade.SchemaUpgradeHelper.main(SchemaUpgradeHelper.java:448)\n\
+        Caused by: java.lang.NullPointerException\n\tat org.apache.ambari.server.upgrade.UpgradeCatalog270.convertUserCreationTimeToLong(UpgradeCatalog270.java:595)\n\
+        \tat org.apache.ambari.server.upgrade.UpgradeCatalog270.upgradeUserTables(UpgradeCatalog270.java:342)\n\
+        \tat org.apache.ambari.server.upgrade.UpgradeCatalog270.executeDDLUpdates(UpgradeCatalog270.java:318)\n\
+        \tat org.apache.ambari.server.upgrade.AbstractUpgradeCatalog.upgradeSchema(AbstractUpgradeCatalog.java:970)\n\
+        \tat org.apache.ambari.server.upgrade.SchemaUpgradeHelper.executeUpgrade(SchemaUpgradeHelper.java:205)\n\
+        \t... 1 more\n</pre>\n</div></div>\n<p><b>Cause</b><br/>\nThis is caused by\
+        \ one or more records with a\_<tt>NULL</tt>\_value in the\_<tt>create_time</tt>\_\
+        field.</p>\n\n<p>For example:</p>\n<div class='table-wrap'>\n<table class='confluenceTable'><tbody>\n\
+        <tr>\n<th class='confluenceTh'>user_id</th>\n<th class='confluenceTh'>user_name</th>\n\
+        <th class='confluenceTh'>user_type</th>\n<th class='confluenceTh'>create_time</th>\n\
+        </tr>\n<tr>\n<td class='confluenceTd'>1</td>\n<td class='confluenceTd'>admin</td>\n\
+        <td class='confluenceTd'>LOCAL</td>\n<td class='confluenceTd'>NULL</td>\n\
+        </tr>\n</tbody></table>\n</div>\n\n\n<p><b>Workaround</b>\_<br/>\nUpdate the\
+        \ relevant records to not have a\_<tt>NULL</tt>\_in the\_<tt>create_time</tt>\_\
+        column.</p>\n\n<p>For example:</p>\n<div class=\"preformatted panel\" style=\"\
+        border-width: 1px;\"><div class=\"preformattedContent panelContent\">\n<pre>UPDATE\
+        \ users SET create_time=systimestamp WHERE create_time IS NULL;\n</pre>\n\
+        </div></div>\n<p><b>Solution</b><br/>\nDuring upgrade, protect against a\_\
+        <tt>null</tt>\_value for\_<tt>currentUserCreateTime.getValue()</tt>\_at:</p>\n\
+        <div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeHeader\
+        \ panelHeader\" style=\"border-bottom-width: 1px;\"><b>org/apache/ambari/server/upgrade/UpgradeCatalog270.java:595</b></div><div\
+        \ class=\"codeContent panelContent\">\n<pre class=\"code-java\">\n       \
+        \   dbAccessor.updateTable(USERS_TABLE, temporaryColumnName, currentUserCreateTime.getValue().getTime(),\n\
+        \              <span class=\"code-quote\">\"WHERE \"</span> + USERS_USER_ID_COLUMN\
+        \ + <span class=\"code-quote\">\"=\"</span> + currentUserCreateTime.getKey());\n\
+        </pre>\n</div></div>\n<p>If\_<tt>currentUserCreateTime.getValue()</tt>\_is\
+        \ null, the current timestamp should be used.</p>\n\n<p><b>Note:</b>\_This\
+        \ may be a reoccurring issue since there is no provision to ensure that\_\
+        <tt>create_time</tt>\_is not\_<tt>NULL</tt>\_when initializing the Ambari\
+        \ database:</p>\n<div class=\"code panel\" style=\"border-width: 1px;\"><div\
+        \ class=\"codeContent panelContent\">\n<pre class=\"code-java\">\ninsert into\
+        \ users(user_id, principal_id, user_name, user_password)\nselect 1,1,<span\
+        \ class=\"code-quote\">'admin'</span>,<span class=\"code-quote\">'538916f8943ec225d97a9a86a2c6ec0818c1cd400e09e03b660fdaaec4af29ddbb6f2b1033b81b00'</span>\
+        \ from dual;</pre>\n</div></div>"
+      due: null
+      environment: null
+      fixVersion: 2.7.1
+      key:
+        '#text': AMBARI-24513
+        '@id': '13180142'
+      labels:
+        label: pull-request-available
+      link: https://issues.apache.org/jira/browse/AMBARI-24513
+      priority:
+        '#text': Blocker
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/blocker.svg
+        '@id': '1'
+      progress:
+        '@percentage': '100'
+        currentProgress:
+          row:
+          - '@backgroundColor': '#51a825'
+            '@percentage': '100'
+          - '@backgroundColor': '#ec8e00'
+            '@percentage': '0'
+        originalProgress:
+          row:
+          - '@backgroundColor': '#89afd7'
+            '@percentage': '0'
+          - '@backgroundColor': transparent
+            '@percentage': '100'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Sandor Molnar
+        '@username': smolnar
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 21 Aug 2018 13:03:10 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: NPE when migrating users table during upgrade to Ambari 2.7.0 with
+        Oracle DB
+      timeestimate:
+        '#text': 0h
+        '@seconds': '0'
+      timespent:
+        '#text': 2h 10m
+        '@seconds': '7800'
+      title: '[AMBARI-24513] NPE when migrating users table during upgrade to Ambari
+        2.7.0 with Oracle DB'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 21 Aug 2018 13:48:14 +0000
+      version: 2.7.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
