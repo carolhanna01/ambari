@@ -1,0 +1,196 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      attachments:
+        attachment:
+          '@author': jonathanhurley
+          '@created': Tue, 12 Dec 2017 13:29:57 +0000
+          '@id': '12901681'
+          '@name': AMBARI-22628.patch
+          '@size': '14481'
+      comments:
+        comment:
+        - '#text': "<p>FAILURE: Integrated in Jenkins build Ambari-branch-2.6 #549\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-branch-2.6/549/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-branch-2.6/549/</a>)<br/>\n<a href=\"\
+            https://issues.apache.org/jira/browse/AMBARI-22628\" title=\"YARN Shuffle\
+            \ Service Can&#39;t Be Found On Client-Only Nodes After New Cluster Install\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-22628\"><del>AMBARI-22628</del></a>\
+            \ - YARN Shuffle Service Can't Be Found On Client-Only Nodes (jhurley:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=5624f2cbf01a4080fccc0d417509aaa1f2ccd5c6\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=5624f2cbf01a4080fccc0d417509aaa1f2ccd5c6</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelperTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/resources/common-services/YARN/2.1.0.2.0/package/scripts/params_linux.py</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/Cluster.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/cluster/ClusterImpl.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/agent/ExecutionCommand.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClientConfigResourceProvider.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/orm/OrmTestHelper.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/actionmanager/ExecutionCommandWrapperTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 12 Dec 2017 00:54:38 +0000
+          '@id': '16286896'
+        - '#text': "<p>FAILURE: Integrated in Jenkins build Ambari-trunk-Commit #8518\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-trunk-Commit/8518/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-Commit/8518/</a>)<br/>\n<a\
+            \ href=\"https://issues.apache.org/jira/browse/AMBARI-22628\" title=\"\
+            YARN Shuffle Service Can&#39;t Be Found On Client-Only Nodes After New\
+            \ Cluster Install\" class=\"issue-link\" data-issue-key=\"AMBARI-22628\"\
+            ><del>AMBARI-22628</del></a> - YARN Shuffle Service Can't Be Found On\
+            \ Client-Only Nodes (jhurley: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=a928a9cd8f0c995e0aa5b9bc52c6b975d7f87edb\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=a928a9cd8f0c995e0aa5b9bc52c6b975d7f87edb</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/agent/ExecutionCommand.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/Cluster.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/actionmanager/ExecutionCommandWrapperTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClientConfigResourceProvider.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/orm/OrmTestHelper.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/resources/common-services/YARN/2.1.0.2.0/package/scripts/params_linux.py</li>\n\
+            \t<li>(edit) ambari-server/src/main/resources/common-services/YARN/3.0.0.3.0/package/scripts/params_linux.py</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelperTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/cluster/ClusterImpl.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 13 Dec 2017 19:31:08 +0000
+          '@id': '16289758'
+        - '#text': "<p>FAILURE: Integrated in Jenkins build Ambari-trunk-Commit #8613\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-trunk-Commit/8613/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-Commit/8613/</a>)<br/>\n<a\
+            \ href=\"https://issues.apache.org/jira/browse/AMBARI-22628\" title=\"\
+            YARN Shuffle Service Can&#39;t Be Found On Client-Only Nodes After New\
+            \ Cluster Install\" class=\"issue-link\" data-issue-key=\"AMBARI-22628\"\
+            ><del>AMBARI-22628</del></a> - YARN Shuffle Service Can't Be Found On\
+            \ Client-Only Nodes (rlevas: <a href=\"https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=15d8d1a1485ec5e5441c31566ef8a16632d6046f\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://gitbox.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=15d8d1a1485ec5e5441c31566ef8a16632d6046f</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/resources/common-services/YARN/3.0.0.3.0/package/scripts/params_linux.py</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/orm/OrmTestHelper.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/Cluster.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/controller/internal/ClientConfigResourceProvider.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/state/cluster/ClusterImpl.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/resources/common-services/YARN/2.1.0.2.0/package/scripts/params_linux.py</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelperTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/agent/ExecutionCommand.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/actionmanager/ExecutionCommandWrapperTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Thu, 18 Jan 2018 18:26:05 +0000
+          '@id': '16330921'
+      created: Mon, 11 Dec 2017 14:02:32 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 7 years, 28 weeks, 2 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i3nrkv:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>Installing a new cluster can create values in yarn-site.xml\
+        \ which have <tt>None</tt> specified in the classpath for Spark</p>\n\n<div\
+        \ class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent\
+        \ panelContent\">\n<pre class=\"code-java\">\n&lt;property&gt;\n      &lt;name&gt;yarn.nodemanager.aux-services.spark2_shuffle.classpath&lt;/name&gt;\n\
+        \      &lt;value&gt;/usr/hdp/None/spark2/aux/*&lt;/value&gt;\n    &lt;/property&gt;\n\
+        \n &lt;property&gt;\n      &lt;name&gt;yarn.nodemanager.aux-services.spark_shuffle.classpath&lt;/name&gt;\n\
+        \      &lt;value&gt;/usr/hdp/None/spark/aux/*&lt;/value&gt;\n    &lt;/property&gt;\n\
+        \n&lt;property&gt;\n      &lt;name&gt;yarn.timeline-service.entity-group-fs-store.group-id-plugin-classpath&lt;/name&gt;\n\
+        \      &lt;value&gt;/usr/hdp/None/spark/hdpLib/*&lt;/value&gt;\n    &lt;/property&gt;\n\
+        </pre>\n</div></div>\n\n<p>The cause for this is that YARN Clients on hosts\
+        \ without daemons never get a restart command after the initial <tt>yarn-site.xml</tt>,\
+        \ and can never fill in the correct values. This causes problems when jobs\
+        \ are run on these nodes:</p>\n\n<div class=\"code panel\" style=\"border-width:\
+        \ 1px;\"><div class=\"codeContent panelContent\">\n<pre class=\"code-java\"\
+        >\n2017-12-04 10:16:41,789 INFO  service.AbstractService (AbstractService.java:noteFailure(272))\
+        \ - Service org.apache.hadoop.yarn.server.nodemanager.containermanager.AuxServices\
+        \ failed in state INITED; cause: java.lang.ClassNotFoundException: org.apache.spark.network.yarn.YarnShuffleService\n\
+        java.lang.ClassNotFoundException: org.apache.spark.network.yarn.YarnShuffleService\n\
+        </pre>\n</div></div>"
+      due: null
+      environment: null
+      fixVersion: 2.6.1
+      key:
+        '#text': AMBARI-22628
+        '@id': '13124139'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-22628
+      priority:
+        '#text': Blocker
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/blocker.svg
+        '@id': '1'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Kishor Ramakrishnan
+        '@username': kramakrishnan
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 12 Dec 2017 13:30:10 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: YARN Shuffle Service Can't Be Found On Client-Only Nodes After New
+        Cluster Install
+      title: '[AMBARI-22628] YARN Shuffle Service Can''t Be Found On Client-Only Nodes
+        After New Cluster Install'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Thu, 18 Jan 2018 18:26:05 +0000
+      version: 2.6.1
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
