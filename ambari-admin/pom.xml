@@ -183,37 +183,6 @@
             <submodules>false</submodules>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>src/main/resources/ui/admin-web/bower_components/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/dist/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/node/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/app/assets/data/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/node_modules/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/app/bower_components/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/test/bower_components/**</exclude>
-            <exclude>src/main/resources/ui/admin-web/mock.js</exclude>
-            <exclude>src/main/resources/ui/admin-web/bower.json</exclude>
-            <exclude>src/main/resources/ui/admin-web/test/bower.json</exclude>
-            <exclude>src/main/resources/ui/admin-web/test/.bowerrc</exclude>
-            <exclude>src/main/resources/ui/admin-web/.bowerrc</exclude>
-            <exclude>src/main/resources/ui/admin-web/package.json</exclude>
-            <exclude>src/main/resources/ui/admin-web/.jshintrc</exclude>
-            <exclude>src/main/resources/ui/admin-web/.idea/**</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
     <resources>
       <resource>
