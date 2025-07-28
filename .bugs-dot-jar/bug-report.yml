@@ -1,0 +1,250 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Robert Levas
+        '@username': rlevas
+      attachments:
+        attachment:
+        - '@author': rlevas
+          '@created': Thu, 24 Aug 2017 01:47:58 +0000
+          '@id': '12883467'
+          '@name': AMBARI-21798_branch-2.5_01.patch
+          '@size': '12590'
+        - '@author': rlevas
+          '@created': Thu, 24 Aug 2017 01:47:58 +0000
+          '@id': '12883466'
+          '@name': AMBARI-21798_branch-2.6_01.patch
+          '@size': '12607'
+        - '@author': rlevas
+          '@created': Thu, 24 Aug 2017 01:47:58 +0000
+          '@id': '12883465'
+          '@name': AMBARI-21798_trunk_01.patch
+          '@size': '12838'
+      comments:
+        comment:
+        - '#text': "<p><font color=\"red\">-1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12883467/AMBARI-21798_branch-2.5_01.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12883467/AMBARI-21798_branch-2.5_01.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"red\">-1 patch</font>.\
+            \  The patch command could not apply the patch.</p>\n\n<p>Console output:\
+            \ <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/12056//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/12056//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Thu, 24 Aug 2017 10:28:04 +0000
+          '@id': '16139869'
+        - '#text': "<p>FAILURE: Integrated in Jenkins build Ambari-branch-2.6 #51\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-branch-2.6/51/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-branch-2.6/51/</a>)<br/>\n<a href=\"\
+            https://issues.apache.org/jira/browse/AMBARI-21798\" title=\"Oozie server\
+            \ crashes post migration after regen kerberos keytabs and restart all\
+            \ services\" class=\"issue-link\" data-issue-key=\"AMBARI-21798\"><del>AMBARI-21798</del></a>.\
+            \ Oozie server crashes post migration after regen kerberos (rlevas: <a\
+            \ href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=42e1b1007f88aeeab9bc77e81896648bfe9a24b3\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=42e1b1007f88aeeab9bc77e81896648bfe9a24b3</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog252.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog252Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Thu, 24 Aug 2017 13:54:31 +0000
+          '@id': '16140053'
+        - '#text': "<p>SUCCESS: Integrated in Jenkins build Ambari-trunk-Commit #7930\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-trunk-Commit/7930/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-Commit/7930/</a>)<br/>\n<a\
+            \ href=\"https://issues.apache.org/jira/browse/AMBARI-21798\" title=\"\
+            Oozie server crashes post migration after regen kerberos keytabs and restart\
+            \ all services\" class=\"issue-link\" data-issue-key=\"AMBARI-21798\"\
+            ><del>AMBARI-21798</del></a>. Oozie server crashes post migration after\
+            \ regen kerberos (rlevas: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=60632536aa6fbcee96580c24d6e2d7f67dd184fa\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=60632536aa6fbcee96580c24d6e2d7f67dd184fa</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog252.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog252Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Thu, 24 Aug 2017 13:57:08 +0000
+          '@id': '16140057'
+        - '#text': '<p>Committed to trunk</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit 60632536aa6fbcee96580c24d6e2d7f67dd184fa
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Thu Aug 24 09:06:06 2017 -0400
+
+            </pre>
+
+            </div></div>
+
+
+            <p>Committed to branch-2.6</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit 42e1b1007f88aeeab9bc77e81896648bfe9a24b3
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Thu Aug 24 09:14:43 2017 -0400
+
+            </pre>
+
+            </div></div>
+
+
+            <p>Committed to branch-2.5</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit 2eed29264cb06084bd4a4348e71421d419b22716
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Thu Aug 24 10:25:45 2017 -0400
+
+            </pre>
+
+            </div></div>'
+          '@author': rlevas
+          '@created': Thu, 24 Aug 2017 14:26:40 +0000
+          '@id': '16140083'
+        - '#text': "<p>SUCCESS: Integrated in Jenkins build Ambari-branch-2.5 #1830\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-branch-2.5/1830/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-branch-2.5/1830/</a>)<br/>\n<a href=\"\
+            https://issues.apache.org/jira/browse/AMBARI-21798\" title=\"Oozie server\
+            \ crashes post migration after regen kerberos keytabs and restart all\
+            \ services\" class=\"issue-link\" data-issue-key=\"AMBARI-21798\"><del>AMBARI-21798</del></a>.\
+            \ Oozie server crashes post migration after regen kerberos (rlevas: <a\
+            \ href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=2eed29264cb06084bd4a4348e71421d419b22716\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=2eed29264cb06084bd4a4348e71421d419b22716</a>)</p>\n\
+            <ul>\n\t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog252.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog252Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Thu, 24 Aug 2017 15:02:54 +0000
+          '@id': '16140132'
+      created: Wed, 23 Aug 2017 19:51:57 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '3.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 7 years, 49 weeks, 3 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i3j7if:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>This is specifically for the IOP *4.2.0 *to HDP migration</p>\n\
+        \n<p>Start with an IOP 4.2.0 cluster with both Oozie and Knox installed, enable\
+        \ Kerberos then run thru the migration. Once EU is finalized, regen Kerberos\
+        \ keytabs via Ambari web UI and check the checkbox to make Ambari restart\
+        \ all services as part of the regen process.</p>\n\n<p>Notice Oozie crashes\
+        \ after a successful restart with following error in the oozie.log file</p>\n\
+        <div class=\"preformatted panel\" style=\"border-width: 1px;\"><div class=\"\
+        preformattedContent panelContent\">\n<pre>2017-08-23 12:39:48,480 FATAL Services:514\
+        \ - SERVER[umiak2.fyre.ibm.com] E0550: Could not normalize host name [${host}],\
+        \ Could not resolve host [${host}], ${host}: Name or service not known \n\
+        org.apache.oozie.service.ServiceException: E0550: Could not normalize host\
+        \ name [${host}], Could not resolve host [${host}], ${host}: Name or service\
+        \ not known\n</pre>\n</div></div>\n<p>This is because Knox kerberos.json in\
+        \ IOP 4.2.0 has oozie proxy setting as <br/>\n<tt>\"oozie.service.ProxyUserService.proxyuser.knox.hosts\"\
+        : \"${hosts}\",</tt></p>\n\n<p>In HDP 2.6.2, the same property  is now <br/>\n\
+        <tt>\"oozie.service.ProxyUserService.proxyuser.${knox-env/knox_user}.hosts\"\
+        : \"${clusterHostInfo/knox_gateway_hosts}\"</tt>, where the ${hosts} placeholder\
+        \ is changed and Knox params.py no longer has the logic to calculate it .</p>\n\
+        \n<p><b>A manual fix</b> is to change Kerboers config for Knox - update <tt>\"\
+        oozie.service.ProxyUserService.proxyuser.knox.hosts\"</tt> to have value <tt>\"\
+        ${clusterHostInfo/knox_gateway_hosts}\"</tt>  ( done via UI, this will kick\
+        \ off regen keytabs and restart services)</p>"
+      due: null
+      environment: null
+      fixVersion: 2.5.2
+      key:
+        '#text': AMBARI-21798
+        '@id': '13097125'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-21798
+      priority:
+        '#text': Blocker
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/blocker.svg
+        '@id': '1'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Di Li
+        '@username': dili
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Thu, 24 Aug 2017 14:26:40 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Oozie server crashes post migration after regen kerberos keytabs and
+        restart all services
+      title: '[AMBARI-21798] Oozie server crashes post migration after regen kerberos
+        keytabs and restart all services'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Thu, 24 Aug 2017 15:02:54 +0000
+      version: 2.5.2
+      votes: '0'
+      watches: '3'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
