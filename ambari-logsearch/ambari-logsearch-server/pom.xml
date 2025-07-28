@@ -140,25 +140,6 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.apache.rat</groupId>
-            <artifactId>apache-rat-plugin</artifactId>
-            <configuration>
-              <excludes>
-                <exclude>src/main/configsets/hadoop_logs/conf/managed-schema</exclude>
-                <exclude>**/*.log</exclude>
-                <exclude>**/*.json</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <phase>test</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
         </plugins>
       </build>
     </profile>

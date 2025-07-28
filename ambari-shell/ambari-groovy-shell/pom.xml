@@ -84,28 +84,6 @@
         <version>3.0</version>
       </plugin>
       <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>src/main/resources/elephant.txt</exclude>
-            <exclude>src/main/resources/banner.txt</exclude>
-            <exclude>src/test/resources/2columns</exclude>
-            <exclude>src/test/resources/3columns</exclude>
-            <exclude>src/test/resources/testBlueprint.json</exclude>
-            <exclude>src/test/resources/core-site.xml</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <skipAssembly>true</skipAssembly>

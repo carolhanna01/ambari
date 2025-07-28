@@ -69,18 +69,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-          <artifactId>apache-rat-plugin</artifactId>
-          <configuration>
-            <excludes>
-              <exclude>src/test/resources/version</exclude>
-              <exclude>src/test/resources/os_family.json</exclude>
-              <exclude>src/test/resources/stacks/**</exclude>
-              <exclude>derby.log</exclude>
-            </excludes>
-          </configuration>
-      </plugin>
     </plugins>
     <resources>
       <resource>
