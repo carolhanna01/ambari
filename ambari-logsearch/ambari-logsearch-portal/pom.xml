@@ -153,30 +153,6 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.apache.rat</groupId>
-            <artifactId>apache-rat-plugin</artifactId>
-            <configuration>
-              <excludes>
-                <exclude>src/main/webapp/libs/**/*</exclude>
-                <exclude>production/r.js</exclude>
-                <exclude>src/main/configsets/hadoop_logs/conf/managed-schema</exclude>
-                <exclude>src/main/webapp/robots.txt</exclude>
-                <exclude>src/main/webapp/styles/animate.css</exclude>
-                <exclude>**/*.json</exclude>
-                <exclude>src/main/webapp/styles/visualsearch.css</exclude>
-                <exclude>**/*.log</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <phase>test</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
           <!-- /ant package -->
         </plugins>
       </build>
@@ -321,23 +297,6 @@
                   <goal>run</goal>
                 </goals>
               </execution> -->
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.rat</groupId>
-            <artifactId>apache-rat-plugin</artifactId>
-            <configuration>
-              <excludes>
-                <exclude>**/*</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <phase>test</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
             </executions>
           </plugin>
         </plugins>

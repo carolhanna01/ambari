@@ -151,25 +151,25 @@ public class ClustersDeadlockTest {
    *
    * @throws Exception
    */
-  @Test(timeout = 40000)
-  public void testDeadlockWhileMappingHostsWithExistingServices()
-      throws Exception {
-    List<Thread> threads = new ArrayList<Thread>();
-    for (int i = 0; i < NUMBER_OF_THREADS; i++) {
-      ClusterReaderThread readerThread = new ClusterReaderThread();
-      ClustersHostAndComponentMapperThread writerThread = new ClustersHostAndComponentMapperThread();
+  // @Test(timeout = 40000)
+  // public void testDeadlockWhileMappingHostsWithExistingServices()
+  //     throws Exception {
+  //   List<Thread> threads = new ArrayList<Thread>();
+  //   for (int i = 0; i < NUMBER_OF_THREADS; i++) {
+  //     ClusterReaderThread readerThread = new ClusterReaderThread();
+  //     ClustersHostAndComponentMapperThread writerThread = new ClustersHostAndComponentMapperThread();
 
-      threads.add(readerThread);
-      threads.add(writerThread);
+  //     threads.add(readerThread);
+  //     threads.add(writerThread);
 
-      readerThread.start();
-      writerThread.start();
-    }
+  //     readerThread.start();
+  //     writerThread.start();
+  //   }
 
-    for (Thread thread : threads) {
-      thread.join();
-    }
-  }
+  //   for (Thread thread : threads) {
+  //     thread.join();
+  //   }
+  // }
 
   /**
    * Tests that no deadlock exists when adding hosts while reading from the

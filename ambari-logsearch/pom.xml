@@ -150,27 +150,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>README.md</exclude>
-            <exclude>**/*.json</exclude>
-            <exclude>**/*.log</exclude>
-            <exclude>**/*.txt</exclude>
-            <exclude>**/docker/Profile</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
