@@ -1,0 +1,158 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      attachments:
+        attachment:
+          '@author': jonathanhurley
+          '@created': Mon, 29 Aug 2016 19:43:59 +0000
+          '@id': '12826060'
+          '@name': AMBARI-18271.patch
+          '@size': '28605'
+      comments:
+        comment:
+        - '#text': "<p><font color=\"red\">-1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12826060/AMBARI-18271.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12826060/AMBARI-18271.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"red\">-1 patch</font>.\
+            \  Top-level trunk compilation may be broken.</p>\n\n<p>Console output:\
+            \ <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/8526//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/8526//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Mon, 29 Aug 2016 20:33:49 +0000
+          '@id': '15446977'
+        - '#text': "<p>SUCCESS: Integrated in Jenkins build Ambari-trunk-Commit #5602\
+            \ (See <a href=\"https://builds.apache.org/job/Ambari-trunk-Commit/5602/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-Commit/5602/</a>)<br/>\n<a\
+            \ href=\"https://issues.apache.org/jira/browse/AMBARI-18271\" title=\"\
+            Multiple Aggregate Alerts For JournalNode Exist With Some Being Incorrect\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-18271\"><del>AMBARI-18271</del></a>\
+            \ - Multiple Aggregate Alerts For JournalNode Exist With Some (jhurley:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=580e920a145cebf0e3899bc8ea4e3fc4b4d367dc\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=580e920a145cebf0e3899bc8ea4e3fc4b4d367dc</a>)</p>\n\
+            <ul>\n\t<li>(add) ambari-server/src/test/java/org/apache/ambari/server/orm/entities/AlertCurrentEntityTest.java</li>\n\
+            \t<li>(add) ambari-server/src/test/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntityTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertHistoryEntity.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/events/listeners/alerts/AlertReceivedListener.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntity.java</li>\n\
+            \t<li>(edit) ambari-server/src/test/java/org/apache/ambari/server/state/alerts/AlertReceivedListenerTest.java</li>\n\
+            \t<li>(add) ambari-server/src/test/java/org/apache/ambari/server/orm/entities/AlertHistoryEntityTest.java</li>\n\
+            \t<li>(edit) ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertCurrentEntity.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 30 Aug 2016 05:43:38 +0000
+          '@id': '15448128'
+      component: ambari-server
+      created: Mon, 29 Aug 2016 16:29:19 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 8 years, 49 weeks ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i32ykf:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: '<p>When a cluster is being created initially, there are many new
+        alert instances being generated concurrently. This can lead to a race condition
+        where certain alert types, such as aggregate alerts, fire several events and
+        end up creating duplicate alert instances.</p>
+
+
+        <p>Although aggregate alerts are the most common, the flaw is in the alert
+        listener since it never guarantees uniqueness even though it supports concurrent
+        events.</p>
+
+
+        <p>This problem is mainly encountered when the cluster is initially created,
+        and therefore a solution shouldn''t impact the rest of the cluster''s lifetime.
+        In other words, we shouldn''t cause a degradation the other 99.9% of the time
+        in order to fix this problem.</p>'
+      due: null
+      environment: null
+      fixVersion:
+      - trunk
+      - 2.4.1
+      key:
+        '#text': AMBARI-18271
+        '@id': '13001035'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-18271
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 30 Aug 2016 03:37:35 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Multiple Aggregate Alerts For JournalNode Exist With Some Being Incorrect
+      title: '[AMBARI-18271] Multiple Aggregate Alerts For JournalNode Exist With
+        Some Being Incorrect'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Thu, 8 Sep 2016 18:36:19 +0000
+      version: 2.0.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA

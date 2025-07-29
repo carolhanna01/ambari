@@ -1,0 +1,426 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/events/listeners/alerts/AlertReceivedListener.java b/ambari-server/src/main/java/org/apache/ambari/server/events/listeners/alerts/AlertReceivedListener.java
+index 2dcf1d628b..907e4d8230 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/events/listeners/alerts/AlertReceivedListener.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/events/listeners/alerts/AlertReceivedListener.java
+@@ -19,6 +19,8 @@ package org.apache.ambari.server.events.listeners.alerts;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
++import java.util.Objects;
++import java.util.concurrent.locks.Lock;
+ 
+ import org.apache.ambari.server.AmbariException;
+ import org.apache.ambari.server.EagerSingleton;
+@@ -52,6 +54,7 @@ import org.slf4j.LoggerFactory;
+ 
+ import com.google.common.eventbus.AllowConcurrentEvents;
+ import com.google.common.eventbus.Subscribe;
++import com.google.common.util.concurrent.Striped;
+ import com.google.inject.Inject;
+ import com.google.inject.Provider;
+ import com.google.inject.Singleton;
+@@ -100,6 +103,12 @@ public class AlertReceivedListener {
+    */
+   private AlertEventPublisher m_alertEventPublisher;
+ 
++  /**
++   * Used for ensuring that creation of {@link AlertCurrentEntity} instances has fine-grain
++   * locks to prevent duplicates.
++   */
++  private Striped<Lock> creationLocks = Striped.lazyWeakLock(100);
++
+   /**
+    * Constructor.
+    *
+@@ -129,7 +138,7 @@ public class AlertReceivedListener {
+     // many transactions/commits
+     List<Alert> alerts = event.getAlerts();
+ 
+-    List<AlertCurrentEntity> toCreate = new ArrayList<>();
++    // these can be wrapped in their own transaction
+     List<AlertCurrentEntity> toMerge = new ArrayList<>();
+     List<AlertCurrentEntity> toCreateHistoryAndMerge = new ArrayList<>();
+ 
+@@ -173,47 +182,63 @@ public class AlertReceivedListener {
+       AlertCurrentEntity current;
+       AlertState alertState = alert.getState();
+ 
+-      if (StringUtils.isBlank(alert.getHostName()) || definition.isHostIgnored()) {
+-        current = m_alertsDao.findCurrentByNameNoHost(clusterId, alert.getName());
+-      } else {
+-        current = m_alertsDao.findCurrentByHostAndName(clusterId, alert.getHostName(),
+-          alert.getName());
+-      }
++      // attempt to lookup the current alert
++      current = getCurrentEntity(clusterId, alert, definition);
++
++      // if it doesn't exist then we must create it, ensuring that two or more
++      // aren't created from other threads
++      if( null == current ){
+ 
+-      if (null == current) {
+-        // if there is no current alert and the state is skipped, then simple
++        // if there is no current alert and the state is skipped, then simply
+         // skip over this one as there is nothing to update in the databse
+         if (alertState == AlertState.SKIPPED) {
+           continue;
+         }
+ 
+-        AlertHistoryEntity history = createHistory(clusterId, definition, alert);
++        // create a key out of the cluster/definition name/host (possibly null)
++        int key = Objects.hash(clusterId, alert.getName(), alert.getHostName());
++        Lock lock = creationLocks.get(key);
++        lock.lock();
+ 
+-        // this new alert must reflect the correct MM state for the
+-        // service/component/host
+-        MaintenanceState maintenanceState = MaintenanceState.OFF;
++        // attempt to lookup the current alert again to ensure that a previous
++        // thread didn't already create it
+         try {
+-          maintenanceState = m_maintenanceStateHelper.get().getEffectiveState(clusterId, alert);
+-        } catch (Exception exception) {
+-          LOG.error("Unable to determine the maintenance mode state for {}, defaulting to OFF",
+-              alert, exception);
+-        }
++          // if it's not null anymore, then there's no work to do here
++          current = getCurrentEntity(clusterId, alert, definition);
++          if( null != current ) {
++            continue;
++          }
+ 
+-        current = new AlertCurrentEntity();
+-        current.setMaintenanceState(maintenanceState);
+-        current.setAlertHistory(history);
+-        current.setLatestTimestamp(alert.getTimestamp());
+-        current.setOriginalTimestamp(alert.getTimestamp());
++          // the current alert is still null, so go through and create it
++          AlertHistoryEntity history = createHistory(clusterId, definition, alert);
++
++          // this new alert must reflect the correct MM state for the
++          // service/component/host
++          MaintenanceState maintenanceState = MaintenanceState.OFF;
++          try {
++            maintenanceState = m_maintenanceStateHelper.get().getEffectiveState(clusterId, alert);
++          } catch (Exception exception) {
++            LOG.error("Unable to determine the maintenance mode state for {}, defaulting to OFF",
++                alert, exception);
++          }
+ 
+-        // brand new alert instances being received are always HARD
+-        current.setFirmness(AlertFirmness.HARD);
++          current = new AlertCurrentEntity();
++          current.setMaintenanceState(maintenanceState);
++          current.setAlertHistory(history);
++          current.setLatestTimestamp(alert.getTimestamp());
++          current.setOriginalTimestamp(alert.getTimestamp());
+ 
+-        // store the entity for creation later
+-        toCreate.add(current);
++          // brand new alert instances being received are always HARD
++          current.setFirmness(AlertFirmness.HARD);
+ 
+-        // create the event to fire later
+-        alertEvents.add(new InitialAlertEvent(clusterId, alert, current));
++          m_alertsDao.create(current);
+ 
++          // create the event to fire later
++          alertEvents.add(new InitialAlertEvent(clusterId, alert, current));
++        } finally {
++          // release the lock for this alert
++          lock.unlock();
++        }
+       } else if (alertState == current.getAlertHistory().getAlertState()
+           || alertState == AlertState.SKIPPED) {
+ 
+@@ -319,7 +344,7 @@ public class AlertReceivedListener {
+ 
+     // invokes the EntityManager create/merge on various entities in a single
+     // transaction
+-    saveEntities(toCreate, toMerge, toCreateHistoryAndMerge);
++    saveEntities(toMerge, toCreateHistoryAndMerge);
+ 
+     // broadcast events
+     for (AlertEvent eventToFire : alertEvents) {
+@@ -342,19 +367,31 @@ public class AlertReceivedListener {
+     }
+   }
+ 
++  /**
++   * Gets the {@link AlertCurrentEntity} which cooresponds to the new alert being received, if any.
++   *
++   * @param clusterId the ID of the cluster.
++   * @param alert the alert being received (not {@code null}).
++   * @param definition  the {@link AlertDefinitionEntity} for the alert being received (not {@code null}).
++   * @return  the existing current alert or {@code null} for none.
++   */
++  private AlertCurrentEntity getCurrentEntity(long clusterId, Alert alert, AlertDefinitionEntity definition){
++    if (StringUtils.isBlank(alert.getHostName()) || definition.isHostIgnored()) {
++      return m_alertsDao.findCurrentByNameNoHost(clusterId, alert.getName());
++    } else {
++      return m_alertsDao.findCurrentByHostAndName(clusterId, alert.getHostName(),
++        alert.getName());
++    }
++  }
++
+   /**
+    * Saves alert and alert history entities in single transaction
+-   * @param toCreate - new alerts, create alert and history
+    * @param toMerge - merge alert only
+    * @param toCreateHistoryAndMerge - create new history, merge alert
+    */
+   @Transactional
+-  void saveEntities(List<AlertCurrentEntity> toCreate, List<AlertCurrentEntity> toMerge,
++  void saveEntities(List<AlertCurrentEntity> toMerge,
+       List<AlertCurrentEntity> toCreateHistoryAndMerge) {
+-    for (AlertCurrentEntity entity : toCreate) {
+-      m_alertsDao.create(entity);
+-    }
+-
+     for (AlertCurrentEntity entity : toMerge) {
+       m_alertsDao.merge(entity, m_configuration.isAlertCacheEnabled());
+     }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertCurrentEntity.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertCurrentEntity.java
+index b30b1000cb..651e1a1dea 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertCurrentEntity.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertCurrentEntity.java
+@@ -17,6 +17,8 @@
+  */
+ package org.apache.ambari.server.orm.entities;
+ 
++import java.util.Objects;
++
+ import javax.persistence.CascadeType;
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+@@ -36,6 +38,7 @@ import javax.persistence.TableGenerator;
+ import org.apache.ambari.server.state.AlertFirmness;
+ import org.apache.ambari.server.state.AlertState;
+ import org.apache.ambari.server.state.MaintenanceState;
++import org.apache.commons.lang.builder.EqualsBuilder;
+ 
+ /**
+  * The {@link AlertCurrentEntity} class represents the most recently received an
+@@ -331,7 +334,13 @@ public class AlertCurrentEntity {
+   }
+ 
+   /**
+-   *
++   * Gets the equality to another alert based on the following criteria:
++   * <ul>
++   * <li>{@link #alertId}
++   * <li>{@link #alertHistory}
++   * </ul>
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public boolean equals(Object object) {
+@@ -344,21 +353,30 @@ public class AlertCurrentEntity {
+     }
+ 
+     AlertCurrentEntity that = (AlertCurrentEntity) object;
++    EqualsBuilder equalsBuilder = new EqualsBuilder();
+ 
+-    if (alertId != null ? !alertId.equals(that.alertId) : that.alertId != null) {
+-      return false;
+-    }
+-
+-    return true;
++    equalsBuilder.append(alertId, that.alertId);
++    equalsBuilder.append(alertHistory, that.alertHistory);
++    return equalsBuilder.isEquals();
+   }
+ 
+   /**
+-   *
++   * Generates a hash for the current alert based on the following criteria:
++   * <ul>
++   * <li>{@link #alertId}
++   * <li>{@link #alertHistory}
++   * </ul>
++   * <p/>
++   * For new alerts, the associated {@link AlertHistoryEntity} may not be
++   * persisted yet. This will rely on the
++   * {@link AlertHistoryEntity#equals(Object)} and
++   * {@link AlertHistoryEntity#hashCode()} being correct.
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public int hashCode() {
+-    int result = null != alertId ? alertId.hashCode() : 0;
+-    return result;
++    return Objects.hash(alertId, alertHistory);
+   }
+ 
+   /**
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntity.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntity.java
+index 638646ca6b..0eebf4b319 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntity.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertDefinitionEntity.java
+@@ -20,6 +20,7 @@ package org.apache.ambari.server.orm.entities;
+ import java.util.Collections;
+ import java.util.HashSet;
+ import java.util.Iterator;
++import java.util.Objects;
+ import java.util.Set;
+ 
+ import javax.persistence.Basic;
+@@ -593,7 +594,17 @@ public class AlertDefinitionEntity {
+   }
+ 
+   /**
+-   *
++   * Gets the equality to another historical alert entry based on the following criteria:
++   * <ul>
++   * <li>{@link #definitionId}
++   * <li>{@link #clusterId}
++   * <li>{@link #definitionName}
++   * </ul>
++   * <p/>
++   * However, since we're guaranteed that {@link #definitionId} is unique among persisted entities, we
++   * can return the hashCode based on this value if it is set.
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public boolean equals(Object object) {
+@@ -607,21 +618,31 @@ public class AlertDefinitionEntity {
+ 
+     AlertDefinitionEntity that = (AlertDefinitionEntity) object;
+ 
+-    if (definitionId != null ? !definitionId.equals(that.definitionId)
+-      : that.definitionId != null) {
+-      return false;
++    // use the unique ID if it exists
++    if( null != definitionId ){
++      return Objects.equals(definitionId, that.definitionId);
+     }
+ 
+-    return true;
++    return Objects.equals(definitionId, that.definitionId) &&
++        Objects.equals(clusterId, that.clusterId) &&
++        Objects.equals(definitionName, that.definitionName);
+   }
+ 
+   /**
+-   *
++   * Gets a hash to uniquely identify this alert definition. Since we're
++   * guaranteed that {@link #definitionId} is unique among persisted entities,
++   * we can return the hashCode based on this value if it is set.
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public int hashCode() {
+-    int result = null != definitionId ? definitionId.hashCode() : 0;
+-    return result;
++    // use the unique ID if it exists
++    if( null != definitionId ){
++      return definitionId.hashCode();
++    }
++
++    return Objects.hash(definitionId, clusterId, definitionName);
+   }
+ 
+   /**
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertHistoryEntity.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertHistoryEntity.java
+index 8bc4b99265..958740a142 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertHistoryEntity.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/entities/AlertHistoryEntity.java
+@@ -17,6 +17,8 @@
+  */
+ package org.apache.ambari.server.orm.entities;
+ 
++import java.util.Objects;
++
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+ import javax.persistence.EnumType;
+@@ -331,7 +333,7 @@ public class AlertHistoryEntity {
+    */
+   public void setAlertDefinition(AlertDefinitionEntity alertDefinition) {
+     this.alertDefinition = alertDefinition;
+-    this.alertDefinitionId = alertDefinition.getDefinitionId();
++    alertDefinitionId = alertDefinition.getDefinitionId();
+   }
+ 
+   /**
+@@ -351,7 +353,25 @@ public class AlertHistoryEntity {
+   }
+ 
+   /**
+-   *
++   * Gets the equality to another historical alert entry based on the following criteria:
++   * <ul>
++   * <li>{@link #alertId}
++   * <li>{@link #clusterId}
++   * <li>{@link #alertInstance}
++   * <li>{@link #alertLabel}
++   * <li>{@link #alertState}
++   * <li>{@link #alertText}
++   * <li>{@link #alertTimestamp}
++   * <li>{@link #serviceName}
++   * <li>{@link #componentName}
++   * <li>{@link #hostName}
++   * <li>{@link #alertDefinition}
++   * </ul>
++   * <p/>
++   * However, since we're guaranteed that {@link #alertId} is unique among persisted entities, we
++   * can return the hashCode based on this value if it is set.
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public boolean equals(Object object) {
+@@ -365,20 +385,43 @@ public class AlertHistoryEntity {
+ 
+     AlertHistoryEntity that = (AlertHistoryEntity) object;
+ 
+-    if (alertId != null ? !alertId.equals(that.alertId) : that.alertId != null) {
+-      return false;
++    // use the unique ID if it exists
++    if( null != alertId ){
++      return Objects.equals(alertId, that.alertId);
+     }
+ 
+-    return true;
++    return Objects.equals(alertId, that.alertId) &&
++        Objects.equals(clusterId, that.clusterId) &&
++        Objects.equals(alertInstance, that.alertInstance) &&
++        Objects.equals(alertLabel, that.alertLabel) &&
++        Objects.equals(alertState, that.alertState) &&
++        Objects.equals(alertText, that.alertText) &&
++        Objects.equals(alertTimestamp, that.alertTimestamp) &&
++        Objects.equals(serviceName, that.serviceName) &&
++        Objects.equals(componentName, that.componentName) &&
++        Objects.equals(hostName, that.hostName) &&
++        Objects.equals(alertDefinition, that.alertDefinition);
+   }
+ 
+   /**
+-   *
++   * Gets a hash to uniquely identify this historical alert instance. Since historical entries
++   * have no real uniqueness properties, we need to rely on a combination of the fields of this
++   * entity.
++   * <p/>
++   * However, since we're guaranteed that {@link #alertId} is unique among persisted entities, we
++   * can return the hashCode based on this value if it is set.
++   * <p/>
++   * {@inheritDoc}
+    */
+   @Override
+   public int hashCode() {
+-    int result = null != alertId ? alertId.hashCode() : 0;
+-    return result;
++    // use the unique ID if it exists
++    if( null != alertId ){
++      return alertId.hashCode();
++    }
++
++    return Objects.hash(alertId, clusterId, alertInstance, alertLabel, alertState, alertText,
++        alertTimestamp, serviceName, componentName, hostName, alertDefinition);
+   }
+ 
+   /**
