@@ -1,0 +1,502 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+index 5ff6a7427f..0afae97b45 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+@@ -17,11 +17,24 @@
+  */
+ package org.apache.ambari.server.configuration;
+ 
+-import com.google.gson.JsonElement;
+-import com.google.gson.JsonObject;
+-import com.google.gson.JsonParser;
+-import com.google.inject.Inject;
+-import com.google.inject.Singleton;
++import java.io.File;
++import java.io.FileNotFoundException;
++import java.io.FileReader;
++import java.io.IOException;
++import java.io.InputStream;
++import java.security.cert.CertificateException;
++import java.security.interfaces.RSAPublicKey;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.EnumSet;
++import java.util.HashMap;
++import java.util.HashSet;
++import java.util.List;
++import java.util.Map;
++import java.util.Map.Entry;
++import java.util.Properties;
++import java.util.Set;
++
+ import org.apache.ambari.annotations.Experimental;
+ import org.apache.ambari.annotations.ExperimentalFeature;
+ import org.apache.ambari.server.AmbariException;
+@@ -39,7 +52,6 @@ import org.apache.ambari.server.state.stack.OsFamily;
+ import org.apache.ambari.server.utils.AmbariPath;
+ import org.apache.ambari.server.utils.Parallel;
+ import org.apache.ambari.server.utils.ShellCommandUtil;
+-import org.apache.commons.collections.ListUtils;
+ import org.apache.commons.io.FileUtils;
+ import org.apache.commons.lang.RandomStringUtils;
+ import org.apache.commons.lang.StringUtils;
+@@ -47,23 +59,11 @@ import org.apache.commons.lang.math.NumberUtils;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ 
+-import java.io.File;
+-import java.io.FileNotFoundException;
+-import java.io.FileReader;
+-import java.io.IOException;
+-import java.io.InputStream;
+-import java.security.cert.CertificateException;
+-import java.security.interfaces.RSAPublicKey;
+-import java.util.ArrayList;
+-import java.util.Arrays;
+-import java.util.EnumSet;
+-import java.util.HashMap;
+-import java.util.HashSet;
+-import java.util.List;
+-import java.util.Map;
+-import java.util.Map.Entry;
+-import java.util.Properties;
+-import java.util.Set;
++import com.google.gson.JsonElement;
++import com.google.gson.JsonObject;
++import com.google.gson.JsonParser;
++import com.google.inject.Inject;
++import com.google.inject.Singleton;
+ 
+ 
+ /**
+@@ -537,6 +537,11 @@ public class Configuration {
+   private static final int VIEW_EXTRACTION_THREADPOOL_CORE_SIZE_DEFAULT = 10;
+   private static final String VIEW_EXTRACTION_THREADPOOL_TIMEOUT_KEY = "view.extraction.threadpool.timeout";
+   private static final long VIEW_EXTRACTION_THREADPOOL_TIMEOUT_DEFAULT = 100000L;
++  private static final String VIEW_REQUEST_THREADPOOL_MAX_SIZE_KEY = "view.request.threadpool.size.max";
++  private static final int VIEW_REQUEST_THREADPOOL_MAX_SIZE_DEFAULT = 0;
++  private static final String VIEW_REQUEST_THREADPOOL_TIMEOUT_KEY = "view.request.threadpool.timeout";
++  private static final int VIEW_REQUEST_THREADPOOL_TIMEOUT_DEFAULT = 2000;
++
+ 
+   public static final String PROPERTY_PROVIDER_THREADPOOL_MAX_SIZE_KEY = "server.property-provider.threadpool.size.max";
+   public static final int PROPERTY_PROVIDER_THREADPOOL_MAX_SIZE_DEFAULT = 4 * Runtime.getRuntime().availableProcessors();
+@@ -1271,7 +1276,9 @@ public class Configuration {
+    * @param list
+    */
+   private void listToLowerCase(List<String> list) {
+-    if (list == null) return;
++    if (list == null) {
++      return;
++    }
+     for (int i = 0; i < list.size(); i++) {
+       list.set(i, list.get(i).toLowerCase());
+     }
+@@ -2323,6 +2330,32 @@ public class Configuration {
+       VIEW_EXTRACTION_THREADPOOL_CORE_SIZE_KEY, String.valueOf(VIEW_EXTRACTION_THREADPOOL_CORE_SIZE_DEFAULT)));
+   }
+ 
++  /**
++   * Get the maximum number of threads that will be allocated to fulfilling view
++   * requests.
++   *
++   * @return the maximum number of threads that will be allocated for requests
++   *         to load views or {@value #VIEW_REQUEST_THREADPOOL_MAX_SIZE_DEFAULT}
++   *         if not specified.
++   */
++  public int getViewRequestThreadPoolMaxSize() {
++    return Integer.parseInt(properties.getProperty(VIEW_REQUEST_THREADPOOL_MAX_SIZE_KEY,
++        String.valueOf(VIEW_REQUEST_THREADPOOL_MAX_SIZE_DEFAULT)));
++  }
++
++  /**
++   * Get the time, in ms, that a request to a view will wait for an available
++   * thread to handle the request before returning an error.
++   *
++   * @return the time that requests for a view should wait for an available
++   *         thread or {@value #VIEW_REQUEST_THREADPOOL_TIMEOUT_DEFAULT} if not
++   *         specified.
++   */
++  public int getViewRequestThreadPoolTimeout() {
++    return Integer.parseInt(properties.getProperty(VIEW_REQUEST_THREADPOOL_TIMEOUT_KEY,
++        String.valueOf(VIEW_REQUEST_THREADPOOL_TIMEOUT_DEFAULT)));
++  }
++
+   /**
+    * Get property-providers' thread pool core size.
+    *
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
+index dc531723a8..0527cbc0a2 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java
+@@ -19,9 +19,6 @@
+ package org.apache.ambari.server.controller;
+ 
+ 
+-import javax.crypto.BadPaddingException;
+-import javax.servlet.DispatcherType;
+-
+ import java.io.File;
+ import java.io.IOException;
+ import java.net.Authenticator;
+@@ -33,6 +30,9 @@ import java.util.Enumeration;
+ import java.util.HashMap;
+ import java.util.Map;
+ 
++import javax.crypto.BadPaddingException;
++import javax.servlet.DispatcherType;
++
+ import org.apache.ambari.eventdb.webservice.WorkflowJsonService;
+ import org.apache.ambari.server.AmbariException;
+ import org.apache.ambari.server.StateRecoveryManager;
+@@ -120,6 +120,7 @@ import org.apache.ambari.server.utils.StageUtils;
+ import org.apache.ambari.server.utils.VersionUtils;
+ import org.apache.ambari.server.view.ViewDirectoryWatcher;
+ import org.apache.ambari.server.view.ViewRegistry;
++import org.apache.ambari.server.view.ViewThrottleFilter;
+ import org.apache.velocity.app.Velocity;
+ import org.eclipse.jetty.http.HttpVersion;
+ import org.eclipse.jetty.server.HttpConfiguration;
+@@ -371,6 +372,12 @@ public class AmbariServer {
+       root.addFilter(new FilterHolder(injector.getInstance(AmbariViewsSecurityHeaderFilter.class)), "/api/v1/views/*",
+           DISPATCHER_TYPES);
+ 
++      // since views share the REST API threadpool, a misbehaving view could
++      // consume all of the available threads and effectively cause a loss of
++      // service for Ambari
++      root.addFilter(new FilterHolder(injector.getInstance(ViewThrottleFilter.class)),
++          "/api/v1/views/*", DISPATCHER_TYPES);
++
+       // session-per-request strategy for api
+       root.addFilter(new FilterHolder(injector.getInstance(AmbariPersistFilter.class)), "/api/*", DISPATCHER_TYPES);
+       root.addFilter(new FilterHolder(new MethodOverrideFilter()), "/api/*", DISPATCHER_TYPES);
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java b/ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java
+index b07f7da57c..d3d859258d 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java
+@@ -17,12 +17,12 @@
+  */
+ package org.apache.ambari.server.utils;
+ 
+-import org.apache.ambari.server.bootstrap.BootStrapImpl;
+-import org.apache.commons.lang.StringUtils;
+-
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import org.apache.ambari.server.bootstrap.BootStrapImpl;
++import org.apache.commons.lang.StringUtils;
++
+ /**
+  * Provides various utility functions to be used for version handling.
+  * The compatibility matrix between server, agent, store can also be maintained
+@@ -30,28 +30,35 @@ import java.util.List;
+  */
+ public class VersionUtils {
+   /**
+-   * Compares two versions strings of the form N.N.N.N or even N.N.N.N-### (which should ignore everything after the dash).
+-   * If the user has a custom stack, e.g., 2.3.MYNAME or MYNAME.2.3, then any segment that contains letters should be ignored.
++   * Compares two versions strings of the form N.N.N.N or even N.N.N.N-###
++   * (which should ignore everything after the dash). If the user has a custom
++   * stack, e.g., 2.3.MYNAME or MYNAME.2.3, then any segment that contains
++   * letters should be ignored.
+    *
+    * @param version1
++   *          the first operand. If set to {@value BootStrapImpl#DEV_VERSION}
++   *          then this will always return {@code 0)}
+    * @param version2
+-   * @param maxLengthToCompare The maximum length to compare - 2 means only Major and Minor
+-   *                           0 to compare the whole version strings
+-   * @return 0 if both are equal up to the length compared, -1 if first one is lower, +1 otherwise
++   *          the second operand.
++   * @param maxLengthToCompare
++   *          The maximum length to compare - 2 means only Major and Minor 0 to
++   *          compare the whole version strings
++   * @return 0 if both are equal up to the length compared, -1 if first one is
++   *         lower, +1 otherwise
+    */
+   public static int compareVersions(String version1, String version2, int maxLengthToCompare)
+     throws IllegalArgumentException {
+     if (version1 == null){
+       throw new IllegalArgumentException("version1 cannot be null");
+     }
+-    
++
+     if (version2 == null){
+       throw new IllegalArgumentException("version2 cannot be null");
+-    }    
+-    
++    }
++
+     version1 = StringUtils.trim(version1);
+     version2 = StringUtils.trim(version2);
+-    
++
+     if (version1.indexOf('-') >=0) {
+       version1 = version1.substring(0, version1.indexOf('-'));
+     }
+@@ -69,7 +76,9 @@ public class VersionUtils {
+       throw new IllegalArgumentException("maxLengthToCompare cannot be less than 0");
+     }
+ 
+-    if(BootStrapImpl.DEV_VERSION.equals(version1.trim())) return 0;
++    if(BootStrapImpl.DEV_VERSION.equals(version1.trim())) {
++      return 0;
++    }
+ 
+     String[] version1Parts = version1.split("\\.");
+     String[] version2Parts = version2.split("\\.");
+@@ -118,13 +127,20 @@ public class VersionUtils {
+    * Compares two versions strings of the form N.N.N.N
+    *
+    * @param version1
++   *          the first operand. If set to {@value BootStrapImpl#DEV_VERSION}
++   *          then this will always return {@code 0)}
+    * @param version2
+-   * @param allowEmptyVersions Allow one or both version values to be null or empty string
+-   * @return 0 if both are equal up to the length compared, -1 if first one is lower, +1 otherwise
++   *          the second operand.
++   * @param allowEmptyVersions
++   *          Allow one or both version values to be null or empty string
++   * @return 0 if both are equal up to the length compared, -1 if first one is
++   *         lower, +1 otherwise
+    */
+   public static int compareVersions(String version1, String version2, boolean allowEmptyVersions) {
+     if (allowEmptyVersions) {
+-      if (version1 != null && version1.equals(BootStrapImpl.DEV_VERSION)) return 0;
++      if (version1 != null && version1.equals(BootStrapImpl.DEV_VERSION)) {
++        return 0;
++      }
+       if (version1 == null && version2 == null) {
+         return 0;
+       } else {
+@@ -155,7 +171,10 @@ public class VersionUtils {
+    * Compares two versions strings of the form N.N.N.N
+    *
+    * @param version1
++   *          the first operand. If set to {@value BootStrapImpl#DEV_VERSION}
++   *          then this will always return {@code 0)}
+    * @param version2
++   *          the second operand.
+    * @return 0 if both are equal, -1 if first one is lower, +1 otherwise
+    */
+   public static int compareVersions(String version1, String version2) {
+@@ -166,8 +185,12 @@ public class VersionUtils {
+    * Compares two version for equality, allows empty versions
+    *
+    * @param version1
++   *          the first operand. If set to {@value BootStrapImpl#DEV_VERSION}
++   *          then this will always return {@code 0)}
+    * @param version2
+-   * @param allowEmptyVersions Allow one or both version values to be null or empty string
++   *          the second operand.
++   * @param allowEmptyVersions
++   *          Allow one or both version values to be null or empty string
+    * @return true if versions are equal; false otherwise
+    */
+   public static boolean areVersionsEqual(String version1, String version2, boolean allowEmptyVersions) {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java b/ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java
+index d23fcad0ff..a312e6a47a 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java
+@@ -1677,8 +1677,8 @@ public class ViewRegistry {
+   protected boolean checkViewVersions(ViewEntity view, String serverVersion) {
+     ViewConfig config = view.getConfiguration();
+ 
+-    return checkViewVersion(view, config.getMinAmbariVersion(), serverVersion, "minimum", 1, "less than") &&
+-           checkViewVersion(view, config.getMaxAmbariVersion(), serverVersion, "maximum", -1, "greater than");
++    return checkViewVersion(view, config.getMinAmbariVersion(), serverVersion, "minimum", -1, "less than") &&
++           checkViewVersion(view, config.getMaxAmbariVersion(), serverVersion, "maximum", 1, "greater than");
+ 
+   }
+ 
+@@ -1700,8 +1700,8 @@ public class ViewRegistry {
+ 
+       int index = version.indexOf('*');
+ 
+-      int compVal = index == -1 ? VersionUtils.compareVersions(version, serverVersion) :
+-                    index > 0 ? VersionUtils.compareVersions(version.substring(0, index), serverVersion, index) : 0;
++      int compVal = index == -1 ? VersionUtils.compareVersions(serverVersion, version) :
++                    index > 0 ? VersionUtils.compareVersions(serverVersion, version.substring(0, index), index) : 0;
+ 
+       if (compVal == errValue) {
+         String msg = "The Ambari server version " + serverVersion + " is " + errMsg + " the configured " + label +
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/view/ViewThrottleFilter.java b/ambari-server/src/main/java/org/apache/ambari/server/view/ViewThrottleFilter.java
+new file mode 100644
+index 0000000000..b141fc9698
+--- /dev/null
++++ b/ambari-server/src/main/java/org/apache/ambari/server/view/ViewThrottleFilter.java
+@@ -0,0 +1,173 @@
++/**
++ * Licensed to the Apache Software Foundation (ASF) under one
++ * or more contributor license agreements.  See the NOTICE file
++ * distributed with this work for additional information
++ * regarding copyright ownership.  The ASF licenses this file
++ * to you under the Apache License, Version 2.0 (the
++ * "License"); you may not use this file except in compliance
++ * with the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.ambari.server.view;
++
++import java.io.IOException;
++import java.util.concurrent.Semaphore;
++import java.util.concurrent.TimeUnit;
++
++import javax.servlet.Filter;
++import javax.servlet.FilterChain;
++import javax.servlet.FilterConfig;
++import javax.servlet.ServletException;
++import javax.servlet.ServletRequest;
++import javax.servlet.ServletResponse;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++import org.apache.ambari.server.configuration.Configuration;
++import org.eclipse.jetty.continuation.Continuation;
++import org.slf4j.Logger;
++import org.slf4j.LoggerFactory;
++
++import com.google.inject.Inject;
++import com.google.inject.Singleton;
++
++/**
++ * The {@link ViewThrottleFilter} is used to ensure that views which misbehave
++ * do not cause a loss of service for Ambari. The underlying problem is that
++ * views are accessed off of the REST endpoint (/api/v1/views). This means that
++ * the Ambari REST API connector is going to handle the request from its own
++ * threadpool. There is no way to configure Jetty to use a different threadpool
++ * for the same connector. As a result, if a request to load a view holds the
++ * Jetty thread hostage, eventually we will see thread starvation and loss of
++ * service.
++ * <p/>
++ * An example of this situation is a view which makes an innocent request to a
++ * remote resource. If the view's request has a timeout of 60 seconds, then the
++ * Jetty thread is going to be held for that amount of time. With concurrent
++ * users and multiple instances of that view deployed, the Jetty threadpool can
++ * becomes exhausted quickly.
++ * <p/>
++ * Although there are more graceful ways of handling this situation, they mostly
++ * involve substantial re-architecture and design.
++ * <ul>
++ * <li>The use of a new connector and threadpool would require binding to
++ * another port for view requests. This will cause problems with "local" views
++ * and their assumption that if they run on the Ambari server they can share the
++ * same session.
++ * <li>The use of a {@link Continuation} in Jetty which can suspend the incoming
++ * request. We would need the ability for views to signal that they have
++ * completed their work in order to proceed with the suspended request.
++ * </ul>
++ */
++@Singleton
++public class ViewThrottleFilter implements Filter {
++
++  /**
++   * Logger.
++   */
++  private static final Logger LOG = LoggerFactory.getLogger(ViewThrottleFilter.class);
++
++  /**
++   * Used to determine the correct number of threads to allocate to view
++   * requests.
++   */
++  @Inject
++  private Configuration m_configuration;
++
++  /**
++   * Used to restrict how many REST API threads can be utilizied concurrently by
++   * view requests.
++   */
++  private Semaphore m_semaphore;
++
++  /**
++   * A timeout that a blocked view request should wait for an available thread
++   * before returning an error.
++   */
++  private int m_timeout;
++
++  /**
++   * {@inheritDoc}
++   */
++  @Override
++  public void init(FilterConfig filterConfig) throws ServletException {
++    m_timeout = m_configuration.getViewRequestThreadPoolTimeout();
++
++    int clientThreadPoolSize = m_configuration.getClientThreadPoolSize();
++    int viewThreadPoolSize = m_configuration.getViewRequestThreadPoolMaxSize();
++
++    // start out using 1/2 of the available REST API request threads
++    int viewSemaphoreCount = clientThreadPoolSize / 2;
++
++    // if the size is specified, see if it's valid
++    if (viewThreadPoolSize > 0) {
++      viewSemaphoreCount = viewThreadPoolSize;
++
++      if (viewThreadPoolSize > clientThreadPoolSize) {
++        LOG.warn(
++            "The number of view processing threads ({}) cannot be greater than the REST API client threads {{})",
++            viewThreadPoolSize, clientThreadPoolSize);
++
++        viewSemaphoreCount = clientThreadPoolSize;
++      }
++    }
++
++    // log that we are restricting it
++    LOG.info("Ambari Views will be able to utilize {} concurrent REST API threads",
++        viewSemaphoreCount);
++
++    m_semaphore = new Semaphore(viewSemaphoreCount);
++  }
++
++  /**
++   * {@inheritDoc}
++   */
++  @Override
++  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
++      throws IOException, ServletException {
++
++    // do nothing if this is not an http request
++    if (!(request instanceof HttpServletRequest)) {
++      chain.doFilter(request, response);
++      return;
++    }
++
++    HttpServletResponse httpResponse = (HttpServletResponse) response;
++    boolean acquired = false;
++
++    try {
++      acquired = m_semaphore.tryAcquire(m_timeout, TimeUnit.MILLISECONDS);
++    } catch (InterruptedException interruptedException) {
++      LOG.warn("While waiting for an available thread, the view request was interrupted");
++    }
++
++    if (!acquired) {
++      httpResponse.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,
++          "There are no available threads to handle view requests");
++
++      // return to prevent the view's request from making it down any farther
++      return;
++    }
++
++    // let the request go through
++    try {
++      chain.doFilter(request, response);
++    } finally {
++      m_semaphore.release();
++    }
++  }
++
++  /**
++   * {@inheritDoc}
++   */
++  @Override
++  public void destroy() {
++  }
++}

@@ -1,0 +1,175 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      attachments:
+        attachment:
+          '@author': jonathanhurley
+          '@created': Wed, 27 Apr 2016 18:07:39 +0000
+          '@id': '12801085'
+          '@name': AMBARI-16131.patch
+          '@size': '26704'
+      comments:
+        comment:
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.2 #675 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.2/675/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.2/675/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16131\" title=\"\
+            Prevent Views From Causing a Loss of Service For Ambari\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-16131\"><del>AMBARI-16131</del></a> - Prevent\
+            \ Views From Causing a Loss of Service For Ambari (jhurley: <a href=\"\
+            http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=84e1d84d1f72ca9a4799f5c592a59479c6f7ab42\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=84e1d84d1f72ca9a4799f5c592a59479c6f7ab42</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/view/ViewThrottleFilter.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/view/ViewThrottleFilterTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Apr 2016 20:10:28 +0000
+          '@id': '15260843'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4750 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4750/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4750/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16131\" title=\"\
+            Prevent Views From Causing a Loss of Service For Ambari\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-16131\"><del>AMBARI-16131</del></a> - Prevent\
+            \ Views From Causing a Loss of Service For Ambari (jhurley: <a href=\"\
+            http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=85ac3c22ea6aedd4a75e79ee25798677e07a7bdd\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=85ac3c22ea6aedd4a75e79ee25798677e07a7bdd</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/view/ViewThrottleFilter.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/view/ViewThrottleFilterTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/view/ViewRegistry.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/utils/VersionUtils.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Apr 2016 21:56:09 +0000
+          '@id': '15261014'
+      component: ambari-views
+      created: Tue, 26 Apr 2016 21:58:22 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 14 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2ws33:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>The underlying problem is that views are accessed off of the\
+        \ REST endpoint (<tt>/api/v1/views</tt>). This means that the Ambari REST\
+        \ API connector is going to handle the request from its own threadpool. There\
+        \ is no way to configure Jetty to use a different threadpool for the same\
+        \ connector. As a result, if a request to load a view holds the Jetty thread\
+        \ hostage, eventually we will see thread starvation and loss of service.</p>\n\
+        \n<p>An example of this situation is a view which makes an innocent request\
+        \ to a remote resource. If the view's request has a timeout of 60 seconds,\
+        \ then the Jetty thread is going to be held for that amount of time. With\
+        \ concurrent users and multiple instances of that view deployed, the Jetty\
+        \ threadpool can becomes exhausted quickly.</p>\n\n<p>Although there are more\
+        \ graceful ways of handling this situation, they mostly involve substantial\
+        \ re-architecture and design:</p>\n<ul class=\"alternate\" type=\"square\"\
+        >\n\t<li>The use of a new connector and threadpool would require binding to\
+        \ another port for view requests. This will cause problems with \"local\"\
+        \ views and their assumption that if they run on the Ambari server they can\
+        \ share the same session.</li>\n\t<li>The use of a <a href=\"https://wiki.eclipse.org/Jetty/Feature/Continuations\"\
+        \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\">Continuation</a>\
+        \ in Jetty which can suspend the incoming request. We would need the ability\
+        \ for views to signal that they have completed their work in order to proceed\
+        \ with the suspended request.</li>\n</ul>\n\n\n<p>A quicker and far less invasive\
+        \ fix would be to create a filter which intercepts requests for views. It\
+        \ will determine how many executing view requests exist and decide if it will\
+        \ allow the new request through. For example, if configured to allow a maximum\
+        \ of 10 concurrent view requests, then the 11th request would be denied with\
+        \ an <tt>HTTP 503 - Service Unavailable</tt>. Although the thread is temporarily\
+        \ used while the filter is processing, it's quickly returned to the Jetty\
+        \ pool when it's determined there are too many other running view requests.</p>"
+      due: null
+      environment: null
+      fixVersion:
+      - 2.4.0
+      - 2.2-next
+      key:
+        '#text': AMBARI-16131
+        '@id': '12962765'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16131
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 27 Apr 2016 18:16:59 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Prevent Views From Causing a Loss of Service For Ambari
+      title: '[AMBARI-16131] Prevent Views From Causing a Loss of Service For Ambari'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 27 Apr 2016 21:56:09 +0000
+      version: 2.0.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
