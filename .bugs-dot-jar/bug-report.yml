@@ -1,0 +1,150 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Vitaly Brodetskyi
+        '@username': vbrodetskyi
+      attachments:
+        attachment:
+          '@author': vbrodetskyi
+          '@created': Tue, 26 Apr 2016 19:07:33 +0000
+          '@id': '12800852'
+          '@name': AMBARI-16128.patch
+          '@size': '4977'
+      comments:
+        comment:
+        - '#text': "<p><font color=\"green\">+1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12800852/AMBARI-16128.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12800852/AMBARI-16128.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"green\">+1 @author</font>.\
+            \  The patch does not contain any @author tags.</p>\n\n<p>    <font color=\"\
+            green\">+1 tests included</font>.  The patch appears to include 1 new\
+            \ or modified test files.</p>\n\n<p>    <font color=\"green\">+1 javac</font>.\
+            \  The applied patch does not increase the total number of javac compiler\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 release audit</font>.\
+            \  The applied patch does not increase the total number of release audit\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 core tests</font>.\
+            \  The patch passed unit tests in ambari-server.</p>\n\n<p>Test results:\
+            \ <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6673//testReport/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6673//testReport/</a><br/>\n\
+            Console output: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6673//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6673//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Wed, 27 Apr 2016 02:56:34 +0000
+          '@id': '15259449'
+        - '#text': <p>Committed to trunk</p>
+          '@author': vbrodetskyi
+          '@created': Wed, 27 Apr 2016 18:39:27 +0000
+          '@id': '15260712'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4750 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4750/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4750/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16128\" title=\"\
+            Ambari 2.2.1.1 reporting ACID off on slider, but actually on\" class=\"\
+            issue-link\" data-issue-key=\"AMBARI-16128\"><del>AMBARI-16128</del></a>.\
+            \ Ambari 2.2.1.1 reporting ACID off on slider, but actually (vbrodetskyi:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=0b02517ad0b44a4b90d2fd856fd86dd61634f4d8\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=0b02517ad0b44a4b90d2fd856fd86dd61634f4d8</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog240Test.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog240.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Apr 2016 21:56:09 +0000
+          '@id': '15261015'
+      component: ambari-server
+      created: Tue, 26 Apr 2016 19:06:34 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 14 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2wrpj:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: '<p>PROBLEM: After upgrade of ambari from 2.0.1 to 2.2.1.0 the
+        ACID slider has gone back to off, even though ACID is on in cluster.</p>'
+      due: null
+      environment: null
+      fixVersion: 2.4.0
+      key:
+        '#text': AMBARI-16128
+        '@id': '12962704'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16128
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Vitaly Brodetskyi
+        '@username': vbrodetskyi
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 27 Apr 2016 18:39:27 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Ambari 2.2.1.1 reporting ACID off on slider, but actually on
+      title: '[AMBARI-16128] Ambari 2.2.1.1 reporting ACID off on slider, but actually
+        on'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 27 Apr 2016 21:56:09 +0000
+      version: 2.2.1
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
