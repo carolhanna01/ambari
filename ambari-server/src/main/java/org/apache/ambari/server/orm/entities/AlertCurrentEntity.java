@@ -17,8 +17,6 @@
  */
 package org.apache.ambari.server.orm.entities;
 
-import java.util.Objects;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +36,6 @@ import javax.persistence.TableGenerator;
 import org.apache.ambari.server.state.AlertFirmness;
 import org.apache.ambari.server.state.AlertState;
 import org.apache.ambari.server.state.MaintenanceState;
-import org.apache.commons.lang.builder.EqualsBuilder;
 
 /**
  * The {@link AlertCurrentEntity} class represents the most recently received an
@@ -334,13 +331,7 @@ public class AlertCurrentEntity {
   }
 
   /**
-   * Gets the equality to another alert based on the following criteria:
-   * <ul>
-   * <li>{@link #alertId}
-   * <li>{@link #alertHistory}
-   * </ul>
-   * <p/>
-   * {@inheritDoc}
+   *
    */
   @Override
   public boolean equals(Object object) {
@@ -353,30 +344,21 @@ public class AlertCurrentEntity {
     }
 
     AlertCurrentEntity that = (AlertCurrentEntity) object;
-    EqualsBuilder equalsBuilder = new EqualsBuilder();
 
-    equalsBuilder.append(alertId, that.alertId);
-    equalsBuilder.append(alertHistory, that.alertHistory);
-    return equalsBuilder.isEquals();
+    if (alertId != null ? !alertId.equals(that.alertId) : that.alertId != null) {
+      return false;
+    }
+
+    return true;
   }
 
   /**
-   * Generates a hash for the current alert based on the following criteria:
-   * <ul>
-   * <li>{@link #alertId}
-   * <li>{@link #alertHistory}
-   * </ul>
-   * <p/>
-   * For new alerts, the associated {@link AlertHistoryEntity} may not be
-   * persisted yet. This will rely on the
-   * {@link AlertHistoryEntity#equals(Object)} and
-   * {@link AlertHistoryEntity#hashCode()} being correct.
-   * <p/>
-   * {@inheritDoc}
+   *
    */
   @Override
   public int hashCode() {
-    return Objects.hash(alertId, alertHistory);
+    int result = null != alertId ? alertId.hashCode() : 0;
+    return result;
   }
 
   /**
