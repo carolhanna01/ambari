@@ -1,0 +1,162 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+index a5cd3699e5..3fac6554f8 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+@@ -46,6 +46,7 @@ import java.util.Collections;
+ import java.util.HashMap;
+ import java.util.Map;
+ import java.util.Set;
++import java.util.concurrent.atomic.AtomicInteger;
+ 
+ /**
+  * Convenience class to handle the connection details of a LogSearch query request.
+@@ -67,6 +68,8 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+ 
+   private static final String LOGSEARCH_ADMIN_CREDENTIAL_NAME = "logsearch.admin.credential";
+ 
++  private static AtomicInteger errorLogCounterForLogSearchConnectionExceptions = new AtomicInteger(0);
++
+   private final String hostName;
+ 
+   private final String portNumber;
+@@ -112,12 +115,14 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+       return logQueryResponseReader.readValue(stringReader);
+ 
+     } catch (Exception e) {
+-      LOG.error("Error occurred while trying to connect to the LogSearch service...", e);
++      Utils.logErrorMessageWithThrowableWithCounter(LOG, errorLogCounterForLogSearchConnectionExceptions,
++        "Error occurred while trying to connect to the LogSearch service...", e);
+     }
+ 
+     return null;
+   }
+ 
++
+   private void setupCredentials(HttpURLConnection httpURLConnection) {
+     final String logSearchAdminUser =
+       getLogSearchAdminUser();
+@@ -217,7 +222,8 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+       return logQueryResponseReader.readValue(stringReader);
+ 
+     } catch (Exception e) {
+-      LOG.error("Error occurred while trying to connect to the LogSearch service...", e);
++      Utils.logErrorMessageWithThrowableWithCounter(LOG, errorLogCounterForLogSearchConnectionExceptions,
++        "Error occurred while trying to connect to the LogSearch service...", e);
+     }
+ 
+     return null;
+@@ -291,10 +297,10 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+       if (credential == null) {
+         LOG.debug("LogSearch credentials could not be obtained from store.");
+       } else {
+-        LOG.error("LogSearch credentials were not of the correct type, this is likely an error in configuration, credential type is = " + credential.getClass().getName());
++        LOG.debug("LogSearch credentials were not of the correct type, this is likely an error in configuration, credential type is = " + credential.getClass().getName());
+       }
+     } catch (AmbariException ambariException) {
+-      LOG.error("Error encountered while trying to obtain LogSearch admin credentials.", ambariException);
++      LOG.debug("Error encountered while trying to obtain LogSearch admin credentials.", ambariException);
+     }
+ 
+     return null;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
+index e2da4c8e50..f80bc6de84 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
+@@ -36,6 +36,7 @@ import java.util.Collections;
+ import java.util.LinkedList;
+ import java.util.List;
+ import java.util.Set;
++import java.util.concurrent.atomic.AtomicInteger;
+ 
+ public class LoggingSearchPropertyProvider implements PropertyProvider {
+ 
+@@ -53,6 +54,8 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+ 
+   private static final String PAGE_SIZE_QUERY_PARAMETER_NAME = "pageSize";
+ 
++  private static AtomicInteger errorLogCounterForLogSearchConnectionExceptions = new AtomicInteger(0);
++
+   private final LoggingRequestHelperFactory requestHelperFactory;
+ 
+   private final ControllerFactory controllerFactory;
+@@ -126,7 +129,8 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+             // add the logging metadata for this host component
+             resource.setProperty("logging", loggingInfo);
+           } else {
+-            LOG.error("Error occurred while making request to LogSearch service, unable to populate logging properties on this resource");
++            Utils.logErrorMessageWithCounter(LOG, errorLogCounterForLogSearchConnectionExceptions,
++              "Error occurred while making request to LogSearch service, unable to populate logging properties on this resource");
+           }
+         }
+       }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/Utils.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/Utils.java
+new file mode 100644
+index 0000000000..2de738873c
+--- /dev/null
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/Utils.java
+@@ -0,0 +1,65 @@
++/**
++ * Licensed to the Apache Software Foundation (ASF) under one
++ * or more contributor license agreements.  See the NOTICE file
++ * distributed with this work for additional information
++ * regarding copyright ownership.  The ASF licenses this file
++ * to you under the Apache License, Version 2.0 (the
++ * "License"); you may not use this file except in compliance
++ * with the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.ambari.server.controller.logging;
++
++import org.apache.log4j.Logger;
++
++import java.util.concurrent.atomic.AtomicInteger;
++
++/**
++ * Utility class to hold static convenience methods for
++ * the LogSearch integration layer
++ *
++ */
++public class Utils {
++
++  private static int WAIT_COUNT_MAX = 1000;
++
++  // dis-allow creating separate instances of this class, since
++  // only static methods will be allowed on this convenience class
++  private Utils() {}
++
++  static void logErrorMessageWithThrowableWithCounter(Logger logger, AtomicInteger atomicInteger, String errorMessage, Throwable throwable) {
++    logErrorMessageWithThrowableWithCounter(logger, atomicInteger, errorMessage, throwable, WAIT_COUNT_MAX);
++  }
++
++
++  static void logErrorMessageWithThrowableWithCounter(Logger logger, AtomicInteger atomicInteger, String errorMessage, Throwable throwable, int maxCount) {
++    if (atomicInteger.getAndIncrement() == 0) {
++      // only log the message once every maxCount attempts
++      logger.error(errorMessage, throwable);
++    } else {
++      // if we've hit maxCount attempts, reset the counter
++      atomicInteger.compareAndSet(maxCount, 0);
++    }
++  }
++
++  static void logErrorMessageWithCounter(Logger logger, AtomicInteger atomicInteger, String errorMessage) {
++    logErrorMessageWithCounter(logger, atomicInteger, errorMessage, WAIT_COUNT_MAX);
++  }
++
++  static void logErrorMessageWithCounter(Logger logger, AtomicInteger atomicInteger, String errorMessage, int maxCount) {
++    if (atomicInteger.getAndIncrement() == 0) {
++      // only log the message once every maxCount attempts
++      logger.error(errorMessage);
++    } else {
++      // if we've hit maxCount attempts, reset the counter
++      atomicInteger.compareAndSet(maxCount, 0);
++    }
++  }
++}

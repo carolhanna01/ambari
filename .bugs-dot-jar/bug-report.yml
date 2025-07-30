@@ -1,0 +1,152 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Bob Nettleton
+        '@username': rnettleton
+      attachments:
+        attachment:
+          '@author': rnettleton
+          '@created': Mon, 25 Apr 2016 15:19:03 +0000
+          '@id': '12800539'
+          '@name': AMBARI-16093.patch
+          '@size': '17677'
+      comments:
+        comment:
+        - '#text': <p>Uploaded initial version of patch</p>
+          '@author': rnettleton
+          '@created': Mon, 25 Apr 2016 15:19:03 +0000
+          '@id': '15256466'
+        - '#text': <p>Patch merged into trunk</p>
+          '@author': rnettleton
+          '@created': Mon, 25 Apr 2016 18:41:37 +0000
+          '@id': '15256765'
+        - '#text': "<p>FAILURE: Integrated in Ambari-trunk-Commit #4733 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4733/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4733/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16093\" title=\"\
+            LogSearch Integration creates too many error logs during connection failures\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-16093\"><del>AMBARI-16093</del></a>.\
+            \ LogSearch Integration creates too many error logs during (rnettleton:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e1e51217e801696640ea5fa25b3d4e7fb61be412\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e1e51217e801696640ea5fa25b3d4e7fb61be412</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/Utils.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/logging/UtilsTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 25 Apr 2016 22:03:53 +0000
+          '@id': '15257131'
+      component: ambari-server
+      created: Mon, 25 Apr 2016 15:11:14 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 15 weeks, 1 day ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2wp13:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>The Ambari LogSearch integration layer is currently creating\
+        \ too many repeated error log messages in ambari-server.log when a connection\
+        \ attempt fails.</p>\n\n<p>Hundreds of instances of the following log message:</p>\n\
+        \n<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent\
+        \ panelContent\">\n<pre class=\"code-java\">2016-04-20 14:57:13,000 ERROR\
+        \ qtp-ambari-client-324 LoggingSearchPropertyProvider - Error occurred <span\
+        \ class=\"code-keyword\">while</span> making request to LogSearch service,\
+        \ unable to populate logging properties on <span class=\"code-keyword\">this</span>\
+        \ resource \n</pre>\n</div></div>\n\n<p>appear when a connection attempt to\
+        \ the LogSearch service fails.</p>\n\n<p>This problem can occur when:</p>\n\
+        \n<p>1. The LogSearch service crashes or is unexpectedly brought down<br/>\n\
+        2. There is a lag time during which a crashed service is still considered\
+        \ to be in the STARTED state, which is the state checked by the LoggingSearchPropertyProvider\
+        \ to determine if a connection should be attempted.  <br/>\n3. This causes\
+        \ the LogSearch integration code to log many connection attempt failures un-necessarily,\
+        \ since only one instance of this message is necessary. </p>\n\n<p>The LogSearch\
+        \ integration code should use a static counter to determine how many times\
+        \ a given error log should appear.  </p>\n\n<p>I'm working on a fix for this,\
+        \ and will submit a patch shortly. </p>"
+      due: null
+      environment: null
+      fixVersion: 2.4.0
+      key:
+        '#text': AMBARI-16093
+        '@id': '12962270'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16093
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Bob Nettleton
+        '@username': rnettleton
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Mon, 25 Apr 2016 18:41:37 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: LogSearch Integration creates too many error logs during connection
+        failures
+      title: '[AMBARI-16093] LogSearch Integration creates too many error logs during
+        connection failures'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Mon, 25 Apr 2016 22:03:53 +0000
+      version: 2.4.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
