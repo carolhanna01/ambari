@@ -383,9 +383,7 @@ public class UpgradeCatalog220 extends AbstractUpgradeCatalog {
               if (!authorizationProviderExists) {
                 NodeList nodeList = root.getElementsByTagName("gateway");
                 if (nodeList != null && nodeList.getLength() > 0) {
-                  boolean rangerPluginEnabled = isConfigEnabled(cluster,
-                    AbstractUpgradeCatalog.CONFIGURATION_TYPE_RANGER_KNOX_PLUGIN_PROPERTIES,
-                    AbstractUpgradeCatalog.PROPERTY_RANGER_KNOX_PLUGIN_ENABLED);
+                  boolean rangerPluginEnabled = isRangerKnoxPluginEnabled(cluster);
 
                   Node gatewayNode = nodeList.item(0);
                   Element newProvider = topologyXml.createElement("provider");
