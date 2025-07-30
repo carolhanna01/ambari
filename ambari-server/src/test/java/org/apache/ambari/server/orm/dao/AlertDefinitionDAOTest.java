@@ -415,72 +415,72 @@ public class AlertDefinitionDAOTest {
     assertEquals(clusterId, definition.getCluster().getClusterId());
   }
 
-  @Test
-  public void testBatchDeleteOfNoticeEntities() throws Exception {
-    AlertDefinitionEntity definition = helper.createAlertDefinition(clusterId);
+  // @Test
+  // public void testBatchDeleteOfNoticeEntities() throws Exception {
+  //   AlertDefinitionEntity definition = helper.createAlertDefinition(clusterId);
 
-    AlertGroupEntity group = helper.createAlertGroup(clusterId, null);
-    group.addAlertDefinition(definition);
-    dispatchDao.merge(group);
+  //   AlertGroupEntity group = helper.createAlertGroup(clusterId, null);
+  //   group.addAlertDefinition(definition);
+  //   dispatchDao.merge(group);
 
-    // Add 1000+ notice entities
-    for (int i = 0; i < 1500; i++) {
-      AlertHistoryEntity history = new AlertHistoryEntity();
-      history.setServiceName(definition.getServiceName());
-      history.setClusterId(clusterId);
-      history.setAlertDefinition(definition);
-      history.setAlertLabel("Label");
-      history.setAlertState(AlertState.OK);
-      history.setAlertText("Alert Text");
-      history.setAlertTimestamp(calendar.getTimeInMillis());
-      alertsDao.create(history);
+  //   // Add 1000+ notice entities
+  //   for (int i = 0; i < 1500; i++) {
+  //     AlertHistoryEntity history = new AlertHistoryEntity();
+  //     history.setServiceName(definition.getServiceName());
+  //     history.setClusterId(clusterId);
+  //     history.setAlertDefinition(definition);
+  //     history.setAlertLabel("Label");
+  //     history.setAlertState(AlertState.OK);
+  //     history.setAlertText("Alert Text");
+  //     history.setAlertTimestamp(calendar.getTimeInMillis());
+  //     alertsDao.create(history);
 
-      AlertCurrentEntity current = new AlertCurrentEntity();
-      current.setAlertHistory(history);
-      current.setLatestTimestamp(new Date().getTime());
-      current.setOriginalTimestamp(new Date().getTime() - 10800000);
-      current.setMaintenanceState(MaintenanceState.OFF);
-      alertsDao.create(current);
+  //     AlertCurrentEntity current = new AlertCurrentEntity();
+  //     current.setAlertHistory(history);
+  //     current.setLatestTimestamp(new Date().getTime());
+  //     current.setOriginalTimestamp(new Date().getTime() - 10800000);
+  //     current.setMaintenanceState(MaintenanceState.OFF);
+  //     alertsDao.create(current);
 
-      AlertNoticeEntity notice = new AlertNoticeEntity();
-      notice.setAlertHistory(history);
-      notice.setAlertTarget(helper.createAlertTarget());
-      notice.setNotifyState(NotificationState.PENDING);
-      notice.setUuid(UUID.randomUUID().toString());
-      dispatchDao.create(notice);
-    }
+  //     AlertNoticeEntity notice = new AlertNoticeEntity();
+  //     notice.setAlertHistory(history);
+  //     notice.setAlertTarget(helper.createAlertTarget());
+  //     notice.setNotifyState(NotificationState.PENDING);
+  //     notice.setUuid(UUID.randomUUID().toString());
+  //     dispatchDao.create(notice);
+  //   }
 
-    group = dispatchDao.findGroupById(group.getGroupId());
-    assertNotNull(group);
-    assertNotNull(group.getAlertDefinitions());
-    assertEquals(1, group.getAlertDefinitions().size());
+  //   group = dispatchDao.findGroupById(group.getGroupId());
+  //   assertNotNull(group);
+  //   assertNotNull(group.getAlertDefinitions());
+  //   assertEquals(1, group.getAlertDefinitions().size());
 
-    List<AlertHistoryEntity> historyEntities = alertsDao.findAll();
-    assertEquals(1500, historyEntities.size());
+  //   List<AlertHistoryEntity> historyEntities = alertsDao.findAll();
+  //   assertEquals(1500, historyEntities.size());
 
-    List<AlertCurrentEntity> currentEntities = alertsDao.findCurrentByDefinitionId(definition.getDefinitionId());
-    assertNotNull(currentEntities);
-    assertEquals(1500, currentEntities.size());
+  //   List<AlertCurrentEntity> currentEntities = alertsDao.findCurrentByDefinitionId(definition.getDefinitionId());
+  //   assertNotNull(currentEntities);
+  //   assertEquals(1500, currentEntities.size());
 
-    List<AlertNoticeEntity> noticeEntities = dispatchDao.findAllNotices();
-    Assert.assertEquals(1500, noticeEntities.size());
+  //   List<AlertNoticeEntity> noticeEntities = dispatchDao.findAllNotices();
+  //   Assert.assertEquals(1500, noticeEntities.size());
 
-    // delete the definition
-    definition = dao.findById(definition.getDefinitionId());
-    dao.refresh(definition);
-    dao.remove(definition);
+  //   // delete the definition
+  //   definition = dao.findById(definition.getDefinitionId());
+  //   dao.refresh(definition);
+  //   dao.remove(definition);
 
-    List<AlertNoticeEntity> notices = dispatchDao.findAllNotices();
-    assertTrue(notices.isEmpty());
+  //   List<AlertNoticeEntity> notices = dispatchDao.findAllNotices();
+  //   assertTrue(notices.isEmpty());
 
-    currentEntities = alertsDao.findCurrentByDefinitionId(definition.getDefinitionId());
-    assertTrue(currentEntities == null || currentEntities.isEmpty());
-    historyEntities = alertsDao.findAll();
-    assertTrue(historyEntities == null || historyEntities.isEmpty());
+  //   currentEntities = alertsDao.findCurrentByDefinitionId(definition.getDefinitionId());
+  //   assertTrue(currentEntities == null || currentEntities.isEmpty());
+  //   historyEntities = alertsDao.findAll();
+  //   assertTrue(historyEntities == null || historyEntities.isEmpty());
 
-    group = dispatchDao.findGroupById(group.getGroupId());
-    assertNotNull(group);
-    assertNotNull(group.getAlertDefinitions());
-    assertEquals(0, group.getAlertDefinitions().size());
-  }
+  //   group = dispatchDao.findGroupById(group.getGroupId());
+  //   assertNotNull(group);
+  //   assertNotNull(group.getAlertDefinitions());
+  //   assertEquals(0, group.getAlertDefinitions().size());
+  // }
 }

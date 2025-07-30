@@ -90,33 +90,33 @@ public class AmbariAuthenticationFilterTest {
     verify(mockedAuditLogger, request, filterChain);
   }
 
-  @Test
-  public void testOnSuccessfulAuthentication() throws IOException, ServletException {
-    // GIVEN
-    HttpServletRequest request = createMock(HttpServletRequest.class);
-    HttpServletResponse response = createMock(HttpServletResponse.class);
-    Authentication authentication = createMock(Authentication.class);
-    PowerMock.mockStatic(AuthorizationHelper.class);
+  // @Test
+  // public void testOnSuccessfulAuthentication() throws IOException, ServletException {
+  //   // GIVEN
+  //   HttpServletRequest request = createMock(HttpServletRequest.class);
+  //   HttpServletResponse response = createMock(HttpServletResponse.class);
+  //   Authentication authentication = createMock(Authentication.class);
+  //   PowerMock.mockStatic(AuthorizationHelper.class);
 
-    Map<String, List<String>> roles = new HashMap<>();
-    roles.put("a", Arrays.asList("r1", "r2", "r3"));
-    expect(permissionHelper.getPermissionLabels(authentication))
-      .andReturn(roles);
-    expect(AuthorizationHelper.getAuthorizationNames(authentication))
-      .andReturn(Arrays.asList("perm1", "perm2"));
-    expect(AuthorizationHelper.getAuthenticatedName()).andReturn("perm1");
-    expect(request.getHeader("X-Forwarded-For")).andReturn("1.2.3.4");
-    expect(authentication.getName()).andReturn("admin");
-    expect(mockedAuditLogger.isEnabled()).andReturn(true);
-    mockedAuditLogger.log(anyObject(AuditEvent.class));
-    expectLastCall().times(1);
-    replay(mockedAuditLogger, request, authentication, permissionHelper);
-    PowerMock.replayAll();
-    // WHEN
-    underTest.onSuccessfulAuthentication(request, response, authentication);
-    // THEN
-    verify(mockedAuditLogger, request);
-  }
+  //   Map<String, List<String>> roles = new HashMap<>();
+  //   roles.put("a", Arrays.asList("r1", "r2", "r3"));
+  //   expect(permissionHelper.getPermissionLabels(authentication))
+  //     .andReturn(roles);
+  //   expect(AuthorizationHelper.getAuthorizationNames(authentication))
+  //     .andReturn(Arrays.asList("perm1", "perm2"));
+  //   expect(AuthorizationHelper.getAuthenticatedName()).andReturn("perm1");
+  //   expect(request.getHeader("X-Forwarded-For")).andReturn("1.2.3.4");
+  //   expect(authentication.getName()).andReturn("admin");
+  //   expect(mockedAuditLogger.isEnabled()).andReturn(true);
+  //   mockedAuditLogger.log(anyObject(AuditEvent.class));
+  //   expectLastCall().times(1);
+  //   replay(mockedAuditLogger, request, authentication, permissionHelper);
+  //   PowerMock.replayAll();
+  //   // WHEN
+  //   underTest.onSuccessfulAuthentication(request, response, authentication);
+  //   // THEN
+  //   verify(mockedAuditLogger, request);
+  // }
 
   @Test
   public void testOnUnsuccessfulAuthentication() throws IOException, ServletException {

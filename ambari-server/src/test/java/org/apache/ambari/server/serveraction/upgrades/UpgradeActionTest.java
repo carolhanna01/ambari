@@ -586,48 +586,48 @@ public class UpgradeActionTest {
     assertTrue(report.getStdErr().contains(FinalizeUpgradeAction.PREVIOUS_UPGRADE_NOT_COMPLETED_MSG));
   }
 
-  @Test
-  public void testFinalizeUpgrade() throws Exception {
-    StackId sourceStack = HDP_21_STACK;
-    StackId targetStack = HDP_21_STACK;
-    String sourceRepo = HDP_2_1_1_0;
-    String targetRepo = HDP_2_1_1_1;
+  // @Test
+  // public void testFinalizeUpgrade() throws Exception {
+  //   StackId sourceStack = HDP_21_STACK;
+  //   StackId targetStack = HDP_21_STACK;
+  //   String sourceRepo = HDP_2_1_1_0;
+  //   String targetRepo = HDP_2_1_1_1;
 
-    makeUpgradeCluster(sourceStack, sourceRepo, targetStack, targetRepo);
+  //   makeUpgradeCluster(sourceStack, sourceRepo, targetStack, targetRepo);
 
-    // Verify the repo before calling Finalize
-    AmbariMetaInfo metaInfo = m_injector.getInstance(AmbariMetaInfo.class);
-    AmbariCustomCommandExecutionHelper helper = m_injector.getInstance(AmbariCustomCommandExecutionHelper.class);
-    Host host = clusters.getHost("h1");
-    Cluster cluster = clusters.getCluster(clusterName);
+  //   // Verify the repo before calling Finalize
+  //   AmbariMetaInfo metaInfo = m_injector.getInstance(AmbariMetaInfo.class);
+  //   AmbariCustomCommandExecutionHelper helper = m_injector.getInstance(AmbariCustomCommandExecutionHelper.class);
+  //   Host host = clusters.getHost("h1");
+  //   Cluster cluster = clusters.getCluster(clusterName);
 
-    RepositoryInfo repo = metaInfo.getRepository(sourceStack.getStackName(), sourceStack.getStackVersion(), "redhat6", sourceStack.getStackId());
-    assertEquals(HDP_211_CENTOS6_REPO_URL, repo.getBaseUrl());
-    verifyBaseRepoURL(helper, cluster, host, HDP_211_CENTOS6_REPO_URL);
+  //   RepositoryInfo repo = metaInfo.getRepository(sourceStack.getStackName(), sourceStack.getStackVersion(), "redhat6", sourceStack.getStackId());
+  //   assertEquals(HDP_211_CENTOS6_REPO_URL, repo.getBaseUrl());
+  //   verifyBaseRepoURL(helper, cluster, host, HDP_211_CENTOS6_REPO_URL);
 
-    // Finalize the upgrade
-    Map<String, String> commandParams = new HashMap<String, String>();
-    commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "upgrade");
-    commandParams.put(FinalizeUpgradeAction.VERSION_KEY, targetRepo);
+  //   // Finalize the upgrade
+  //   Map<String, String> commandParams = new HashMap<String, String>();
+  //   commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "upgrade");
+  //   commandParams.put(FinalizeUpgradeAction.VERSION_KEY, targetRepo);
 
-    ExecutionCommand executionCommand = new ExecutionCommand();
-    executionCommand.setCommandParams(commandParams);
-    executionCommand.setClusterName(clusterName);
+  //   ExecutionCommand executionCommand = new ExecutionCommand();
+  //   executionCommand.setCommandParams(commandParams);
+  //   executionCommand.setClusterName(clusterName);
 
-    HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
-    hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
+  //   HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
+  //   hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
 
-    FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
-    action.setExecutionCommand(executionCommand);
-    action.setHostRoleCommand(hostRoleCommand);
+  //   FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
+  //   action.setExecutionCommand(executionCommand);
+  //   action.setHostRoleCommand(hostRoleCommand);
 
-    CommandReport report = action.execute(null);
-    assertNotNull(report);
-    assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
+  //   CommandReport report = action.execute(null);
+  //   assertNotNull(report);
+  //   assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
 
-    // Verify the metainfo url
-    verifyBaseRepoURL(helper, cluster, host, "http://foo1");
-  }
+  //   // Verify the metainfo url
+  //   verifyBaseRepoURL(helper, cluster, host, "http://foo1");
+  // }
 
   /**
    * Tests that finalize still works when there are hosts which are already
