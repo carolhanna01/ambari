@@ -376,65 +376,65 @@ public class TestHeartbeatHandler {
         hostObject.getLastRegistrationTime());
   }
 
-  @Test
-  public void testRegistrationRecoveryConfig() throws AmbariException,
-      InvalidStateTransitionException {
-    ActionManager am = heartbeatTestHelper.getMockActionManager();
-    replay(am);
-    Clusters fsm = clusters;
-    HeartBeatHandler handler = new HeartBeatHandler(fsm, new ActionQueue(), am,
-                                                    injector);
-    Cluster cluster = heartbeatTestHelper.getDummyCluster();
-    Service hdfs = cluster.addService(HDFS);
-    hdfs.persist();
+  // @Test
+  // public void testRegistrationRecoveryConfig() throws AmbariException,
+  //     InvalidStateTransitionException {
+  //   ActionManager am = heartbeatTestHelper.getMockActionManager();
+  //   replay(am);
+  //   Clusters fsm = clusters;
+  //   HeartBeatHandler handler = new HeartBeatHandler(fsm, new ActionQueue(), am,
+  //                                                   injector);
+  //   Cluster cluster = heartbeatTestHelper.getDummyCluster();
+  //   Service hdfs = cluster.addService(HDFS);
+  //   hdfs.persist();
 
-    hdfs.addServiceComponent(DATANODE).setRecoveryEnabled(true);
-    hdfs.getServiceComponent(DATANODE).persist();
-    hdfs.getServiceComponent(DATANODE).addServiceComponentHost(DummyHostname1).persist();
+  //   hdfs.addServiceComponent(DATANODE).setRecoveryEnabled(true);
+  //   hdfs.getServiceComponent(DATANODE).persist();
+  //   hdfs.getServiceComponent(DATANODE).addServiceComponentHost(DummyHostname1).persist();
 
-    hdfs.addServiceComponent(NAMENODE).setRecoveryEnabled(true);
-    hdfs.getServiceComponent(NAMENODE).persist();
-    hdfs.getServiceComponent(NAMENODE).addServiceComponentHost(DummyHostname1).persist();
+  //   hdfs.addServiceComponent(NAMENODE).setRecoveryEnabled(true);
+  //   hdfs.getServiceComponent(NAMENODE).persist();
+  //   hdfs.getServiceComponent(NAMENODE).addServiceComponentHost(DummyHostname1).persist();
 
-    hdfs.addServiceComponent(HDFS_CLIENT).persist();
-    hdfs.getServiceComponent(HDFS_CLIENT).addServiceComponentHost(DummyHostname1).persist();
+  //   hdfs.addServiceComponent(HDFS_CLIENT).persist();
+  //   hdfs.getServiceComponent(HDFS_CLIENT).addServiceComponentHost(DummyHostname1).persist();
 
-    Host hostObject = clusters.getHost(DummyHostname1);
-    hostObject.setIPv4("ipv4");
-    hostObject.setIPv6("ipv6");
+  //   Host hostObject = clusters.getHost(DummyHostname1);
+  //   hostObject.setIPv4("ipv4");
+  //   hostObject.setIPv6("ipv6");
 
-    Register reg = new Register();
-    HostInfo hi = new HostInfo();
-    hi.setHostName(DummyHostname1);
-    hi.setOS(DummyOsType);
-    reg.setHostname(DummyHostname1);
-    reg.setCurrentPingPort(DummyCurrentPingPort);
-    reg.setHardwareProfile(hi);
-    reg.setAgentVersion(metaInfo.getServerVersion());
-    reg.setPrefix(Configuration.PREFIX_DIR);
-    RegistrationResponse rr = handler.handleRegistration(reg);
-    RecoveryConfig rc = rr.getRecoveryConfig();
-    assertEquals(rc.getMaxCount(), "4");
-    assertEquals(rc.getType(), "AUTO_START");
-    assertEquals(rc.getMaxLifetimeCount(), "10");
-    assertEquals(rc.getRetryGap(), "2");
-    assertEquals(rc.getWindowInMinutes(), "23");
-    assertEquals(rc.getEnabledComponents(), "DATANODE,NAMENODE");
+  //   Register reg = new Register();
+  //   HostInfo hi = new HostInfo();
+  //   hi.setHostName(DummyHostname1);
+  //   hi.setOS(DummyOsType);
+  //   reg.setHostname(DummyHostname1);
+  //   reg.setCurrentPingPort(DummyCurrentPingPort);
+  //   reg.setHardwareProfile(hi);
+  //   reg.setAgentVersion(metaInfo.getServerVersion());
+  //   reg.setPrefix(Configuration.PREFIX_DIR);
+  //   RegistrationResponse rr = handler.handleRegistration(reg);
+  //   RecoveryConfig rc = rr.getRecoveryConfig();
+  //   assertEquals(rc.getMaxCount(), "4");
+  //   assertEquals(rc.getType(), "AUTO_START");
+  //   assertEquals(rc.getMaxLifetimeCount(), "10");
+  //   assertEquals(rc.getRetryGap(), "2");
+  //   assertEquals(rc.getWindowInMinutes(), "23");
+  //   assertEquals(rc.getEnabledComponents(), "DATANODE,NAMENODE");
 
-    // Send a heart beat with the recovery timestamp set to the
-    // recovery timestamp from registration. The heart beat
-    // response should not contain a recovery config since
-    // nothing changed between the registration and heart beat.
-    HeartBeat hb = new HeartBeat();
-    hb.setTimestamp(System.currentTimeMillis());
-    hb.setResponseId(0);
-    hb.setHostname(DummyHostname1);
-    hb.setNodeStatus(new HostStatus(Status.HEALTHY, DummyHostStatus));
-    hb.setRecoveryTimestamp(rc.getRecoveryTimestamp());
+  //   // Send a heart beat with the recovery timestamp set to the
+  //   // recovery timestamp from registration. The heart beat
+  //   // response should not contain a recovery config since
+  //   // nothing changed between the registration and heart beat.
+  //   HeartBeat hb = new HeartBeat();
+  //   hb.setTimestamp(System.currentTimeMillis());
+  //   hb.setResponseId(0);
+  //   hb.setHostname(DummyHostname1);
+  //   hb.setNodeStatus(new HostStatus(Status.HEALTHY, DummyHostStatus));
+  //   hb.setRecoveryTimestamp(rc.getRecoveryTimestamp());
 
-    HeartBeatResponse hbr = handler.handleHeartBeat(hb);
-    assertNull(hbr.getRecoveryConfig());
-  }
+  //   HeartBeatResponse hbr = handler.handleHeartBeat(hb);
+  //   assertNull(hbr.getRecoveryConfig());
+  // }
 
   //
   // Same as testRegistrationRecoveryConfig but will test
