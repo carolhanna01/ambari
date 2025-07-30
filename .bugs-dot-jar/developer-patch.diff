@@ -1,0 +1,148 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java
+index ecd8e3d2e1..2e857edc07 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java
+@@ -90,11 +90,13 @@ public abstract class AbstractUpgradeCatalog implements UpgradeCatalog {
+ 
+   private static final String CONFIGURATION_TYPE_HIVE_SITE = "hive-site";
+   private static final String CONFIGURATION_TYPE_HDFS_SITE = "hdfs-site";
+-  private static final String CONFIGURATION_TYPE_RANGER_KNOX_PLUGIN_PROPERTIES = "ranger-knox-plugin-properties";
++  public static final String CONFIGURATION_TYPE_RANGER_HBASE_PLUGIN_PROPERTIES = "ranger-hbase-plugin-properties";
++  public static final String CONFIGURATION_TYPE_RANGER_KNOX_PLUGIN_PROPERTIES = "ranger-knox-plugin-properties";
+ 
+   private static final String PROPERTY_DFS_NAMESERVICES = "dfs.nameservices";
+   private static final String PROPERTY_HIVE_SERVER2_AUTHENTICATION = "hive.server2.authentication";
+-  private static final String PROPERTY_RANGER_KNOX_PLUGIN_ENABLED = "ranger-knox-plugin-enabled";
++  public static final String PROPERTY_RANGER_HBASE_PLUGIN_ENABLED = "ranger-hbase-plugin-enabled";
++  public static final String PROPERTY_RANGER_KNOX_PLUGIN_ENABLED = "ranger-knox-plugin-enabled";
+ 
+   private static final Logger LOG = LoggerFactory.getLogger
+     (AbstractUpgradeCatalog.class);
+@@ -191,18 +193,18 @@ public abstract class AbstractUpgradeCatalog implements UpgradeCatalog {
+     return doc;
+   }
+ 
+-  protected static boolean isRangerKnoxPluginEnabled(Cluster cluster) {
+-    boolean isRangerKnoxPluginEnabled = false;
++  protected static boolean isConfigEnabled(Cluster cluster, String configType, String propertyName) {
++    boolean isRangerPluginEnabled = false;
+     if (cluster != null) {
+-      Config rangerKnoxPluginProperties = cluster.getDesiredConfigByType(CONFIGURATION_TYPE_RANGER_KNOX_PLUGIN_PROPERTIES);
+-      if (rangerKnoxPluginProperties != null) {
+-        String rangerKnoxPluginEnabled = rangerKnoxPluginProperties.getProperties().get(PROPERTY_RANGER_KNOX_PLUGIN_ENABLED);
+-        if (StringUtils.isNotEmpty(rangerKnoxPluginEnabled)) {
+-          isRangerKnoxPluginEnabled =  "yes".equalsIgnoreCase(rangerKnoxPluginEnabled);
++      Config rangerPluginProperties = cluster.getDesiredConfigByType(configType);
++      if (rangerPluginProperties != null) {
++        String rangerPluginEnabled = rangerPluginProperties.getProperties().get(propertyName);
++        if (StringUtils.isNotEmpty(rangerPluginEnabled)) {
++          isRangerPluginEnabled =  "yes".equalsIgnoreCase(rangerPluginEnabled);
+         }
+       }
+     }
+-    return isRangerKnoxPluginEnabled;
++    return isRangerPluginEnabled;
+   }
+ 
+   protected static class VersionComparator implements Comparator<UpgradeCatalog> {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java
+index 0eef4f1022..2580b0ef10 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java
+@@ -383,7 +383,9 @@ public class UpgradeCatalog220 extends AbstractUpgradeCatalog {
+               if (!authorizationProviderExists) {
+                 NodeList nodeList = root.getElementsByTagName("gateway");
+                 if (nodeList != null && nodeList.getLength() > 0) {
+-                  boolean rangerPluginEnabled = isRangerKnoxPluginEnabled(cluster);
++                  boolean rangerPluginEnabled = isConfigEnabled(cluster,
++                    AbstractUpgradeCatalog.CONFIGURATION_TYPE_RANGER_KNOX_PLUGIN_PROPERTIES,
++                    AbstractUpgradeCatalog.PROPERTY_RANGER_KNOX_PLUGIN_ENABLED);
+ 
+                   Node gatewayNode = nodeList.item(0);
+                   Element newProvider = topologyXml.createElement("provider");
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java
+index 9657d677e9..1401688ebb 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java
+@@ -60,7 +60,6 @@ import com.google.gson.JsonParser;
+ import com.google.inject.Inject;
+ import com.google.inject.Injector;
+ 
+-
+ /**
+  * Upgrade catalog for version 2.2.2.
+  */
+@@ -125,6 +124,10 @@ public class UpgradeCatalog222 extends AbstractUpgradeCatalog {
+     "\\u003dNameNode,name\\" +
+     "\\u003dFSNamesystem.CorruptBlocks}";
+ 
++  public final static String HBASE_SITE_HBASE_COPROCESSOR_MASTER_CLASSES = "hbase.coprocessor.master.classes";
++  public final static String HBASE_SITE_HBASE_COPROCESSOR_REGION_CLASSES = "hbase.coprocessor.region.classes";
++  public final static String HBASE_SITE_HBASE_COPROCESSOR_REGIONSERVER_CLASSES = "hbase.coprocessor.regionserver.classes";
++
+ 
+   // ----- Constructors ------------------------------------------------------
+ 
+@@ -189,6 +192,7 @@ public class UpgradeCatalog222 extends AbstractUpgradeCatalog {
+     updateHbaseEnvConfig();
+     updateCorruptedReplicaWidget();
+     updateZookeeperConfigs();
++    updateHBASEConfigs();
+     createNewSliderConfigVersion();
+     initializeStromAndKafkaWidgets();
+   }
+@@ -231,6 +235,54 @@ public class UpgradeCatalog222 extends AbstractUpgradeCatalog {
+     }
+   }
+ 
++  protected void updateHBASEConfigs() throws  AmbariException {
++    AmbariManagementController ambariManagementController = injector.getInstance(AmbariManagementController.class);
++    Map<String, Cluster> clusterMap = getCheckedClusterMap(ambariManagementController.getClusters());
++
++    for (final Cluster cluster : clusterMap.values()) {
++      Config hbaseSite = cluster.getDesiredConfigByType("hbase-site");
++      boolean rangerHbasePluginEnabled = isConfigEnabled(cluster,
++        AbstractUpgradeCatalog.CONFIGURATION_TYPE_RANGER_HBASE_PLUGIN_PROPERTIES,
++        AbstractUpgradeCatalog.PROPERTY_RANGER_HBASE_PLUGIN_ENABLED);
++      if (hbaseSite != null && rangerHbasePluginEnabled) {
++        Map<String, String> updates = new HashMap<>();
++        String stackVersion = cluster.getCurrentStackVersion().getStackVersion();
++        if (VersionUtils.compareVersions(stackVersion, "2.2") == 0) {
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_MASTER_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_MASTER_CLASSES,
++              "com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor");
++          }
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_REGION_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_REGION_CLASSES,
++              "com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor");
++          }
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_REGIONSERVER_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_REGIONSERVER_CLASSES,
++              "org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint," +
++                "com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor");
++          }
++        } else if (VersionUtils.compareVersions(stackVersion, "2.3") == 0) {
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_MASTER_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_MASTER_CLASSES,
++              "org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor ");
++          }
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_REGION_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_REGION_CLASSES,
++              "org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor");
++          }
++          if (hbaseSite.getProperties().containsKey(HBASE_SITE_HBASE_COPROCESSOR_REGIONSERVER_CLASSES)) {
++            updates.put(HBASE_SITE_HBASE_COPROCESSOR_REGIONSERVER_CLASSES,
++              "org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint," +
++                "org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor");
++          }
++        }
++        if (! updates.isEmpty()) {
++          updateConfigurationPropertiesForCluster(cluster, "hbase-site", updates, true, false);
++        }
++      }
++    }
++  }
++
+   protected void updateStormConfigs() throws  AmbariException {
+     AmbariManagementController ambariManagementController = injector.getInstance(AmbariManagementController.class);
+     Map<String, Cluster> clusterMap = getCheckedClusterMap(ambariManagementController.getClusters());

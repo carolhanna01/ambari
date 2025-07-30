@@ -1,0 +1,181 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Dmitry Lysnichenko
+        '@username': dmitriusan
+      attachments:
+        attachment:
+          '@author': dmitriusan
+          '@created': Sun, 24 Apr 2016 18:52:31 +0000
+          '@id': '12800431'
+          '@name': AMBARI-16084.patch
+          '@size': '15290'
+      comments:
+        comment:
+        - '#text': "<p>Committed<br/>\nTo <a href=\"https://git-wip-us.apache.org/repos/asf/ambari.git\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://git-wip-us.apache.org/repos/asf/ambari.git</a><br/>\n   03b9864..1cc15c1\
+            \  branch-2.2 -&gt; branch-2.2<br/>\n   27938ec..480feee  branch-2.2.2\
+            \ -&gt; branch-2.2.2<br/>\n   aa6a2a9..b707584  trunk      -&gt; origin/trunk</p>"
+          '@author': dmitriusan
+          '@created': Mon, 25 Apr 2016 17:24:15 +0000
+          '@id': '15256635'
+        - '#text': "<p>FAILURE: Integrated in Ambari-branch-2.2 #667 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.2/667/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.2/667/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16084\" title=\"\
+            [RU] Hbase is losing table access permissions during upgrade.\" class=\"\
+            issue-link\" data-issue-key=\"AMBARI-16084\"><del>AMBARI-16084</del></a>.\
+            \ <span class=\"error\">&#91;RU&#93;</span> Hbase is losing table access\
+            \ permissions during (dlysnichenko: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=1cc15c14826946bdc05c68ad5aca307725c51005\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=1cc15c14826946bdc05c68ad5aca307725c51005</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog222Test.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 25 Apr 2016 19:14:45 +0000
+          '@id': '15256833'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4732 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4732/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4732/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16084\" title=\"\
+            [RU] Hbase is losing table access permissions during upgrade.\" class=\"\
+            issue-link\" data-issue-key=\"AMBARI-16084\"><del>AMBARI-16084</del></a>.\
+            \ <span class=\"error\">&#91;RU&#93;</span> Hbase is losing table access\
+            \ permissions during (dlysnichenko: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=51cd067b056adb1013a168b59b8d65d1e2946a0c\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=51cd067b056adb1013a168b59b8d65d1e2946a0c</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog222Test.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog220.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/AbstractUpgradeCatalog.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 25 Apr 2016 19:29:05 +0000
+          '@id': '15256857'
+      component: ambari-server
+      created: Sun, 24 Apr 2016 18:52:25 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 15 weeks, 2 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2wnzb:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>So here's where we are:</p>\n\n<ul class=\"alternate\" type=\"\
+        square\">\n\t<li><a href=\"https://reviews.apache.org/r/45890/diff/2#index_header\"\
+        \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\">https://reviews.apache.org/r/45890/diff/2#index_header</a>\
+        \ removed hard-coded python code which was trying to figure out which coprocessor\
+        \ to use. With these values gone, it's now up to Ambari to set the <em>right</em>\
+        \ value in the configurations.</li>\n</ul>\n\n\n<ul class=\"alternate\" type=\"\
+        square\">\n\t<li>However, after removing the above code, we never change the\
+        \ ranger configurations to reflect the proper value</li>\n</ul>\n\n\n<ul class=\"\
+        alternate\" type=\"square\">\n\t<li>To fix this, we need to fix the values\
+        \ on Ambari upgrade. When upgrading Ambari from 2.0, we'll need to do the\
+        \ following:\n\t<ul class=\"alternate\" type=\"square\">\n\t\t<li>If Ranger\
+        \ is disabled; do nothing</li>\n\t\t<li>If Ranger is enabled and the cluster's\
+        \ current stack is HDP 2.2, then set the master/region coprocessors to\n<div\
+        \ class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent\
+        \ panelContent\">\n<pre class=\"code-java\">hbase_coprocessor_master_classes\
+        \ = <span class=\"code-quote\">\"com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor\"\
+        </span>\nhbase_coprocessor_regionserver_classes = <span class=\"code-quote\"\
+        >\"com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor\"</span>\n\
+        hbase_coprocessor_region_classes = <span class=\"code-quote\">\"org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint,com.xasecure.authorization.hbase.XaSecureAuthorizationCoprocessor\"\
+        </span>\n</pre>\n</div></div></li>\n\t\t<li>If Ranger is enabled and the cluster's\
+        \ current stack is HDP 2.3, then set the master/region coprocessors to\n<div\
+        \ class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent\
+        \ panelContent\">\n<pre class=\"code-java\">hbase_coprocessor_master_classes\
+        \ = <span class=\"code-quote\">\"org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor\
+        \ \"</span>\nhbase_coprocessor_regionserver_classes = <span class=\"code-quote\"\
+        >\"org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor\"\
+        </span>\nhbase_coprocessor_region_classes = <span class=\"code-quote\">\"\
+        org.apache.hadoop.hbase.security.token.TokenProvider,org.apache.hadoop.hbase.security.access.SecureBulkLoadEndpoint,org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor\"\
+        </span>\n</pre>\n</div></div></li>\n\t</ul>\n\t</li>\n</ul>\n\n\n<p>Now HDP\
+        \ stack upgrades will work since we look for <tt>XaSecureAuthorizationCoprocessor</tt>\
+        \ and change it to <tt>RangerAuthorizationCoprocessor</tt> as needed.</p>"
+      due: null
+      environment: null
+      fixVersion: 2.2.2
+      key:
+        '#text': AMBARI-16084
+        '@id': '12962100'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16084
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Dmitry Lysnichenko
+        '@username': dmitriusan
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Mon, 25 Apr 2016 17:24:15 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: '[RU] Hbase is losing table access permissions during upgrade.'
+      title: '[AMBARI-16084] [RU] Hbase is losing table access permissions during
+        upgrade.'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Mon, 25 Apr 2016 19:29:05 +0000
+      version: 2.2.2
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
