@@ -1,0 +1,172 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelper.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelper.java
+index eb45c9ec4f..7833e01492 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelper.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelper.java
+@@ -22,10 +22,52 @@ import java.util.Set;
+  */
+ public interface LoggingRequestHelper {
+ 
++  /**
++   * Sends a search query request to the LogSearch server
++   *
++   * @param queryParameters the query parameters to pass to LogSearch
++   *
++   * @return a LogQueryResponse, containing the results of the search
++   */
+   public LogQueryResponse sendQueryRequest(Map<String, String> queryParameters);
+ 
++  /**
++   * Sends a request to obtain the log file name for a given component, on
++   *   a given host
++   *
++   * @param componentName the component name
++   * @param hostName the host name
++   *
++   * @return a Set of Strings that include the log file names associated
++   *         with this component/host combination
++   */
+   public Set<String> sendGetLogFileNamesRequest(String componentName, String hostName);
+ 
++  /**
++   * Sends a request to obtain the log level counts for a given component on
++   *   a given host
++   *
++   * @param componentName the component name
++   * @param hostName the host name
++   *
++   * @return a LogLevelQueryResponse, containing the log level counts for this
++   *         component/host combination
++   */
+   public LogLevelQueryResponse sendLogLevelQueryRequest(String componentName, String hostName);
+ 
++  /**
++   * Appends the required LogSearch query parameters to a base URI
++   *
++   * @param baseURI the base URI for this request, typically the URI to the
++   *                Ambari Integration searchEngine component
++   *
++   * @param componentName the component name
++   * @param hostName the host name
++   *
++   * @return a URI String that refers to the tail results of
++   *         the log file associated with this component/host
++   *         combination
++   */
++  public String createLogFileTailURI(String baseURI, String componentName, String hostName);
++
+ }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+index c1afce01ab..d8c71e2465 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+@@ -68,6 +68,14 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+ 
+   private static final String LOGSEARCH_ADMIN_CREDENTIAL_NAME = "logsearch.admin.credential";
+ 
++  private static final String COMPONENT_QUERY_PARAMETER_NAME = "component_name";
++
++  private static final String HOST_QUERY_PARAMETER_NAME = "host_name";
++
++  private static final String DEFAULT_PAGE_SIZE = "50";
++
++  private static final String PAGE_SIZE_QUERY_PARAMETER_NAME = "pageSize";
++
+   private static AtomicInteger errorLogCounterForLogSearchConnectionExceptions = new AtomicInteger(0);
+ 
+   private final String hostName;
+@@ -180,8 +188,8 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+     // TODO, this current method will be a temporary workaround
+     // TODO, until the new LogSearch API method is available to handle this request
+ 
+-    queryParameters.put("host", hostName);
+-    queryParameters.put("components_name",componentName);
++    queryParameters.put(HOST_QUERY_PARAMETER_NAME, hostName);
++    queryParameters.put(COMPONENT_QUERY_PARAMETER_NAME,componentName);
+     // ask for page size of 1, since we really only want a single entry to
+     // get the file path name
+     queryParameters.put("pageSize", "1");
+@@ -229,6 +237,24 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+     return null;
+   }
+ 
++  /**
++   * Generates the log file tail URI, using the LogSearch server's
++   * query parameters.
++   *
++   * @param baseURI the base URI for this request, typically the URI to the
++   *                Ambari Integration searchEngine component
++   *
++   * @param componentName the component name
++   * @param hostName the host name
++   *
++   * @return
++   */
++  @Override
++  public String createLogFileTailURI(String baseURI, String componentName, String hostName) {
++    return baseURI + "?" + COMPONENT_QUERY_PARAMETER_NAME + "=" + componentName + "&" + HOST_QUERY_PARAMETER_NAME + "=" + hostName
++      + "&" + PAGE_SIZE_QUERY_PARAMETER_NAME + "=" + DEFAULT_PAGE_SIZE;
++  }
++
+   private static ObjectReader createObjectReader(Class type) {
+     // setup the Jackson mapper/reader to read in the data structure
+     ObjectMapper mapper = createJSONObjectMapper();
+@@ -263,8 +289,8 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+     Map<String, String> queryParameters = new HashMap<String, String>();
+     // set the query parameters to limit this level count
+     // request to the specific component on the specified host
+-    queryParameters.put("host", hostName);
+-    queryParameters.put("components_name",componentName);
++    queryParameters.put(HOST_QUERY_PARAMETER_NAME, hostName);
++    queryParameters.put(COMPONENT_QUERY_PARAMETER_NAME,componentName);
+ 
+     // add any query strings specified
+     for (String key : queryParameters.keySet()) {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
+index f80bc6de84..ff7e7f5a96 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java
+@@ -46,14 +46,6 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+ 
+   private static final String PATH_TO_SEARCH_ENGINE = "/logging/searchEngine";
+ 
+-  private static final String DEFAULT_PAGE_SIZE = "50";
+-
+-  private static final String COMPONENT_QUERY_PARAMETER_NAME = "components_name";
+-
+-  private static final String HOST_QUERY_PARAMETER_NAME = "host";
+-
+-  private static final String PAGE_SIZE_QUERY_PARAMETER_NAME = "pageSize";
+-
+   private static AtomicInteger errorLogCounterForLogSearchConnectionExceptions = new AtomicInteger(0);
+ 
+   private final LoggingRequestHelperFactory requestHelperFactory;
+@@ -69,8 +61,6 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+     this.controllerFactory = controllerFactory;
+   }
+ 
+-
+-
+   @Override
+   public Set<Resource> populateResources(Set<Resource> resources, Request request, Predicate predicate) throws SystemException {
+ 
+@@ -113,7 +103,7 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+             for (String fileName : logFileNames) {
+               // generate the URIs that can be used by clients to obtain search results/tail log results/etc
+               final String searchEngineURI = controller.getAmbariServerURI(getFullPathToSearchEngine(clusterName));
+-              final String logFileTailURI = createLogFileTailURI(searchEngineURI, mappedComponentNameForLogSearch, hostName);
++              final String logFileTailURI = requestHelper.createLogFileTailURI(searchEngineURI, mappedComponentNameForLogSearch, hostName);
+               // all log files are assumed to be service types for now
+               listOfFileDefinitions.add(new LogFileDefinitionInfo(fileName, LogFileType.SERVICE, searchEngineURI, logFileTailURI));
+             }
+@@ -175,11 +165,6 @@ public class LoggingSearchPropertyProvider implements PropertyProvider {
+     return CLUSTERS_PATH + "/" + clusterName + PATH_TO_SEARCH_ENGINE;
+   }
+ 
+-  protected static String createLogFileTailURI(String searchEngineURI, String componentName, String hostName) {
+-    return searchEngineURI + "?" + COMPONENT_QUERY_PARAMETER_NAME + "=" + componentName + "&" + HOST_QUERY_PARAMETER_NAME + "=" + hostName
+-      + "&" + PAGE_SIZE_QUERY_PARAMETER_NAME + "=" + DEFAULT_PAGE_SIZE;
+-  }
+-
+   @Override
+   public Set<String> checkPropertyIds(Set<String> propertyIds) {
+     return Collections.emptySet();

@@ -1,0 +1,199 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Bob Nettleton
+        '@username': rnettleton
+      attachments:
+        attachment:
+          '@author': rnettleton
+          '@created': Wed, 27 Apr 2016 13:48:48 +0000
+          '@id': '12801020'
+          '@name': AMBARI-16129.patch.2
+          '@size': '13226'
+      comments:
+        comment:
+        - '#text': <p>Uploaded initial patch</p>
+          '@author': rnettleton
+          '@created': Tue, 26 Apr 2016 19:11:40 +0000
+          '@id': '15258722'
+        - '#text': "<p><font color=\"red\">-1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12800853/AMBARI-16129.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12800853/AMBARI-16129.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"green\">+1 @author</font>.\
+            \  The patch does not contain any @author tags.</p>\n\n<p>    <font color=\"\
+            green\">+1 tests included</font>.  The patch appears to include 2 new\
+            \ or modified test files.</p>\n\n<p>    <font color=\"green\">+1 javac</font>.\
+            \  The applied patch does not increase the total number of javac compiler\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 release audit</font>.\
+            \  The applied patch does not increase the total number of release audit\
+            \ warnings.</p>\n\n<p>    <font color=\"red\">-1 core tests</font>.  The\
+            \ patch failed these unit tests in ambari-server:</p>\n\n<p>         \
+            \         org.apache.ambari.server.agent.TestHeartbeatHandler</p>\n\n\
+            <p>Test results: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6672//testReport/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6672//testReport/</a><br/>\n\
+            Console output: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6672//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6672//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Wed, 27 Apr 2016 00:47:10 +0000
+          '@id': '15259280'
+        - '#text': <p>Uploaded Version 2 of patch, rebased on latest trunk changes</p>
+          '@author': rnettleton
+          '@created': Wed, 27 Apr 2016 13:48:48 +0000
+          '@id': '15260177'
+        - '#text': <p>Patch merged to trunk</p>
+          '@author': rnettleton
+          '@created': Wed, 27 Apr 2016 15:41:01 +0000
+          '@id': '15260337'
+        - '#text': "<p><font color=\"red\">-1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12801020/AMBARI-16129.patch.2\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12801020/AMBARI-16129.patch.2</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"green\">+1 @author</font>.\
+            \  The patch does not contain any @author tags.</p>\n\n<p>    <font color=\"\
+            green\">+1 tests included</font>.  The patch appears to include 2 new\
+            \ or modified test files.</p>\n\n<p>    <font color=\"green\">+1 javac</font>.\
+            \  The applied patch does not increase the total number of javac compiler\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 release audit</font>.\
+            \  The applied patch does not increase the total number of release audit\
+            \ warnings.</p>\n\n<p>    <font color=\"red\">-1 core tests</font>.  The\
+            \ patch failed these unit tests in ambari-server:</p>\n\n<p>         \
+            \         org.apache.ambari.server.state.cluster.ClusterTest</p>\n\n<p>Test\
+            \ results: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6689//testReport/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6689//testReport/</a><br/>\n\
+            Console output: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/6689//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/6689//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Wed, 27 Apr 2016 16:55:12 +0000
+          '@id': '15260471'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4748 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4748/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4748/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16129\" title=\"\
+            LogSearch Integration using incorrect query parameters for LogSearch\"\
+            \ class=\"issue-link\" data-issue-key=\"AMBARI-16129\"><del>AMBARI-16129</del></a>.\
+            \ LogSearch Integration using incorrect query parameters for (rnettleton:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=025b3446ffe4c3389654932e5b9b619432c25d36\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=025b3446ffe4c3389654932e5b9b619432c25d36</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProvider.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelper.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingSearchPropertyProviderTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Apr 2016 17:44:47 +0000
+          '@id': '15260576'
+      component: ambari-server
+      created: Tue, 26 Apr 2016 19:09:25 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 14 weeks, 6 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2wrpr:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: '<p>The LogSearch integration layer in Ambari is passing incorrect
+        query parameters to the LogSearch Server.  Recent multi-node testing has uncovered
+        this issue. </p>
+
+
+        <p>The LogSearch integration code should use "host_name" for specifying hosts
+        in query URLs, and "component_name" for specifying the component for a given
+        LogSearch query.  The "component_name" change is related to a change in the
+        parameters for LogSearch itself, which used to use "components_name".  </p>
+
+
+        <p>The integration code should be updated to use these query parameter names.  </p>
+
+
+        <p>I''m working on a fix for this, and will be submitting a patch shortly.
+        </p>'
+      due: null
+      environment: null
+      fixVersion: 2.4.0
+      key:
+        '#text': AMBARI-16129
+        '@id': '12962705'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16129
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Bob Nettleton
+        '@username': rnettleton
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 27 Apr 2016 15:41:01 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: LogSearch Integration using incorrect query parameters for LogSearch
+      title: '[AMBARI-16129] LogSearch Integration using incorrect query parameters
+        for LogSearch'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 27 Apr 2016 17:44:47 +0000
+      version: 2.4.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
