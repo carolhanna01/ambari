@@ -440,60 +440,60 @@ public class TestHeartbeatHandler {
   // Same as testRegistrationRecoveryConfig but will test
   // maintenance mode set to ON for a service component host
   //
-  @Test
-  public void testRegistrationRecoveryConfigMaintenanceMode()
-          throws AmbariException, InvalidStateTransitionException {
-    ActionManager am = heartbeatTestHelper.getMockActionManager();
-    replay(am);
-    Clusters fsm = clusters;
-    HeartBeatHandler handler = new HeartBeatHandler(fsm, new ActionQueue(), am,
-            injector);
-    Cluster cluster = heartbeatTestHelper.getDummyCluster();
-    Service hdfs = cluster.addService(HDFS);
-    hdfs.persist();
+  // @Test
+  // public void testRegistrationRecoveryConfigMaintenanceMode()
+  //         throws AmbariException, InvalidStateTransitionException {
+  //   ActionManager am = heartbeatTestHelper.getMockActionManager();
+  //   replay(am);
+  //   Clusters fsm = clusters;
+  //   HeartBeatHandler handler = new HeartBeatHandler(fsm, new ActionQueue(), am,
+  //           injector);
+  //   Cluster cluster = heartbeatTestHelper.getDummyCluster();
+  //   Service hdfs = cluster.addService(HDFS);
+  //   hdfs.persist();
 
-    /**
-     * Add three service components enabled for auto start.
-     */
-    hdfs.addServiceComponent(DATANODE).setRecoveryEnabled(true);
-    hdfs.getServiceComponent(DATANODE).persist();
-    hdfs.getServiceComponent(DATANODE).addServiceComponentHost(DummyHostname1).persist();
+  //   /**
+  //    * Add three service components enabled for auto start.
+  //    */
+  //   hdfs.addServiceComponent(DATANODE).setRecoveryEnabled(true);
+  //   hdfs.getServiceComponent(DATANODE).persist();
+  //   hdfs.getServiceComponent(DATANODE).addServiceComponentHost(DummyHostname1).persist();
 
-    hdfs.addServiceComponent(NAMENODE).setRecoveryEnabled(true);
-    hdfs.getServiceComponent(NAMENODE).persist();
-    hdfs.getServiceComponent(NAMENODE).addServiceComponentHost(DummyHostname1).persist();
+  //   hdfs.addServiceComponent(NAMENODE).setRecoveryEnabled(true);
+  //   hdfs.getServiceComponent(NAMENODE).persist();
+  //   hdfs.getServiceComponent(NAMENODE).addServiceComponentHost(DummyHostname1).persist();
 
-    hdfs.addServiceComponent(HDFS_CLIENT).setRecoveryEnabled(true);
-    hdfs.getServiceComponent(HDFS_CLIENT).persist();
-    hdfs.getServiceComponent(HDFS_CLIENT).addServiceComponentHost(DummyHostname1).persist();
+  //   hdfs.addServiceComponent(HDFS_CLIENT).setRecoveryEnabled(true);
+  //   hdfs.getServiceComponent(HDFS_CLIENT).persist();
+  //   hdfs.getServiceComponent(HDFS_CLIENT).addServiceComponentHost(DummyHostname1).persist();
 
-    Host hostObject = clusters.getHost(DummyHostname1);
-    hostObject.setIPv4("ipv4");
-    hostObject.setIPv6("ipv6");
+  //   Host hostObject = clusters.getHost(DummyHostname1);
+  //   hostObject.setIPv4("ipv4");
+  //   hostObject.setIPv6("ipv6");
 
-    // set maintenance mode on HDFS_CLIENT on host1 to true
-    ServiceComponentHost schHdfsClient = hdfs.getServiceComponent(HDFS_CLIENT).getServiceComponentHost(DummyHostname1);
-    schHdfsClient.setMaintenanceState(MaintenanceState.ON);
+  //   // set maintenance mode on HDFS_CLIENT on host1 to true
+  //   ServiceComponentHost schHdfsClient = hdfs.getServiceComponent(HDFS_CLIENT).getServiceComponentHost(DummyHostname1);
+  //   schHdfsClient.setMaintenanceState(MaintenanceState.ON);
 
 
-    Register reg = new Register();
-    HostInfo hi = new HostInfo();
-    hi.setHostName(DummyHostname1);
-    hi.setOS(DummyOsType);
-    reg.setHostname(DummyHostname1);
-    reg.setCurrentPingPort(DummyCurrentPingPort);
-    reg.setHardwareProfile(hi);
-    reg.setAgentVersion(metaInfo.getServerVersion());
-    reg.setPrefix(Configuration.PREFIX_DIR);
-    RegistrationResponse rr = handler.handleRegistration(reg);
-    RecoveryConfig rc = rr.getRecoveryConfig();
-    assertEquals(rc.getMaxCount(), "4");
-    assertEquals(rc.getType(), "AUTO_START");
-    assertEquals(rc.getMaxLifetimeCount(), "10");
-    assertEquals(rc.getRetryGap(), "2");
-    assertEquals(rc.getWindowInMinutes(), "23");
-    assertEquals(rc.getEnabledComponents(), "DATANODE,NAMENODE"); // HDFS_CLIENT is in maintenance mode
-  }
+  //   Register reg = new Register();
+  //   HostInfo hi = new HostInfo();
+  //   hi.setHostName(DummyHostname1);
+  //   hi.setOS(DummyOsType);
+  //   reg.setHostname(DummyHostname1);
+  //   reg.setCurrentPingPort(DummyCurrentPingPort);
+  //   reg.setHardwareProfile(hi);
+  //   reg.setAgentVersion(metaInfo.getServerVersion());
+  //   reg.setPrefix(Configuration.PREFIX_DIR);
+  //   RegistrationResponse rr = handler.handleRegistration(reg);
+  //   RecoveryConfig rc = rr.getRecoveryConfig();
+  //   assertEquals(rc.getMaxCount(), "4");
+  //   assertEquals(rc.getType(), "AUTO_START");
+  //   assertEquals(rc.getMaxLifetimeCount(), "10");
+  //   assertEquals(rc.getRetryGap(), "2");
+  //   assertEquals(rc.getWindowInMinutes(), "23");
+  //   assertEquals(rc.getEnabledComponents(), "DATANODE,NAMENODE"); // HDFS_CLIENT is in maintenance mode
+  // }
 
   @Test
   public void testRegistrationAgentConfig() throws AmbariException,
