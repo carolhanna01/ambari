@@ -1,0 +1,172 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Vitaly Brodetskyi
+        '@username': vbrodetskyi
+      attachments:
+        attachment:
+          '@author': vbrodetskyi
+          '@created': Tue, 26 Jan 2016 16:49:22 +0000
+          '@id': '12784437'
+          '@name': AMBARI-14801.patch
+          '@size': '14569'
+      comments:
+        comment:
+        - '#text': "<p><font color=\"green\">+1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12784437/AMBARI-14801.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12784437/AMBARI-14801.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"green\">+1 @author</font>.\
+            \  The patch does not contain any @author tags.</p>\n\n<p>    <font color=\"\
+            green\">+1 tests included</font>.  The patch appears to include 1 new\
+            \ or modified test files.</p>\n\n<p>    <font color=\"green\">+1 javac</font>.\
+            \  The applied patch does not increase the total number of javac compiler\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 release audit</font>.\
+            \  The applied patch does not increase the total number of release audit\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 core tests</font>.\
+            \  The patch passed unit tests in ambari-server.</p>\n\n<p>Test results:\
+            \ <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/5068//testReport/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/5068//testReport/</a><br/>\n\
+            Console output: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/5068//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/5068//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Tue, 26 Jan 2016 22:43:42 +0000
+          '@id': '15118218'
+        - '#text': <p>Committed to trunk and branch-2.2</p>
+          '@author': vbrodetskyi
+          '@created': Wed, 27 Jan 2016 11:57:59 +0000
+          '@id': '15119117'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.2 #253 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.2/253/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.2/253/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14801\" title=\"\
+            Alerts: HBase Region servers alert should determine RegionServer liveliness\
+            \ differently\" class=\"issue-link\" data-issue-key=\"AMBARI-14801\"><del>AMBARI-14801</del></a>.\
+            \ Alerts: HBase Region servers alert should determine (vbrodetskyi: <a\
+            \ href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=39e0eb20a93ef6ef1a2fe16e07b23da4eb3d665a\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=39e0eb20a93ef6ef1a2fe16e07b23da4eb3d665a</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog222Test.java</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/HBASE/0.96.0.2.0/alerts.json</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/SchemaUpgradeHelper.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Jan 2016 14:05:51 +0000
+          '@id': '15119264'
+        - '#text': "<p>ABORTED: Integrated in Ambari-trunk-Commit #4235 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4235/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4235/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14801\" title=\"\
+            Alerts: HBase Region servers alert should determine RegionServer liveliness\
+            \ differently\" class=\"issue-link\" data-issue-key=\"AMBARI-14801\"><del>AMBARI-14801</del></a>.\
+            \ Alerts: HBase Region servers alert should determine (vbrodetskyi: <a\
+            \ href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=d1e59133f7f867a16d6cb4c7e5cc8508893a29fe\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=d1e59133f7f867a16d6cb4c7e5cc8508893a29fe</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/resources/common-services/HBASE/0.96.0.2.0/alerts.json</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/SchemaUpgradeHelper.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog222Test.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog222.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog240.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Jan 2016 17:48:41 +0000
+          '@id': '15119875'
+      component: ambari-server
+      created: Tue, 26 Jan 2016 16:48:37 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 28 weeks, 1 day ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2rzen:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: <p>Remove RegionServer health summary alert, because it using invalid
+        info from HBase jmx metrics.</p>
+      due: null
+      environment: null
+      fixVersion: 2.2.2
+      key:
+        '#text': AMBARI-14801
+        '@id': '12934155'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-14801
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Vitaly Brodetskyi
+        '@username': vbrodetskyi
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 27 Jan 2016 11:57:59 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'Alerts: HBase Region servers alert should determine RegionServer liveliness
+        differently'
+      title: '[AMBARI-14801] Alerts: HBase Region servers alert should determine RegionServer
+        liveliness differently'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 27 Jan 2016 17:48:41 +0000
+      version: 2.1.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
