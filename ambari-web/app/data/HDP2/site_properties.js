@@ -1875,21 +1875,6 @@ var hdp2properties = [
     "index": 12
   },
 /************************************************LOGSEARCH******************************************/
-  /*logfeeder-properties*/
-  {
-    "name": "logfeeder.config.files",
-    "serviceName": "LOGSEARCH",
-    "filename": "logfeeder-properties.xml",
-    "category": "Advanced logfeeder-properties",
-    "index": 1
-  },
-  {
-    "name": "logfeeder.checkpoint.folder",
-    "serviceName": "LOGSEARCH",
-    "filename": "logfeeder-properties.xml",
-    "category": "Advanced logfeeder-properties",
-    "index": 2
-  },
   /*logfeeder-env*/
   {
     "name": "logfeeder_log_dir",
@@ -1899,21 +1884,21 @@ var hdp2properties = [
     "index": 1
   },
   {
-    "name": "logfeeder_pid_dir",
+    "name": "logfeeder_checkpoint_folder",
     "serviceName": "LOGSEARCH",
     "filename": "logfeeder-env.xml",
     "category": "Advanced logfeeder-env",
     "index": 2
   },
   {
-    "name": "logfeeder_user",
+    "name": "logfeeder_pid_dir",
     "serviceName": "LOGSEARCH",
     "filename": "logfeeder-env.xml",
     "category": "Advanced logfeeder-env",
     "index": 3
   },
   {
-    "name": "logfeeder_group",
+    "name": "logfeeder_config_files",
     "serviceName": "LOGSEARCH",
     "filename": "logfeeder-env.xml",
     "category": "Advanced logfeeder-env",
@@ -2005,26 +1990,26 @@ var hdp2properties = [
     "category": "Advanced logfeeder-site",
     "index": 9
   },
-  /*logsearch-admin-json*/
+  /*logsearch-admin-properties*/
   {
     "name": "logsearch_admin_username",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-admin-json.xml",
-    "category": "Advanced logsearch-admin-json",
+    "filename": "logsearch-admin-properties.xml",
+    "category": "Advanced logsearch-admin-properties",
     "index": 1
   },
   {
     "name": "logsearch_admin_password",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-admin-json.xml",
-    "category": "Advanced logsearch-admin-json",
+    "filename": "logsearch-admin-properties.xml",
+    "category": "Advanced logsearch-admin-properties",
     "index": 2
   },
   {
     "name": "content",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-admin-json.xml",
-    "category": "Advanced logsearch-admin-json",
+    "filename": "logsearch-admin-properties.xml",
+    "category": "Advanced logsearch-admin-properties",
     "index": 3
   },
   /*logsearch-audit_logs-solrconfig*/
@@ -2044,74 +2029,67 @@ var hdp2properties = [
   },
   /*logsearch-env*/
   {
-    "name": "logsearch_ui_port",
+    "name": "logsearch_log_dir",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 1
   },
   {
-    "name": "logsearch_log_dir",
+    "name": "logsearch_pid_dir",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 2
   },
   {
-    "name": "logsearch_pid_dir",
+    "name": "logsearch_app_max_memory",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 3
   },
   {
-    "name": "logsearch_app_max_memory",
+    "name": "logsearch_solr_audit_logs_zk_node",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 4
   },
   {
-    "name": "logsearch_solr_audit_logs_zk_node",
+    "name": "logsearch_solr_audit_logs_zk_quorum",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 5
   },
   {
-    "name": "logsearch_solr_audit_logs_zk_quorum",
+    "name": "logsearch_solr_audit_logs_use_ranger",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 6
   },
   {
-    "name": "logsearch_solr_audit_logs_use_ranger",
+    "name": "logsearch_debug_enabled",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 7
   },
   {
-    "name": "logsearch_debug_enabled",
+    "name": "logsearch_debug_port",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
     "index": 8
   },
   {
-    "name": "logsearch_debug_port",
-    "serviceName": "LOGSEARCH",
-    "filename": "logsearch-env.xml",
-    "category": "Advanced logsearch-env",
-    "index": 9
-  },
-  {
     "name": "content",
     "serviceName": "LOGSEARCH",
     "filename": "logsearch-env.xml",
     "category": "Advanced logsearch-env",
-    "index": 10
+    "index": 9
   },
   /*logsearch-log4j*/
   {
@@ -2136,61 +2114,68 @@ var hdp2properties = [
     "category": "Advanced logsearch-service_logs-solrconfig",
     "index": 2
   },
-  /*logsearch-properties*/
+  /*logsearch-site*/
+  {
+    "name": "logsearch.ui.port",
+    "serviceName": "LOGSEARCH",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
+    "index": 1
+  },
   {
     "name": "logsearch.collection.numshards",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
-    "index": 1
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
+    "index": 2
   },
   {
     "name": "logsearch.collection.replication.factor",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
-    "index": 2
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
+    "index": 3
   },
   {
     "name": "logsearch.solr.collection.service.logs",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 4
   },
   {
     "name": "logsearch.service.logs.fields",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 5
   },
   {
     "name": "logsearch.service.logs.split.interval.mins",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 6
   },
   {
     "name": "logsearch.solr.collection.audit.logs",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 7
   },
   {
     "name": "logsearch.audit.logs.split.interval.mins",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 8
   },
   {
     "name": "logsearch.logfeeder.include.default.level",
     "serviceName": "LOGSEARCH",
-    "filename": "logsearch-properties.xml",
-    "category": "Advanced logsearch-properties",
+    "filename": "logsearch-site.xml",
+    "category": "Advanced logsearch-site",
     "index": 9
   },
   /*logsearch-solr-env*/

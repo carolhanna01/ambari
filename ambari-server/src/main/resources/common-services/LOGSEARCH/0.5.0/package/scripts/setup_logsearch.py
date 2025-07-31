@@ -59,7 +59,7 @@ def setup_logsearch():
        owner=params.logsearch_user
        )
 
-  File(format("{logsearch_server_conf}/logsearch-admin.json"),
+  File(format("{logsearch_server_conf}/user_pass.json"),
        content=InlineTemplate(params.logsearch_admin_content),
        owner=params.logsearch_user
        )
