@@ -1,0 +1,71 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
+index f892f04cf4..b7e63654ef 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java
+@@ -32,13 +32,13 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+ 
+   private static final Logger LOG = Logger.getLogger(LoggingRequestHelperFactoryImpl.class);
+ 
+-  private static final String LOGSEARCH_SITE_CONFIG_TYPE_NAME = "logsearch-site";
++  private static final String LOGSEARCH_ENV_CONFIG_TYPE_NAME = "logsearch-env";
+ 
+   private static final String LOGSEARCH_SERVICE_NAME = "LOGSEARCH";
+ 
+   private static final String LOGSEARCH_SERVER_COMPONENT_NAME = "LOGSEARCH_SERVER";
+ 
+-  private static final String LOGSEARCH_UI_PORT_PROPERTY_NAME = "logsearch.ui.port";
++  private static final String LOGSEARCH_UI_PORT_PROPERTY_NAME = "logsearch_ui_port";
+ 
+ 
+   @Override
+@@ -58,8 +58,8 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+           return null;
+         }
+ 
+-        Config logSearchSiteConfig =
+-          cluster.getDesiredConfigByType(LOGSEARCH_SITE_CONFIG_TYPE_NAME);
++        Config logSearchEnvConfig =
++          cluster.getDesiredConfigByType(LOGSEARCH_ENV_CONFIG_TYPE_NAME);
+ 
+         List<ServiceComponentHost> listOfMatchingHosts =
+           cluster.getServiceComponentHosts(LOGSEARCH_SERVICE_NAME, LOGSEARCH_SERVER_COMPONENT_NAME);
+@@ -84,7 +84,7 @@ public class LoggingRequestHelperFactoryImpl implements LoggingRequestHelperFact
+ 
+         final String logSearchHostName = serviceComponentHost.getHostName();
+         final String logSearchPortNumber =
+-          logSearchSiteConfig.getProperties().get(LOGSEARCH_UI_PORT_PROPERTY_NAME);
++          logSearchEnvConfig.getProperties().get(LOGSEARCH_UI_PORT_PROPERTY_NAME);
+ 
+         return new LoggingRequestHelperImpl(logSearchHostName, logSearchPortNumber, ambariManagementController.getCredentialStoreService(), cluster);
+       }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+index 3fac6554f8..c1afce01ab 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java
+@@ -56,7 +56,7 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+ 
+   private static Logger LOG = Logger.getLogger(LoggingRequestHelperImpl.class);
+ 
+-  private static final String LOGSEARCH_ADMIN_PROPERTIES_CONFIG_TYPE_NAME = "logsearch-admin-properties";
++  private static final String LOGSEARCH_ADMIN_JSON_CONFIG_TYPE_NAME = "logsearch-admin-json";
+ 
+   private static final String LOGSEARCH_ADMIN_USERNAME_PROPERTY_NAME = "logsearch_admin_username";
+ 
+@@ -153,7 +153,7 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+ 
+   private String getLogSearchAdminUser() {
+     Config logSearchAdminConfig =
+-      cluster.getDesiredConfigByType(LOGSEARCH_ADMIN_PROPERTIES_CONFIG_TYPE_NAME);
++      cluster.getDesiredConfigByType(LOGSEARCH_ADMIN_JSON_CONFIG_TYPE_NAME);
+ 
+     if (logSearchAdminConfig != null) {
+       return logSearchAdminConfig.getProperties().get(LOGSEARCH_ADMIN_USERNAME_PROPERTY_NAME);
+@@ -164,7 +164,7 @@ public class LoggingRequestHelperImpl implements LoggingRequestHelper {
+ 
+   private String getLogSearchAdminPassword() {
+     Config logSearchAdminConfig =
+-      cluster.getDesiredConfigByType(LOGSEARCH_ADMIN_PROPERTIES_CONFIG_TYPE_NAME);
++      cluster.getDesiredConfigByType(LOGSEARCH_ADMIN_JSON_CONFIG_TYPE_NAME);
+ 
+     if (logSearchAdminConfig != null) {
+       return logSearchAdminConfig.getProperties().get(LOGSEARCH_ADMIN_PASSWORD_PROPERTY_NAME);

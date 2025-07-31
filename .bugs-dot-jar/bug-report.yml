@@ -1,0 +1,151 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Oliver Szabo
+        '@username': oleewere
+      attachments: null
+      comments:
+        comment:
+        - '#text': "<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"\
+            codeContent panelContent\">\n<pre class=\"code-java\">commit 03ce1907b795ee6bbd15b685eda4271e61feada9\n\
+            Author: oleewere &lt;oleewere@gmail.com&gt;\nDate:   Tue Apr 26 16:37:52\
+            \ 2016 +0200\n\n    AMBARI-16122. Logsearch: Property changes not getting\
+            \ reflected at the backend (oleewere)\n</pre>\n</div></div>"
+          '@author': oleewere
+          '@created': Wed, 27 Apr 2016 11:45:49 +0000
+          '@id': '15260007'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4746 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4746/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4746/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-16122\" title=\"\
+            Logsearch: Property changes not getting reflected at the backend\" class=\"\
+            issue-link\" data-issue-key=\"AMBARI-16122\"><del>AMBARI-16122</del></a>.\
+            \ Logsearch: Property changes not getting reflected at the (oleewere:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=03ce1907b795ee6bbd15b685eda4271e61feada9\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=03ce1907b795ee6bbd15b685eda4271e61feada9</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logsearch-site.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logfeeder-properties.xml</li>\n\
+            \t<li>ambari-server/src/test/python/stacks/2.4/LOGSEARCH/test_logsearch.py</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logsearch-admin-properties.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/package/scripts/logsearch.py</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/quicklinks/quicklinks.json</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logfeeder-site.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logsearch-env.xml</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImpl.java</li>\n\
+            \t<li>ambari-web/app/data/HDP2/site_properties.js</li>\n\t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/package/templates/logsearch.properties.j2</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/properties/logsearch-env.sh.j2</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/alerts.json</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/metainfo.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/package/templates/logfeeder.properties.j2</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperImplTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImpl.java</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/package/scripts/setup_logsearch.py</li>\n\
+            \t<li>ambari-logsearch/ambari-logsearch-portal/src/main/scripts/run.sh</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logsearch-admin-json.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logfeeder-env.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/configuration/logsearch-properties.xml</li>\n\
+            \t<li>ambari-web/app/models/quick_links.js</li>\n\t<li>ambari-server/src/main/resources/common-services/LOGSEARCH/0.5.0/package/scripts/params.py</li>\n\
+            \t<li>ambari-server/src/test/python/stacks/2.4/configs/default.json</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/logging/LoggingRequestHelperFactoryImplTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 27 Apr 2016 13:52:37 +0000
+          '@id': '15260186'
+      component:
+      - ambari-server
+      - stacks
+      created: Tue, 26 Apr 2016 14:32:02 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '0.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 15 weeks ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2wr53:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: '<p>Cannot add custom properties.<br/>
+
+        Also some configurations are misleading -&gt; rename them </p>'
+      due: null
+      environment: null
+      fixVersion: 2.4.0
+      key:
+        '#text': AMBARI-16122
+        '@id': '12962612'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-16122
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Oliver Szabo
+        '@username': oleewere
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 27 Apr 2016 13:55:41 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'Logsearch: Property changes not getting reflected at the backend'
+      title: '[AMBARI-16122] Logsearch: Property changes not getting reflected at
+        the backend'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 27 Apr 2016 13:55:41 +0000
+      version: 2.4.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
