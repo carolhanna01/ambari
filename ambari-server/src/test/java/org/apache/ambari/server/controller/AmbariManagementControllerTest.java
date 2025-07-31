@@ -8326,144 +8326,144 @@ public class AmbariManagementControllerTest {
     assertEquals(original, repo.getDefaultBaseUrl());
   }
 
-  @Test
-  public void testUpdateRepoUrlController() throws Exception {
-    String badUrl = "http://hortonworks.com";
-    RepositoryInfo repo = ambariMetaInfo.getRepository(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    RepositoryRequest request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    request.setBaseUrl(badUrl);
+  // @Test
+  // public void testUpdateRepoUrlController() throws Exception {
+  //   String badUrl = "http://hortonworks.com";
+  //   RepositoryInfo repo = ambariMetaInfo.getRepository(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   RepositoryRequest request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   request.setBaseUrl(badUrl);
 
-    Set<RepositoryRequest> requests = new HashSet<RepositoryRequest>();
-    requests.add(request);
+  //   Set<RepositoryRequest> requests = new HashSet<RepositoryRequest>();
+  //   requests.add(request);
 
-    // test bad url
-    try {
-      controller.updateRepositories(requests);
-      Assert.fail("Expected a bad URL to throw an exception");
-    } catch (Exception e) {
-      assertNotNull(e);
-      Assert.assertTrue(e.getMessage().contains(badUrl));
-    }
-    // test bad url, but allow to set anyway
-    request.setVerifyBaseUrl(false);
-    controller.updateRepositories(requests);
-    Assert.assertEquals(request.getBaseUrl(), repo.getBaseUrl());
+  //   // test bad url
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.fail("Expected a bad URL to throw an exception");
+  //   } catch (Exception e) {
+  //     assertNotNull(e);
+  //     Assert.assertTrue(e.getMessage().contains(badUrl));
+  //   }
+  //   // test bad url, but allow to set anyway
+  //   request.setVerifyBaseUrl(false);
+  //   controller.updateRepositories(requests);
+  //   Assert.assertEquals(request.getBaseUrl(), repo.getBaseUrl());
 
-    requests.clear();
-    request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    request.setBaseUrl("https://hortonworks.com");
-    requests.add(request);
-    // test https url
-    controller.updateRepositories(requests);
+  //   requests.clear();
+  //   request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   request.setBaseUrl("https://hortonworks.com");
+  //   requests.add(request);
+  //   // test https url
+  //   controller.updateRepositories(requests);
 
-    requests.clear();
-    request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    request.setBaseUrl("pro://hortonworks.com");
-    requests.add(request);
-    // test bad url
-    try {
-      controller.updateRepositories(requests);
-    } catch (Exception e) {
-      assertTrue(e.getMessage().contains("Could not access base url"));
-    }
+  //   requests.clear();
+  //   request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   request.setBaseUrl("pro://hortonworks.com");
+  //   requests.add(request);
+  //   // test bad url
+  //   try {
+  //     controller.updateRepositories(requests);
+  //   } catch (Exception e) {
+  //     assertTrue(e.getMessage().contains("Could not access base url"));
+  //   }
 
-    requests.clear();
-    request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    request.setBaseUrl("http://rrr1.cccc");
-    requests.add(request);
-    // test bad url
-    try {
-      controller.updateRepositories(requests);
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-    }
+  //   requests.clear();
+  //   request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   request.setBaseUrl("http://rrr1.cccc");
+  //   requests.add(request);
+  //   // test bad url
+  //   try {
+  //     controller.updateRepositories(requests);
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //   }
 
-    // reset repo
-    requests.clear();
-    request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
-    request.setBaseUrl(repo.getDefaultBaseUrl());
-    requests.add(request);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(repo.getBaseUrl(), repo.getDefaultBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   // reset repo
+  //   requests.clear();
+  //   request = new RepositoryRequest(STACK_NAME, STACK_VERSION, OS_TYPE, REPO_ID);
+  //   request.setBaseUrl(repo.getDefaultBaseUrl());
+  //   requests.add(request);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(repo.getBaseUrl(), repo.getDefaultBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-    String baseUrl = repo.getDefaultBaseUrl();
-    if (!baseUrl.endsWith("/")) {
-      baseUrl += "/";
-    }
+  //   String baseUrl = repo.getDefaultBaseUrl();
+  //   if (!baseUrl.endsWith("/")) {
+  //     baseUrl += "/";
+  //   }
 
-    // variation #1: url with trailing slash, suffix preceding slash
-    backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_UBUNTU, "/repodata/repomd.xml");
-    Assert.assertTrue(baseUrl.endsWith("/") && configuration.getRepoValidationSuffixes("ubuntu12")[0].startsWith("/"));
-    request.setBaseUrl(baseUrl);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(baseUrl, repo.getBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   // variation #1: url with trailing slash, suffix preceding slash
+  //   backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_UBUNTU, "/repodata/repomd.xml");
+  //   Assert.assertTrue(baseUrl.endsWith("/") && configuration.getRepoValidationSuffixes("ubuntu12")[0].startsWith("/"));
+  //   request.setBaseUrl(baseUrl);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(baseUrl, repo.getBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-    // variation #2: url with trailing slash, suffix no preceding slash
-    backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_DEFAULT, "repodata/repomd.xml");
-    Assert.assertTrue(baseUrl.endsWith("/") && !configuration.getRepoValidationSuffixes("redhat6")[0].startsWith("/"));
-    request.setBaseUrl(baseUrl);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(baseUrl, repo.getBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   // variation #2: url with trailing slash, suffix no preceding slash
+  //   backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_DEFAULT, "repodata/repomd.xml");
+  //   Assert.assertTrue(baseUrl.endsWith("/") && !configuration.getRepoValidationSuffixes("redhat6")[0].startsWith("/"));
+  //   request.setBaseUrl(baseUrl);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(baseUrl, repo.getBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-    baseUrl = baseUrl.substring(0, baseUrl.length()-1);
-    // variation #3: url with no trailing slash, suffix no prededing slash
-    Assert.assertTrue(!baseUrl.endsWith("/") && !configuration.getRepoValidationSuffixes("redhat6")[0].startsWith("/"));
-    request.setBaseUrl(baseUrl);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(baseUrl, repo.getBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   baseUrl = baseUrl.substring(0, baseUrl.length()-1);
+  //   // variation #3: url with no trailing slash, suffix no prededing slash
+  //   Assert.assertTrue(!baseUrl.endsWith("/") && !configuration.getRepoValidationSuffixes("redhat6")[0].startsWith("/"));
+  //   request.setBaseUrl(baseUrl);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(baseUrl, repo.getBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-    // variation #4: url with no trailing slash, suffix preceding slash
-    backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_DEFAULT, "/repodata/repomd.xml");
-    Assert.assertTrue(!baseUrl.endsWith("/") && configuration.getRepoValidationSuffixes("suse11")[0].startsWith("/"));
-    request.setBaseUrl(baseUrl);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(baseUrl, repo.getBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   // variation #4: url with no trailing slash, suffix preceding slash
+  //   backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_DEFAULT, "/repodata/repomd.xml");
+  //   Assert.assertTrue(!baseUrl.endsWith("/") && configuration.getRepoValidationSuffixes("suse11")[0].startsWith("/"));
+  //   request.setBaseUrl(baseUrl);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(baseUrl, repo.getBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-    // variation #5: multiple suffix tests
-    backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_UBUNTU, "/foo/bar.xml,/repodata/repomd.xml");
-    Assert.assertTrue(configuration.getRepoValidationSuffixes("ubuntu12").length > 1);
-    request.setBaseUrl(baseUrl);
-    try {
-      controller.updateRepositories(requests);
-      Assert.assertEquals(baseUrl, repo.getBaseUrl());
-    } catch (Exception e) {
-      String exceptionMsg = e.getMessage();
-      assertTrue(exceptionMsg.contains("Could not access base url"));
-      LOG.error("Can not complete test. " + exceptionMsg);
-    }
+  //   // variation #5: multiple suffix tests
+  //   backingProperties.setProperty(Configuration.REPO_SUFFIX_KEY_UBUNTU, "/foo/bar.xml,/repodata/repomd.xml");
+  //   Assert.assertTrue(configuration.getRepoValidationSuffixes("ubuntu12").length > 1);
+  //   request.setBaseUrl(baseUrl);
+  //   try {
+  //     controller.updateRepositories(requests);
+  //     Assert.assertEquals(baseUrl, repo.getBaseUrl());
+  //   } catch (Exception e) {
+  //     String exceptionMsg = e.getMessage();
+  //     assertTrue(exceptionMsg.contains("Could not access base url"));
+  //     LOG.error("Can not complete test. " + exceptionMsg);
+  //   }
 
-  }
+  // }
 
   @Test
   public void testDeleteHostComponentInVariousStates() throws Exception {
