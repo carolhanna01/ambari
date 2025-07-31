@@ -1,0 +1,179 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Aravindan Vijayan
+        '@username': avijayan
+      attachments:
+        attachment:
+          '@author': avijayan
+          '@created': Fri, 29 Jan 2016 19:17:42 +0000
+          '@id': '12785225'
+          '@name': AMBARI-14848.patch
+          '@size': '4178'
+      comments:
+        comment:
+        - '#text': <p>Committed to trunk, branch-2.2 and branch-2.2.1</p>
+          '@author': avijayan
+          '@created': Fri, 29 Jan 2016 22:13:07 +0000
+          '@id': '15124320'
+        - '#text': "<p>FAILURE: Integrated in Ambari-branch-2.2 #271 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.2/271/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.2/271/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14848\" title=\"\
+            AMS service has critical alert after upgrade to 2.2.1.0 [METRICS_COLLECTOR:&quot;Connection\
+            \ failed: [Errno -2] Name or service not known to {{zookeeper_clientPort}}:61181&quot;\
+            \ ]\" class=\"issue-link\" data-issue-key=\"AMBARI-14848\"><del>AMBARI-14848</del></a>\
+            \ : AMS service has critical alert after upgrade to 2.2.1.0. (avijayan:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=8aa512448d0d9ecd916faa704288351f1a5510e7\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=8aa512448d0d9ecd916faa704288351f1a5510e7</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Sat, 30 Jan 2016 00:40:01 +0000
+          '@id': '15124519'
+        - '#text': "<p>ABORTED: Integrated in Ambari-trunk-Commit #4251 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4251/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4251/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14848\" title=\"\
+            AMS service has critical alert after upgrade to 2.2.1.0 [METRICS_COLLECTOR:&quot;Connection\
+            \ failed: [Errno -2] Name or service not known to {{zookeeper_clientPort}}:61181&quot;\
+            \ ]\" class=\"issue-link\" data-issue-key=\"AMBARI-14848\"><del>AMBARI-14848</del></a>\
+            \ : AMS service has critical alert after upgrade to 2.2.1.0. (avijayan:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=44c98665a4bf9c76434741d1bdae1f1a35145f45\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=44c98665a4bf9c76434741d1bdae1f1a35145f45</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/upgrade/UpgradeCatalog221.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/upgrade/UpgradeCatalog221Test.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Sat, 30 Jan 2016 04:18:57 +0000
+          '@id': '15124718'
+      component: ambari-metrics
+      created: Fri, 29 Jan 2016 19:07:35 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 27 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2s5zr:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>STR: </p>\n<ol>\n\t<li>Deploy old version cluster (2.2.0 or\
+        \ 2.0.1)</li>\n\t<li>Enable Security (Mit)</li>\n\t<li>Make ambari only upgrade\
+        \ to 2.2.1</li>\n</ol>\n\n\n<p>Actual results:<br/>\nAMS service has critical\
+        \ alert after upgrade to 2.2.1.0 [METRICS_COLLECTOR:\"Connection failed: <span\
+        \ class=\"error\">&#91;Errno -2&#93;</span> Name or service not known to <tt>zookeeper_clientPort</tt>:61181\"\
+        \ ]</p>\n<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"\
+        codeContent panelContent\">\n<pre class=\"code-java\">    {\n      <span class=\"\
+        code-quote\">\"href\"</span> : <span class=\"code-quote\">\"https:<span class=\"\
+        code-comment\">//&lt;host&gt;:8443/api/v1/clusters/cl1/alerts/18\"</span>,\n\
+        </span>      <span class=\"code-quote\">\"Alert\"</span> : {\n        <span\
+        \ class=\"code-quote\">\"cluster_name\"</span> : <span class=\"code-quote\"\
+        >\"cl1\"</span>,\n        <span class=\"code-quote\">\"component_name\"</span>\
+        \ : <span class=\"code-quote\">\"METRICS_COLLECTOR\"</span>,\n        <span\
+        \ class=\"code-quote\">\"definition_id\"</span> : 58,\n        <span class=\"\
+        code-quote\">\"definition_name\"</span> : <span class=\"code-quote\">\"ams_metrics_collector_zookeeper_server_process\"\
+        </span>,\n        <span class=\"code-quote\">\"host_name\"</span> : <span\
+        \ class=\"code-quote\">\"os-u14-rxwmxu-upg-sanity-1.novalocal\"</span>,\n\
+        \        <span class=\"code-quote\">\"id\"</span> : 18,\n        <span class=\"\
+        code-quote\">\"instance\"</span> : <span class=\"code-keyword\">null</span>,\n\
+        \        <span class=\"code-quote\">\"label\"</span> : <span class=\"code-quote\"\
+        >\"Metrics Collector - ZooKeeper Server <span class=\"code-object\">Process</span>\"\
+        </span>,\n        <span class=\"code-quote\">\"latest_timestamp\"</span> :\
+        \ 1454056914768,\n        <span class=\"code-quote\">\"maintenance_state\"\
+        </span> : <span class=\"code-quote\">\"OFF\"</span>,\n        <span class=\"\
+        code-quote\">\"original_timestamp\"</span> : 1454055174645,\n        <span\
+        \ class=\"code-quote\">\"scope\"</span> : <span class=\"code-quote\">\"ANY\"\
+        </span>,\n        <span class=\"code-quote\">\"service_name\"</span> : <span\
+        \ class=\"code-quote\">\"AMBARI_METRICS\"</span>,\n        <span class=\"\
+        code-quote\">\"state\"</span> : <span class=\"code-quote\">\"CRITICAL\"</span>,\n\
+        \        <span class=\"code-quote\">\"text\"</span> : <span class=\"code-quote\"\
+        >\"Connection failed: [Errno -2] Name or service not known to {{zookeeper_clientPort}}:61181\"\
+        </span>\n      }\n</pre>\n</div></div>"
+      due: null
+      environment: null
+      fixVersion: 2.2.1
+      key:
+        '#text': AMBARI-14848
+        '@id': '12935223'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-14848
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Aravindan Vijayan
+        '@username': avijayan
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Fri, 29 Jan 2016 22:13:06 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'AMS service has critical alert after upgrade to 2.2.1.0 [METRICS_COLLECTOR:"Connection
+        failed: [Errno -2] Name or service not known to {{zookeeper_clientPort}}:61181"
+        ]'
+      title: '[AMBARI-14848] AMS service has critical alert after upgrade to 2.2.1.0
+        [METRICS_COLLECTOR:"Connection failed: [Errno -2] Name or service not known
+        to {{zookeeper_clientPort}}:61181" ]'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Mon, 1 Feb 2016 23:01:20 +0000
+      version: 2.2.1
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
