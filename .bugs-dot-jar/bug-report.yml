@@ -1,0 +1,151 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Nate Cole
+        '@username': ncole@hortonworks.com
+      attachments:
+        attachment:
+          '@author': ncole@hortonworks.com
+          '@created': Mon, 24 Aug 2015 12:01:34 +0000
+          '@id': '12752002'
+          '@name': AMBARI-12863.patch
+          '@size': '7727'
+      comments:
+        comment:
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #3315 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/3315/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/3315/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12863\" title=\"\
+            RU: Alter service check order\" class=\"issue-link\" data-issue-key=\"\
+            AMBARI-12863\"><del>AMBARI-12863</del></a>.  RU: Alter service check order\
+            \ (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=fc0078f8f30aa1973cea9d697c8fac46b437bc92\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=fc0078f8f30aa1973cea9d697c8fac46b437bc92</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/state/stack/UpgradePackTest.java</li>\n\
+            \t<li>ambari-server/src/test/resources/stacks/HDP/2.1.1/upgrades/upgrade_test_checks.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.3/upgrades/upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/upgrade-2.2.xml</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 25 Aug 2015 00:48:51 +0000
+          '@id': '14710355'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.1 #415 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.1/415/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.1/415/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12863\" title=\"\
+            RU: Alter service check order\" class=\"issue-link\" data-issue-key=\"\
+            AMBARI-12863\"><del>AMBARI-12863</del></a>.  RU: Alter service check order\
+            \ (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=958d4170c98738cfae11ebdf27fb66fb35dc5b8a\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=958d4170c98738cfae11ebdf27fb66fb35dc5b8a</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/resources/stacks/HDP/2.1.1/upgrades/upgrade_test_checks.xml</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.3/upgrades/upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/state/stack/UpgradePackTest.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/upgrade-2.2.xml</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 25 Aug 2015 01:15:25 +0000
+          '@id': '14710395'
+      component: ambari-server
+      created: Mon, 24 Aug 2015 11:56:24 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 50 weeks, 3 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2ja6f:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>HBase service check failed consistently because the HBase Master\
+        \ died as it was trying to write the WAL and could not find enough good datanodes.\
+        \  The service check for HBase was run before the service check for HDFS.\
+        \  There may be a situation in which we're not giving enough time for all\
+        \ the DN's to come up before the HBase service check is being performed, and\
+        \ if it would make more sense to service check HDFS before we service check\
+        \ HBase due to dependencies.</p>\n\n<p>With that said it feels like the RU\
+        \ service check order should be:</p>\n<ul>\n\t<li>ZooKeeper</li>\n\t<li>HDFS</li>\n\
+        \t<li>YARN</li>\n\t<li>Everything else</li>\n</ul>"
+      due: null
+      environment: null
+      fixVersion: 2.1.2
+      key:
+        '#text': AMBARI-12863
+        '@id': '12858276'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-12863
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Nate Cole
+        '@username': ncole@hortonworks.com
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Mon, 24 Aug 2015 21:00:40 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'RU: Alter service check order'
+      title: '[AMBARI-12863] RU: Alter service check order'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 25 Aug 2015 01:15:25 +0000
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA

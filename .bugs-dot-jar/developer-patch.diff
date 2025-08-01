@@ -1,0 +1,27 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java b/ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java
+index 4fe5e9888f..fdf89ccb6a 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/state/stack/upgrade/ServiceCheckGrouping.java
+@@ -52,7 +52,7 @@ public class ServiceCheckGrouping extends Grouping {
+ 
+   @XmlElementWrapper(name="priority")
+   @XmlElement(name="service")
+-  private Set<String> priorityServices = new HashSet<String>();
++  private Set<String> priorityServices = new LinkedHashSet<String>();
+ 
+   @XmlElementWrapper(name="exclude")
+   @XmlElement(name="service")
+@@ -65,6 +65,13 @@ public class ServiceCheckGrouping extends Grouping {
+     return m_builder;
+   }
+ 
++  /**
++   * @return the set of service names that should be given priority
++   */
++  public Set<String> getPriorities() {
++    return priorityServices;
++  }
++
+   /**
+    * Used to build stages for service check groupings.
+    */
