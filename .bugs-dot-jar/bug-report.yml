@@ -1,0 +1,209 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Robert Levas
+        '@username': rlevas
+      attachments:
+        attachment:
+        - '@author': rlevas
+          '@created': Fri, 31 Jul 2015 23:10:21 +0000
+          '@id': '12748266'
+          '@name': AMBARI-12613_branch-2.0.maint_01.patch
+          '@size': '23555'
+        - '@author': rlevas
+          '@created': Fri, 31 Jul 2015 23:10:21 +0000
+          '@id': '12748267'
+          '@name': AMBARI-12613_branch-2.1_01.patch
+          '@size': '23992'
+        - '@author': rlevas
+          '@created': Fri, 31 Jul 2015 23:10:21 +0000
+          '@id': '12748268'
+          '@name': AMBARI-12613_trunk_01.patch
+          '@size': '23992'
+      comments:
+        comment:
+        - '#text': "<p>FAILURE: Integrated in Ambari-trunk-Commit #3206 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/3206/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/3206/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12613\" title=\"\
+            Allow for granular authorization inorder to update User resource properties\
+            \ via Ambari&#39;s REST API\" class=\"issue-link\" data-issue-key=\"AMBARI-12613\"\
+            ><del>AMBARI-12613</del></a>. Allow for granular authorization inorder\
+            \ to update User resource properties via Ambari's REST API (rlevas) (rlevas:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=7c1f7a803b18f8384800cc9ca52ac34a42eee18b\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=7c1f7a803b18f8384800cc9ca52ac34a42eee18b</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/internal/UserResourceProviderTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Fri, 31 Jul 2015 23:54:57 +0000
+          '@id': '14650034'
+        - '#text': '<p>Committed to trunk</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit 7c1f7a803b18f8384800cc9ca52ac34a42eee18b
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Fri Jul 31 15:55:47 2015 -0400
+
+            </pre>
+
+            </div></div>
+
+
+            <p>Committed to branch-2.1</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit abce3cd5ac6a6a1caa7311fd8b93c5878889ed26
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Fri Jul 31 19:24:18 2015 -0400
+
+            </pre>
+
+            </div></div>
+
+
+            <p>Committed to branch-2.0.maint</p>
+
+            <div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent
+            panelContent">
+
+            <pre>commit bf0b6cb7fbca0d468e4b12e7ed14ce7bf7e3ae9b
+
+            Author: Robert Levas &lt;rlevas@hortonworks.com&gt;
+
+            Date:   Fri Jul 31 20:14:29 2015 -0400
+
+            </pre>
+
+            </div></div>'
+          '@author': rlevas
+          '@created': Sat, 1 Aug 2015 00:18:23 +0000
+          '@id': '14650056'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.1 #305 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.1/305/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.1/305/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12613\" title=\"\
+            Allow for granular authorization inorder to update User resource properties\
+            \ via Ambari&#39;s REST API\" class=\"issue-link\" data-issue-key=\"AMBARI-12613\"\
+            ><del>AMBARI-12613</del></a>. Allow for granular authorization inorder\
+            \ to update User resource properties via Ambari's REST API (rlevas) (rlevas:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=abce3cd5ac6a6a1caa7311fd8b93c5878889ed26\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=abce3cd5ac6a6a1caa7311fd8b93c5878889ed26</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/internal/UserResourceProviderTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Sat, 1 Aug 2015 01:35:11 +0000
+          '@id': '14650088'
+      component: ambari-web
+      created: Fri, 31 Jul 2015 18:57:33 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '3.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 10 years, 1 week, 6 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2i713:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: <p>Allow for granular authorization inorder to update User resource
+        properties via Ambari's REST API</p>
+      due: null
+      environment: null
+      fixVersion:
+      - 2.3.0
+      - 2.0.2
+      - 2.1.1
+      key:
+        '#text': AMBARI-12613
+        '@id': '12850678'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-12613
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Robert Levas
+        '@username': rlevas
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Sat, 1 Aug 2015 00:18:23 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Allow for granular authorization inorder to update User resource properties
+        via Ambari's REST API
+      title: '[AMBARI-12613] Allow for granular authorization inorder to update User
+        resource properties via Ambari''s REST API'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Sat, 1 Aug 2015 01:35:11 +0000
+      version:
+      - 1.7.0
+      - 2.0.0
+      - 2.0.1
+      - 2.1.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
