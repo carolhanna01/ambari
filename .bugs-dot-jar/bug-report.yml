@@ -1,0 +1,228 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      attachments:
+        attachment:
+          '@author': jonathanhurley
+          '@created': Tue, 15 Dec 2015 00:12:16 +0000
+          '@id': '12777620'
+          '@name': AMBARI-14377.patch
+          '@size': '24371'
+      comments:
+        comment:
+        - '#text': "<p><font color=\"green\">+1 overall</font>.  Here are the results\
+            \ of testing the latest attachment <br/>\n  <a href=\"http://issues.apache.org/jira/secure/attachment/12777620/AMBARI-14377.patch\"\
+            \ class=\"external-link\" rel=\"nofollow\">http://issues.apache.org/jira/secure/attachment/12777620/AMBARI-14377.patch</a><br/>\n\
+            \  against trunk revision .</p>\n\n<p>    <font color=\"green\">+1 @author</font>.\
+            \  The patch does not contain any @author tags.</p>\n\n<p>    <font color=\"\
+            green\">+1 tests included</font>.  The patch appears to include 1 new\
+            \ or modified test files.</p>\n\n<p>    <font color=\"green\">+1 javac</font>.\
+            \  The applied patch does not increase the total number of javac compiler\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 release audit</font>.\
+            \  The applied patch does not increase the total number of release audit\
+            \ warnings.</p>\n\n<p>    <font color=\"green\">+1 core tests</font>.\
+            \  The patch passed unit tests in ambari-server.</p>\n\n<p>Test results:\
+            \ <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/4598//testReport/\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/4598//testReport/</a><br/>\n\
+            Console output: <a href=\"https://builds.apache.org/job/Ambari-trunk-test-patch/4598//console\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >https://builds.apache.org/job/Ambari-trunk-test-patch/4598//console</a></p>\n\
+            \n<p>This message is automatically generated.</p>"
+          '@author': hadoopqa
+          '@created': Tue, 15 Dec 2015 04:01:54 +0000
+          '@id': '15057306'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.2 #75 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.2/75/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.2/75/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14377\" title=\"\
+            HiveServer start fails after enabling security post EU from 2.1 to 2.3\
+            \ on non-HA cluster\" class=\"issue-link\" data-issue-key=\"AMBARI-14377\"\
+            ><del>AMBARI-14377</del></a> - HiveServer start fails after enabling security\
+            \ post EU (jhurley: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=26d2e96c130134eb581415d6a7125050c6d91e16\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=26d2e96c130134eb581415d6a7125050c6d91e16</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/config-upgrade.xml</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/HiveZKQuorumConfigAction.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/HiveKerberosConfigActionTest.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.1/upgrades/nonrolling-upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/HiveZKQuorumConfigActionTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/HiveKerberosConfigAction.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 15 Dec 2015 18:15:09 +0000
+          '@id': '15058466'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #4043 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/4043/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/4043/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-14377\" title=\"\
+            HiveServer start fails after enabling security post EU from 2.1 to 2.3\
+            \ on non-HA cluster\" class=\"issue-link\" data-issue-key=\"AMBARI-14377\"\
+            ><del>AMBARI-14377</del></a> - HiveServer start fails after enabling security\
+            \ post EU (jhurley: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e351b1458c8de9cb2c30f7ce9b6d1ccf6359fb30\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e351b1458c8de9cb2c30f7ce9b6d1ccf6359fb30</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/HiveZKQuorumConfigAction.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.1/upgrades/nonrolling-upgrade-2.3.xml</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/HiveKerberosConfigActionTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/HiveKerberosConfigAction.java</li>\n\
+            \t<li>ambari-server/src/main/resources/stacks/HDP/2.2/upgrades/config-upgrade.xml</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/HiveZKQuorumConfigActionTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 15 Dec 2015 18:54:35 +0000
+          '@id': '15058533'
+      component: ambari-server
+      created: Tue, 15 Dec 2015 00:07:58 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 9 years, 34 weeks, 2 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2pvvr:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p><b>Steps:</b></p>\n<ol>\n\t<li>Try EU from HDP 2.1 to 2.3.4\
+        \ on an unsecure and non-HA cluster</li>\n\t<li>Let the EU succeed</li>\n\t\
+        <li>Enable security on the cluster</li>\n</ol>\n\n\n<p>Result:<br/>\nAfter\
+        \ enabling security HiveServer2 goes down</p>\n\n<p>Looked at the value of\
+        \ three properties:<br/>\nhive.cluster.delegation.token.store.zookeeper.connectString\"\
+        : \"localhost:2181\"<br/>\nhive.zookeeper.quorum\": \"localhost:2181\"<br/>\n\
+        hive.cluster.delegation.token.store.class:org.apache.hadoop.hive.thrift.ZooKeeperTokenStore</p>\n\
+        \n<p>It appears that values of first and second property are wrongly set (compared\
+        \ this with a fresh non-HA cluster where Kerberos was enabled after install)</p>\n\
+        \n\n<p>Logs on HiveServer node:</p>\n<div class=\"code panel\" style=\"border-width:\
+        \ 1px;\"><div class=\"codeContent panelContent\">\n<pre class=\"code-java\"\
+        >2015-12-14 17:41:48,495 FATAL [<span class=\"code-object\">Thread</span>-9]:\
+        \ thrift.ThriftCLIService (ThriftBinaryCLIService.java:run(101)) - Error starting\
+        \ HiveServer2: could not start ThriftBinaryCLIService\nveserorg.apache.hadoop.hive.thrift.DelegationTokenStore$TokenStoreException:\
+        \ Error creating path /hive/cluster/delegationHIVESERVER2/keys\n        at\
+        \ org.apache.hadoop.hive.thrift.ZooKeeperTokenStore.ensurePath(ZooKeeperTokenStore.java:166)\n\
+        \        at org.apache.hadoop.hive.thrift.ZooKeeperTokenStore.initClientAndPaths(ZooKeeperTokenStore.java:236)\n\
+        \        at org.apache.hadoop.hive.thrift.ZooKeeperTokenStore.init(ZooKeeperTokenStore.java:469)\n\
+        \        at org.apache.hadoop.hive.thrift.HadoopThriftAuthBridge$Server.startDelegationTokenSecretManager(HadoopThriftAuthBridge.java:444)\n\
+        \        at org.apache.hive.service.auth.HiveAuthFactory.&lt;init&gt;(HiveAuthFactory.java:124)\n\
+        \        at org.apache.hive.service.cli.thrift.ThriftBinaryCLIService.run(ThriftBinaryCLIService.java:57)\n\
+        \        at java.lang.<span class=\"code-object\">Thread</span>.run(<span\
+        \ class=\"code-object\">Thread</span>.java:745)\nCaused by: org.apache.zookeeper.KeeperException$AuthFailedException:\
+        \ KeeperErrorCode = AuthFailed <span class=\"code-keyword\">for</span> /hive/cluster/delegationHIVESERVER2/keys\n\
+        \        at org.apache.zookeeper.KeeperException.create(KeeperException.java:123)\n\
+        \        at org.apache.zookeeper.KeeperException.create(KeeperException.java:51)\n\
+        \        at org.apache.zookeeper.ZooKeeper.create(ZooKeeper.java:783)\n  \
+        \      at org.apache.curator.framework.imps.CreateBuilderImpl$11.call(CreateBuilderImpl.java:691)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl$11.call(CreateBuilderImpl.java:675)\n\
+        \        at org.apache.curator.RetryLoop.callWithRetry(RetryLoop.java:107)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl.pathInForeground(CreateBuilderImpl.java:672)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl.protectedPathInForeground(CreateBuilderImpl.java:453)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl.forPath(CreateBuilderImpl.java:443)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl.forPath(CreateBuilderImpl.java:423)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl$3.forPath(CreateBuilderImpl.java:257)\n\
+        \        at org.apache.curator.framework.imps.CreateBuilderImpl$3.forPath(CreateBuilderImpl.java:205)\n\
+        \        at org.apache.hadoop.hive.thrift.ZooKeeperTokenStore.ensurePath(ZooKeeperTokenStore.java:160)\n\
+        \        ... 6 more\n2015-12-14 17:41:48,497 INFO  [<span class=\"code-object\"\
+        >Thread</span>-4]: server.HiveServer2 (HiveStringUtils.java:run(709)) - SHUTDOWN_MSG:\n\
+        /************************************************************\nSHUTDOWN_MSG:\
+        \ Shutting down HiveServer2 at os-r6-udmbts-baikaltom20unsecr-re-3.novalocal/172.22.76.200\n\
+        ************************************************************/\n2015-12-14\
+        \ 17:41:58,398 INFO  [main]: service.AbstractService (AbstractService.java:stop(125))\
+        \ - Service:CLIService is stopped.\n2015-12-14 17:41:58,398 INFO  [main]:\
+        \ service.AbstractService (AbstractService.java:stop(125)) - Service:HiveServer2\
+        \ is stopped.\n2015-12-14 17:41:58,403 INFO  [main]: server.HiveServer2 (HiveServer2.java:removeServerInstanceFromZooKeeper(338))\
+        \ - Server instance removed from ZooKeeper.\n2015-12-14 17:41:58,403 INFO\
+        \  [<span class=\"code-object\">Thread</span>-7]: server.HiveServer2 (HiveServer2.java:stop(371))\
+        \ - Shutting down HiveServer2\n2015-12-14 17:41:58,403 INFO  [<span class=\"\
+        code-object\">Thread</span>-7]: server.HiveServer2 (HiveServer2.java:removeServerInstanceFromZooKeeper(338))\
+        \ - Server instance removed from ZooKeeper.\n</pre>\n</div></div>\n\n<p>As\
+        \ it turns out, the installation wizard sets these at Hive installation time,\
+        \ even though they are only used for a Kerberized Hive. Therefore, the Kerberization\
+        \ wizard doesn't set these at all.</p>\n\n<p>When upgrading from HDP 2.1 Hive,\
+        \ the installation wizard hasn't set these since they first appeared in HDP\
+        \ 2.2. Therefore, they are never set. The right way to fix this is to have\
+        \ the Kerberos Wizard determine that it needs to calculate and set them. But\
+        \ that's an architectural change mostly. The faster fix is to make Hive consistent\
+        \ - just set them on upgrade from HDP 2.1</p>"
+      due: null
+      environment: null
+      fixVersion: 2.2.0
+      key:
+        '#text': AMBARI-14377
+        '@id': '12921827'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-14377
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Jonathan Hurley
+        '@username': jonathanhurley
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 15 Dec 2015 16:45:57 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: HiveServer start fails after enabling security post EU from 2.1 to
+        2.3 on non-HA cluster
+      title: '[AMBARI-14377] HiveServer start fails after enabling security post EU
+        from 2.1 to 2.3 on non-HA cluster'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 15 Dec 2015 18:54:35 +0000
+      version: 2.2.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
