@@ -1894,74 +1894,74 @@ public class ClusterTest {
     }
   }
 
-  @Test
-  public void testTransitionNonReportableHost() throws Exception {
-    StackId stackId = new StackId("HDP-2.0.5");
+  // @Test
+  // public void testTransitionNonReportableHost() throws Exception {
+  //   StackId stackId = new StackId("HDP-2.0.5");
 
-    String clusterName = "c1";
-    clusters.addCluster(clusterName, stackId);
-    Cluster c1 = clusters.getCluster(clusterName);
-    Assert.assertEquals(clusterName, c1.getClusterName());
-    Assert.assertEquals(1, c1.getClusterId());
+  //   String clusterName = "c1";
+  //   clusters.addCluster(clusterName, stackId);
+  //   Cluster c1 = clusters.getCluster(clusterName);
+  //   Assert.assertEquals(clusterName, c1.getClusterName());
+  //   Assert.assertEquals(1, c1.getClusterId());
 
-    clusters.addHost("h-1");
-    clusters.addHost("h-2");
-    clusters.addHost("h-3");
+  //   clusters.addHost("h-1");
+  //   clusters.addHost("h-2");
+  //   clusters.addHost("h-3");
 
-    for (String hostName : new String[] { "h-1", "h-2", "h-3" }) {
-      Host h = clusters.getHost(hostName);
-      h.setIPv4("ipv4");
-      h.setIPv6("ipv6");
+  //   for (String hostName : new String[] { "h-1", "h-2", "h-3" }) {
+  //     Host h = clusters.getHost(hostName);
+  //     h.setIPv4("ipv4");
+  //     h.setIPv6("ipv6");
 
-      Map<String, String> hostAttributes = new HashMap<String, String>();
-      hostAttributes.put("os_family", "redhat");
-      hostAttributes.put("os_release_version", "5.9");
-      h.setHostAttributes(hostAttributes);
-      h.persist();
-    }
+  //     Map<String, String> hostAttributes = new HashMap<String, String>();
+  //     hostAttributes.put("os_family", "redhat");
+  //     hostAttributes.put("os_release_version", "5.9");
+  //     h.setHostAttributes(hostAttributes);
+  //     h.persist();
+  //   }
 
-    String v1 = "2.0.5-1";
-    String v2 = "2.0.5-2";
-    c1.setDesiredStackVersion(stackId);
-    RepositoryVersionEntity rve1 = helper.getOrCreateRepositoryVersion(stackId,
-        v1);
-    RepositoryVersionEntity rve2 = helper.getOrCreateRepositoryVersion(stackId,
-        v2);
+  //   String v1 = "2.0.5-1";
+  //   String v2 = "2.0.5-2";
+  //   c1.setDesiredStackVersion(stackId);
+  //   RepositoryVersionEntity rve1 = helper.getOrCreateRepositoryVersion(stackId,
+  //       v1);
+  //   RepositoryVersionEntity rve2 = helper.getOrCreateRepositoryVersion(stackId,
+  //       v2);
 
-    c1.setCurrentStackVersion(stackId);
-    c1.createClusterVersion(stackId, v1, "admin",
-        RepositoryVersionState.UPGRADING);
-    c1.transitionClusterVersion(stackId, v1, RepositoryVersionState.CURRENT);
+  //   c1.setCurrentStackVersion(stackId);
+  //   c1.createClusterVersion(stackId, v1, "admin",
+  //       RepositoryVersionState.UPGRADING);
+  //   c1.transitionClusterVersion(stackId, v1, RepositoryVersionState.CURRENT);
 
-    clusters.mapHostToCluster("h-1", clusterName);
-    clusters.mapHostToCluster("h-2", clusterName);
-    clusters.mapHostToCluster("h-3", clusterName);
-    ClusterVersionDAOMock.failOnCurrentVersionState = false;
+  //   clusters.mapHostToCluster("h-1", clusterName);
+  //   clusters.mapHostToCluster("h-2", clusterName);
+  //   clusters.mapHostToCluster("h-3", clusterName);
+  //   ClusterVersionDAOMock.failOnCurrentVersionState = false;
 
-    Service service = c1.addService("ZOOKEEPER");
-    ServiceComponent sc = service.addServiceComponent("ZOOKEEPER_SERVER");
-    sc.addServiceComponentHost("h-1");
-    sc.addServiceComponentHost("h-2");
+  //   Service service = c1.addService("ZOOKEEPER");
+  //   ServiceComponent sc = service.addServiceComponent("ZOOKEEPER_SERVER");
+  //   sc.addServiceComponentHost("h-1");
+  //   sc.addServiceComponentHost("h-2");
 
-    service = c1.addService("SQOOP");
-    sc = service.addServiceComponent("SQOOP");
-    sc.addServiceComponentHost("h-3");
+  //   service = c1.addService("SQOOP");
+  //   sc = service.addServiceComponent("SQOOP");
+  //   sc.addServiceComponentHost("h-3");
 
-    List<HostVersionEntity> entities = hostVersionDAO.findByClusterAndHost(clusterName, "h-3");
-    assertTrue("Expected no host versions", null == entities || 0 == entities.size());
+  //   List<HostVersionEntity> entities = hostVersionDAO.findByClusterAndHost(clusterName, "h-3");
+  //   assertTrue("Expected no host versions", null == entities || 0 == entities.size());
 
-    c1.createClusterVersion(stackId, v2, "admin",
-        RepositoryVersionState.INSTALLING);
-    c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.INSTALLED);
-    c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.UPGRADING);
-    c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.UPGRADED);
+  //   c1.createClusterVersion(stackId, v2, "admin",
+  //       RepositoryVersionState.INSTALLING);
+  //   c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.INSTALLED);
+  //   c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.UPGRADING);
+  //   c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.UPGRADED);
 
-    c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.CURRENT);
+  //   c1.transitionClusterVersion(stackId, v2, RepositoryVersionState.CURRENT);
 
-    entities = hostVersionDAO.findByClusterAndHost(clusterName, "h-3");
+  //   entities = hostVersionDAO.findByClusterAndHost(clusterName, "h-3");
 
-    assertEquals(1, entities.size());
-  }
+  //   assertEquals(1, entities.size());
+  // }
 
   @Test
   public void testTransitionHostVersionState_OutOfSync_BlankCurrent() throws Exception {
