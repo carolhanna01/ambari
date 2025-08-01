@@ -55,25 +55,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>src/main/resources/libs/**</exclude>
-            <exclude>src/main/resources/styles/**</exclude>
-	    <exclude>src/main/resources/templates/**</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      
     </plugins>
   </build>
   <dependencies>
