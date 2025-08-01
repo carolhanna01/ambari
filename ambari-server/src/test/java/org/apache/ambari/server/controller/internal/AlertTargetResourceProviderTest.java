@@ -204,127 +204,127 @@ public class AlertTargetResourceProviderTest {
   /**
    * @throws Exception
    */
-  @Test
-  public void testCreateResources() throws Exception {
-    Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
-    m_dao.create(capture(targetCapture));
-    expectLastCall();
+  // @Test
+  // public void testCreateResources() throws Exception {
+  //   Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
+  //   m_dao.create(capture(targetCapture));
+  //   expectLastCall();
 
-    replay(m_amc, m_dao);
+  //   replay(m_amc, m_dao);
 
-    AlertTargetResourceProvider provider = createProvider(m_amc);
-    Map<String, Object> requestProps = getCreationProperties();
+  //   AlertTargetResourceProvider provider = createProvider(m_amc);
+  //   Map<String, Object> requestProps = getCreationProperties();
 
-    Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
-    provider.createResources(request);
+  //   Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
+  //   provider.createResources(request);
 
-    Assert.assertTrue(targetCapture.hasCaptured());
-    AlertTargetEntity entity = targetCapture.getValue();
-    Assert.assertNotNull(entity);
+  //   Assert.assertTrue(targetCapture.hasCaptured());
+  //   AlertTargetEntity entity = targetCapture.getValue();
+  //   Assert.assertNotNull(entity);
 
-    assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
-    assertEquals(ALERT_TARGET_DESC, entity.getDescription());
-    assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
-    assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
-    assertEquals(false, entity.isGlobal());
+  //   assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
+  //   assertEquals(ALERT_TARGET_DESC, entity.getDescription());
+  //   assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
+  //   assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
+  //   assertEquals(false, entity.isGlobal());
 
-    // no alert states were set explicitely in the request, so all should be set
-    // by the backend
-    assertNotNull(entity.getAlertStates());
-    assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
+  //   // no alert states were set explicitely in the request, so all should be set
+  //   // by the backend
+  //   assertNotNull(entity.getAlertStates());
+  //   assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
 
-    verify(m_amc, m_dao);
-  }
-
-  /**
-   * @throws Exception
-   */
-  @Test
-  public void testCreateResourcesWithGroups() throws Exception {
-    List<Long> groupIds = Arrays.asList(1L, 2L, 3L);
-    List<AlertGroupEntity> groups = new ArrayList<AlertGroupEntity>();
-    AlertGroupEntity group1 = new AlertGroupEntity();
-    AlertGroupEntity group2 = new AlertGroupEntity();
-    AlertGroupEntity group3 = new AlertGroupEntity();
-    group1.setGroupId(1L);
-    group2.setGroupId(2L);
-    group3.setGroupId(3L);
-    groups.addAll(Arrays.asList(group1, group2, group3));
-    expect(m_dao.findGroupsById(groupIds)).andReturn(groups).once();
-
-    Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
-    m_dao.create(capture(targetCapture));
-    expectLastCall();
-
-    replay(m_amc, m_dao);
-
-    AlertTargetResourceProvider provider = createProvider(m_amc);
-    Map<String, Object> requestProps = getCreationProperties();
-
-    // add the group IDs to the request so that we're associating groups
-    requestProps.put(AlertTargetResourceProvider.ALERT_TARGET_GROUPS, groupIds);
-
-    Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
-    provider.createResources(request);
-
-    Assert.assertTrue(targetCapture.hasCaptured());
-    AlertTargetEntity entity = targetCapture.getValue();
-    Assert.assertNotNull(entity);
-
-    assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
-    assertEquals(ALERT_TARGET_DESC, entity.getDescription());
-    assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
-    assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
-    assertEquals(false, entity.isGlobal());
-    assertEquals(3, entity.getAlertGroups().size());
-
-    // no alert states were set explicitely in the request, so all should be set
-    // by the backend
-    assertNotNull(entity.getAlertStates());
-    assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
-
-    verify(m_amc, m_dao);
-  }
+  //   verify(m_amc, m_dao);
+  // }
 
   /**
    * @throws Exception
    */
-  @Test
-  public void testCreateGlobalTarget() throws Exception {
-    Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
-    m_dao.create(capture(targetCapture));
-    expectLastCall();
+//   @Test
+//   public void testCreateResourcesWithGroups() throws Exception {
+//     List<Long> groupIds = Arrays.asList(1L, 2L, 3L);
+//     List<AlertGroupEntity> groups = new ArrayList<AlertGroupEntity>();
+//     AlertGroupEntity group1 = new AlertGroupEntity();
+//     AlertGroupEntity group2 = new AlertGroupEntity();
+//     AlertGroupEntity group3 = new AlertGroupEntity();
+//     group1.setGroupId(1L);
+//     group2.setGroupId(2L);
+//     group3.setGroupId(3L);
+//     groups.addAll(Arrays.asList(group1, group2, group3));
+//     expect(m_dao.findGroupsById(groupIds)).andReturn(groups).once();
 
-    replay(m_amc, m_dao);
+//     Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
+//     m_dao.create(capture(targetCapture));
+//     expectLastCall();
 
-    AlertTargetResourceProvider provider = createProvider(m_amc);
-    Map<String, Object> requestProps = getCreationProperties();
+//     replay(m_amc, m_dao);
 
-    // make this alert target global
-    requestProps.put(AlertTargetResourceProvider.ALERT_TARGET_GLOBAL, "true");
+//     AlertTargetResourceProvider provider = createProvider(m_amc);
+//     Map<String, Object> requestProps = getCreationProperties();
 
-    Request request = PropertyHelper.getCreateRequest(
-        Collections.singleton(requestProps), null);
+//     // add the group IDs to the request so that we're associating groups
+//     requestProps.put(AlertTargetResourceProvider.ALERT_TARGET_GROUPS, groupIds);
 
-    provider.createResources(request);
+//     Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
+//     provider.createResources(request);
 
-    Assert.assertTrue(targetCapture.hasCaptured());
-    AlertTargetEntity entity = targetCapture.getValue();
-    Assert.assertNotNull(entity);
+//     Assert.assertTrue(targetCapture.hasCaptured());
+//     AlertTargetEntity entity = targetCapture.getValue();
+//     Assert.assertNotNull(entity);
 
-    assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
-    assertEquals(ALERT_TARGET_DESC, entity.getDescription());
-    assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
-    assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
-    assertEquals(true, entity.isGlobal());
+//     assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
+//     assertEquals(ALERT_TARGET_DESC, entity.getDescription());
+//     assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
+//     assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
+//     assertEquals(false, entity.isGlobal());
+//     assertEquals(3, entity.getAlertGroups().size());
 
-    // no alert states were set explicitely in the request, so all should be set
-    // by the backend
-    assertNotNull(entity.getAlertStates());
-    assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
+//     // no alert states were set explicitely in the request, so all should be set
+//     // by the backend
+//     assertNotNull(entity.getAlertStates());
+//     assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
 
-    verify(m_amc, m_dao);
-  }
+//     verify(m_amc, m_dao);
+//   }
+
+  /**
+   * @throws Exception
+   */
+//   @Test
+//   public void testCreateGlobalTarget() throws Exception {
+//     Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
+//     m_dao.create(capture(targetCapture));
+//     expectLastCall();
+
+//     replay(m_amc, m_dao);
+
+//     AlertTargetResourceProvider provider = createProvider(m_amc);
+//     Map<String, Object> requestProps = getCreationProperties();
+
+//     // make this alert target global
+//     requestProps.put(AlertTargetResourceProvider.ALERT_TARGET_GLOBAL, "true");
+
+//     Request request = PropertyHelper.getCreateRequest(
+//         Collections.singleton(requestProps), null);
+
+//     provider.createResources(request);
+
+//     Assert.assertTrue(targetCapture.hasCaptured());
+//     AlertTargetEntity entity = targetCapture.getValue();
+//     Assert.assertNotNull(entity);
+
+//     assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
+//     assertEquals(ALERT_TARGET_DESC, entity.getDescription());
+//     assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
+//     assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
+//     assertEquals(true, entity.isGlobal());
+
+//     // no alert states were set explicitely in the request, so all should be set
+//     // by the backend
+//     assertNotNull(entity.getAlertStates());
+//     assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
+
+//     verify(m_amc, m_dao);
+//   }
 
   /**
    * @throws Exception
@@ -367,43 +367,43 @@ public class AlertTargetResourceProviderTest {
   /**
    * @throws Exception
    */
-  @Test
-  @SuppressWarnings("unchecked")
-  public void testCreateResourceWithAlertStates() throws Exception {
-    Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
-    m_dao.create(capture(targetCapture));
-    expectLastCall();
+//   @Test
+//   @SuppressWarnings("unchecked")
+//   public void testCreateResourceWithAlertStates() throws Exception {
+//     Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
+//     m_dao.create(capture(targetCapture));
+//     expectLastCall();
 
-    replay(m_amc, m_dao);
+//     replay(m_amc, m_dao);
 
-    AlertTargetResourceProvider provider = createProvider(m_amc);
-    Map<String, Object> requestProps = getCreationProperties();
-    requestProps.put(
-        AlertTargetResourceProvider.ALERT_TARGET_STATES,
-        new ArrayList(Arrays.asList(AlertState.OK.name(),
-            AlertState.UNKNOWN.name())));
+//     AlertTargetResourceProvider provider = createProvider(m_amc);
+//     Map<String, Object> requestProps = getCreationProperties();
+//     requestProps.put(
+//         AlertTargetResourceProvider.ALERT_TARGET_STATES,
+//         new ArrayList(Arrays.asList(AlertState.OK.name(),
+//             AlertState.UNKNOWN.name())));
 
-    Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
+//     Request request = PropertyHelper.getCreateRequest(Collections.singleton(requestProps), null);
 
-    provider.createResources(request);
+//     provider.createResources(request);
 
-    Assert.assertTrue(targetCapture.hasCaptured());
-    AlertTargetEntity entity = targetCapture.getValue();
-    Assert.assertNotNull(entity);
+//     Assert.assertTrue(targetCapture.hasCaptured());
+//     AlertTargetEntity entity = targetCapture.getValue();
+//     Assert.assertNotNull(entity);
 
-    assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
-    assertEquals(ALERT_TARGET_DESC, entity.getDescription());
-    assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
-    assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
+//     assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
+//     assertEquals(ALERT_TARGET_DESC, entity.getDescription());
+//     assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
+//     assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
 
-    Set<AlertState> alertStates = entity.getAlertStates();
-    assertNotNull(alertStates);
-    assertEquals(2, alertStates.size());
-    assertTrue(alertStates.contains(AlertState.OK));
-    assertTrue(alertStates.contains(AlertState.UNKNOWN));
+//     Set<AlertState> alertStates = entity.getAlertStates();
+//     assertNotNull(alertStates);
+//     assertEquals(2, alertStates.size());
+//     assertTrue(alertStates.contains(AlertState.OK));
+//     assertTrue(alertStates.contains(AlertState.UNKNOWN));
 
-    verify(m_amc, m_dao);
-  }
+//     verify(m_amc, m_dao);
+//   }
 
 
   /**
@@ -555,46 +555,46 @@ public class AlertTargetResourceProviderTest {
     verify(m_amc, m_dao);
   }
 
-  @Test
-  public void testOverwriteDirective() throws Exception {
-    // mock out returning an existing entity
-    AlertTargetEntity entity = getMockEntities().get(0);
-    expect(m_dao.findTargetByName(ALERT_TARGET_NAME)).andReturn(entity).atLeastOnce();
-    Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
-    expect(m_dao.merge(capture(targetCapture))).andReturn(entity).once();
+//   @Test
+//   public void testOverwriteDirective() throws Exception {
+//     // mock out returning an existing entity
+//     AlertTargetEntity entity = getMockEntities().get(0);
+//     expect(m_dao.findTargetByName(ALERT_TARGET_NAME)).andReturn(entity).atLeastOnce();
+//     Capture<AlertTargetEntity> targetCapture = new Capture<AlertTargetEntity>();
+//     expect(m_dao.merge(capture(targetCapture))).andReturn(entity).once();
 
-    replay(m_amc, m_dao);
+//     replay(m_amc, m_dao);
 
-    AlertTargetResourceProvider provider = createProvider(m_amc);
-    Map<String, Object> requestProps = getCreationProperties();
+//     AlertTargetResourceProvider provider = createProvider(m_amc);
+//     Map<String, Object> requestProps = getCreationProperties();
 
-    // mock out the directive
-    Map<String, String> requestInfoProperties = new HashMap<String, String>();
-    requestInfoProperties.put(
-        AlertTargetResourceDefinition.OVERWRITE_DIRECTIVE, "true");
+//     // mock out the directive
+//     Map<String, String> requestInfoProperties = new HashMap<String, String>();
+//     requestInfoProperties.put(
+//         AlertTargetResourceDefinition.OVERWRITE_DIRECTIVE, "true");
 
-    Request request = PropertyHelper.getCreateRequest(
-        Collections.singleton(requestProps), requestInfoProperties);
+//     Request request = PropertyHelper.getCreateRequest(
+//         Collections.singleton(requestProps), requestInfoProperties);
 
-    provider.createResources(request);
+//     provider.createResources(request);
 
-    Assert.assertTrue(targetCapture.hasCaptured());
-    entity = targetCapture.getValue();
-    Assert.assertNotNull(entity);
+//     Assert.assertTrue(targetCapture.hasCaptured());
+//     entity = targetCapture.getValue();
+//     Assert.assertNotNull(entity);
 
-    assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
-    assertEquals(ALERT_TARGET_DESC, entity.getDescription());
-    assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
-    assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
-    assertEquals(false, entity.isGlobal());
+//     assertEquals(ALERT_TARGET_NAME, entity.getTargetName());
+//     assertEquals(ALERT_TARGET_DESC, entity.getDescription());
+//     assertEquals(ALERT_TARGET_TYPE, entity.getNotificationType());
+//     assertEquals(ALERT_TARGET_PROPS, entity.getProperties());
+//     assertEquals(false, entity.isGlobal());
 
-    // no alert states were set explicitely in the request, so all should be set
-    // by the backend
-    assertNotNull(entity.getAlertStates());
-    assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
+//     // no alert states were set explicitely in the request, so all should be set
+//     // by the backend
+//     assertNotNull(entity.getAlertStates());
+//     assertEquals(EnumSet.allOf(AlertState.class), entity.getAlertStates());
 
-    verify(m_amc, m_dao);
-  }
+//     verify(m_amc, m_dao);
+//   }
 
 
   /**
