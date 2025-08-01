@@ -52,7 +52,7 @@ public class ServiceCheckGrouping extends Grouping {
 
   @XmlElementWrapper(name="priority")
   @XmlElement(name="service")
-  private Set<String> priorityServices = new LinkedHashSet<String>();
+  private Set<String> priorityServices = new HashSet<String>();
 
   @XmlElementWrapper(name="exclude")
   @XmlElement(name="service")
@@ -63,13 +63,6 @@ public class ServiceCheckGrouping extends Grouping {
   @Override
   public ServiceCheckBuilder getBuilder() {
     return m_builder;
-  }
-
-  /**
-   * @return the set of service names that should be given priority
-   */
-  public Set<String> getPriorities() {
-    return priorityServices;
   }
 
   /**
