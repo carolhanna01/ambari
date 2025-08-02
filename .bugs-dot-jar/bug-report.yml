@@ -1,0 +1,144 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': John Speidel
+        '@username': jspeidel
+      attachments: null
+      comments:
+        comment:
+        - '#text': <p>merged to trunk and branch-2.1</p>
+          '@author': jspeidel
+          '@created': Thu, 9 Jul 2015 23:15:42 +0000
+          '@id': '14621432'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #3092 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/3092/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/3092/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12366\" title=\"\
+            BP configuration methods getFullProperties() and getFullAttributes() may\
+            \ modify the underlying configuration in some cases\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-12366\"><del>AMBARI-12366</del></a>.  Fix issue\
+            \ where the BP configuration is modified on a getter invocation (jspeidel:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=ba21f89881d80de8be1256336fa6f655db02fd54\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=ba21f89881d80de8be1256336fa6f655db02fd54</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/topology/ConfigurationTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/topology/Configuration.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Fri, 10 Jul 2015 00:46:32 +0000
+          '@id': '14621531'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.1 #203 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.1/203/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.1/203/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12366\" title=\"\
+            BP configuration methods getFullProperties() and getFullAttributes() may\
+            \ modify the underlying configuration in some cases\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-12366\"><del>AMBARI-12366</del></a>.  Fix issue\
+            \ where the BP configuration is modified on a getter invocation (jspeidel:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=719d16cd5d3db25c22d86389e73a82958a22225a\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=719d16cd5d3db25c22d86389e73a82958a22225a</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/topology/ConfigurationTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/topology/Configuration.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Fri, 10 Jul 2015 01:58:02 +0000
+          '@id': '14621600'
+      component: blueprints
+      created: Thu, 9 Jul 2015 21:44:06 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '0.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 10 years, 5 weeks, 1 day ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2h2lr:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: <p>In some cases the methods getFullProperties() and getFullAttributes()
+        in the Configuration class modify the underlying configuration.  In one path,
+        a deep copy isn't being properly done on the configuration maps so the underlying
+        map is being modified.  This can cause a host group configuration to be set
+        on the cluster scoped configuration.</p>
+      due: null
+      environment: null
+      fixVersion: 2.1.1
+      key:
+        '#text': AMBARI-12366
+        '@id': '12843981'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-12366
+      priority:
+        '#text': Critical
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/critical.svg
+        '@id': '2'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': John Speidel
+        '@username': jspeidel
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Thu, 9 Jul 2015 23:15:42 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: BP configuration methods getFullProperties() and getFullAttributes()
+        may modify the underlying configuration in some cases
+      title: '[AMBARI-12366] BP configuration methods getFullProperties() and getFullAttributes()
+        may modify the underlying configuration in some cases'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 14 Jul 2015 15:41:11 +0000
+      version: 2.1.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
