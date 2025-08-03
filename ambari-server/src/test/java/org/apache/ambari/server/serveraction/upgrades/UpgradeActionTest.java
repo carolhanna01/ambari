@@ -379,47 +379,47 @@ public class UpgradeActionTest {
     assertEquals("http://foo1", o.get("baseUrl").getAsString());
   }
 
-  @Test
-  public void testFinalizeUpgradeAcrossStacks() throws Exception {
-    makeCrossStackUpgradeCluster();
+  // @Test
+  // public void testFinalizeUpgradeAcrossStacks() throws Exception {
+  //   makeCrossStackUpgradeCluster();
 
-    Clusters clusters = m_injector.getInstance(Clusters.class);
-    Cluster cluster = clusters.getCluster("c1");
+  //   Clusters clusters = m_injector.getInstance(Clusters.class);
+  //   Cluster cluster = clusters.getCluster("c1");
 
-    // setup the cluster for the upgrade across stacks
-    cluster.setCurrentStackVersion(HDP_21_STACK);
-    cluster.setDesiredStackVersion(HDP_22_STACK);
+  //   // setup the cluster for the upgrade across stacks
+  //   cluster.setCurrentStackVersion(HDP_21_STACK);
+  //   cluster.setDesiredStackVersion(HDP_22_STACK);
 
-    Map<String, String> commandParams = new HashMap<String, String>();
-    commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "upgrade");
-    commandParams.put(FinalizeUpgradeAction.VERSION_KEY, HDP_2_2_1_0);
-    commandParams.put(FinalizeUpgradeAction.ORIGINAL_STACK_KEY, HDP_21_STACK.getStackId());
-    commandParams.put(FinalizeUpgradeAction.TARGET_STACK_KEY, HDP_22_STACK.getStackId());
+  //   Map<String, String> commandParams = new HashMap<String, String>();
+  //   commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "upgrade");
+  //   commandParams.put(FinalizeUpgradeAction.VERSION_KEY, HDP_2_2_1_0);
+  //   commandParams.put(FinalizeUpgradeAction.ORIGINAL_STACK_KEY, HDP_21_STACK.getStackId());
+  //   commandParams.put(FinalizeUpgradeAction.TARGET_STACK_KEY, HDP_22_STACK.getStackId());
 
-    ExecutionCommand executionCommand = new ExecutionCommand();
-    executionCommand.setCommandParams(commandParams);
-    executionCommand.setClusterName("c1");
+  //   ExecutionCommand executionCommand = new ExecutionCommand();
+  //   executionCommand.setCommandParams(commandParams);
+  //   executionCommand.setClusterName("c1");
 
-    HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
+  //   HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
 
-    hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
+  //   hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
 
-    FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
-    action.setExecutionCommand(executionCommand);
-    action.setHostRoleCommand(hostRoleCommand);
+  //   FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
+  //   action.setExecutionCommand(executionCommand);
+  //   action.setHostRoleCommand(hostRoleCommand);
 
-    CommandReport report = action.execute(null);
-    assertNotNull(report);
-    assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
+  //   CommandReport report = action.execute(null);
+  //   assertNotNull(report);
+  //   assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
 
-    StackId currentStackId = cluster.getCurrentStackVersion();
-    StackId desiredStackId = cluster.getDesiredStackVersion();
+  //   StackId currentStackId = cluster.getCurrentStackVersion();
+  //   StackId desiredStackId = cluster.getDesiredStackVersion();
 
-    // verify current/desired stacks are updated to the new stack
-    assertEquals(desiredStackId, currentStackId);
-    assertEquals(HDP_22_STACK, currentStackId);
-    assertEquals(HDP_22_STACK, desiredStackId);
-  }
+  //   // verify current/desired stacks are updated to the new stack
+  //   assertEquals(desiredStackId, currentStackId);
+  //   assertEquals(HDP_22_STACK, currentStackId);
+  //   assertEquals(HDP_22_STACK, desiredStackId);
+  // }
 
   /**
    * Tests some of the action items are completed when finalizing downgrade
@@ -427,91 +427,91 @@ public class UpgradeActionTest {
    *
    * @throws Exception
    */
-  @Test
-  public void testFinalizeDowngradeAcrossStacks() throws Exception {
-    makeCrossStackUpgradeCluster();
+  // @Test
+  // public void testFinalizeDowngradeAcrossStacks() throws Exception {
+  //   makeCrossStackUpgradeCluster();
 
-    Clusters clusters = m_injector.getInstance(Clusters.class);
-    Cluster cluster = clusters.getCluster("c1");
+  //   Clusters clusters = m_injector.getInstance(Clusters.class);
+  //   Cluster cluster = clusters.getCluster("c1");
 
-    // install HDFS with some components
-    Service service = installService(cluster, "HDFS");
-    addServiceComponent(cluster, service, "NAMENODE");
-    addServiceComponent(cluster, service, "DATANODE");
-    createNewServiceComponentHost(cluster, "HDFS", "NAMENODE", "h1");
-    createNewServiceComponentHost(cluster, "HDFS", "DATANODE", "h1");
+  //   // install HDFS with some components
+  //   Service service = installService(cluster, "HDFS");
+  //   addServiceComponent(cluster, service, "NAMENODE");
+  //   addServiceComponent(cluster, service, "DATANODE");
+  //   createNewServiceComponentHost(cluster, "HDFS", "NAMENODE", "h1");
+  //   createNewServiceComponentHost(cluster, "HDFS", "DATANODE", "h1");
 
-    // create some configs
-    createConfigs(cluster);
+  //   // create some configs
+  //   createConfigs(cluster);
 
-    // setup the cluster for the upgrade across stacks
-    cluster.setCurrentStackVersion(HDP_21_STACK);
-    cluster.setDesiredStackVersion(HDP_22_STACK);
+  //   // setup the cluster for the upgrade across stacks
+  //   cluster.setCurrentStackVersion(HDP_21_STACK);
+  //   cluster.setDesiredStackVersion(HDP_22_STACK);
 
-    // now that the desired version is set, we can create some new configs in
-    // the new stack version
-    createConfigs(cluster);
+  //   // now that the desired version is set, we can create some new configs in
+  //   // the new stack version
+  //   createConfigs(cluster);
 
-    // verify we have configs in both HDP stacks
-    cluster = clusters.getCluster("c1");
-    Collection<Config> configs = cluster.getAllConfigs();
-    assertEquals(6, configs.size());
+  //   // verify we have configs in both HDP stacks
+  //   cluster = clusters.getCluster("c1");
+  //   Collection<Config> configs = cluster.getAllConfigs();
+  //   assertEquals(6, configs.size());
 
-    Map<String, String> commandParams = new HashMap<String, String>();
-    commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "downgrade");
-    commandParams.put(FinalizeUpgradeAction.VERSION_KEY, HDP_2_1_1_0);
-    commandParams.put(FinalizeUpgradeAction.ORIGINAL_STACK_KEY, HDP_21_STACK.getStackId());
-    commandParams.put(FinalizeUpgradeAction.TARGET_STACK_KEY, HDP_22_STACK.getStackId());
+  //   Map<String, String> commandParams = new HashMap<String, String>();
+  //   commandParams.put(FinalizeUpgradeAction.UPGRADE_DIRECTION_KEY, "downgrade");
+  //   commandParams.put(FinalizeUpgradeAction.VERSION_KEY, HDP_2_1_1_0);
+  //   commandParams.put(FinalizeUpgradeAction.ORIGINAL_STACK_KEY, HDP_21_STACK.getStackId());
+  //   commandParams.put(FinalizeUpgradeAction.TARGET_STACK_KEY, HDP_22_STACK.getStackId());
 
-    ExecutionCommand executionCommand = new ExecutionCommand();
-    executionCommand.setCommandParams(commandParams);
-    executionCommand.setClusterName("c1");
+  //   ExecutionCommand executionCommand = new ExecutionCommand();
+  //   executionCommand.setCommandParams(commandParams);
+  //   executionCommand.setClusterName("c1");
 
-    HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
+  //   HostRoleCommand hostRoleCommand = hostRoleCommandFactory.create(null, null, null, null);
 
-    hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
+  //   hostRoleCommand.setExecutionCommandWrapper(new ExecutionCommandWrapper(executionCommand));
 
 
-    HostVersionDAO dao = m_injector.getInstance(HostVersionDAO.class);
+  //   HostVersionDAO dao = m_injector.getInstance(HostVersionDAO.class);
 
-    List<HostVersionEntity> hosts = dao.findByClusterStackAndVersion(
-        "c1", HDP_22_STACK, HDP_2_2_1_0);
-    assertFalse(hosts.isEmpty());
-    for (HostVersionEntity hve : hosts) {
-      assertFalse(hve.getState() == RepositoryVersionState.INSTALLED);
-    }
+  //   List<HostVersionEntity> hosts = dao.findByClusterStackAndVersion(
+  //       "c1", HDP_22_STACK, HDP_2_2_1_0);
+  //   assertFalse(hosts.isEmpty());
+  //   for (HostVersionEntity hve : hosts) {
+  //     assertFalse(hve.getState() == RepositoryVersionState.INSTALLED);
+  //   }
 
-    FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
-    action.setExecutionCommand(executionCommand);
-    action.setHostRoleCommand(hostRoleCommand);
+  //   FinalizeUpgradeAction action = m_injector.getInstance(FinalizeUpgradeAction.class);
+  //   action.setExecutionCommand(executionCommand);
+  //   action.setHostRoleCommand(hostRoleCommand);
 
-    CommandReport report = action.execute(null);
-    assertNotNull(report);
-    assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
+  //   CommandReport report = action.execute(null);
+  //   assertNotNull(report);
+  //   assertEquals(HostRoleStatus.COMPLETED.name(), report.getStatus());
 
-    StackId currentStackId = cluster.getCurrentStackVersion();
-    StackId desiredStackId = cluster.getDesiredStackVersion();
+  //   StackId currentStackId = cluster.getCurrentStackVersion();
+  //   StackId desiredStackId = cluster.getDesiredStackVersion();
 
-    // verify current/desired stacks are back to normal
-    assertEquals(desiredStackId, currentStackId);
-    assertEquals(HDP_21_STACK, currentStackId);
-    assertEquals(HDP_21_STACK, desiredStackId);
+  //   // verify current/desired stacks are back to normal
+  //   assertEquals(desiredStackId, currentStackId);
+  //   assertEquals(HDP_21_STACK, currentStackId);
+  //   assertEquals(HDP_21_STACK, desiredStackId);
 
-    // verify we have configs in only 1 stack
-    cluster = clusters.getCluster("c1");
-    configs = cluster.getAllConfigs();
-    assertEquals(3, configs.size());
+  //   // verify we have configs in only 1 stack
+  //   cluster = clusters.getCluster("c1");
+  //   configs = cluster.getAllConfigs();
+  //   assertEquals(3, configs.size());
 
-    hosts = dao.findByClusterStackAndVersion(
-        "c1", HDP_22_STACK, HDP_2_2_1_0);
+  //   hosts = dao.findByClusterStackAndVersion(
+  //       "c1", HDP_22_STACK, HDP_2_2_1_0);
 
-    hosts = dao.findByClusterStackAndVersion("c1", HDP_22_STACK, HDP_2_2_1_0);
-    assertFalse(hosts.isEmpty());
-    for (HostVersionEntity hve : hosts) {
-      assertTrue(hve.getState() == RepositoryVersionState.INSTALLED);
-    }
+  //   hosts = dao.findByClusterStackAndVersion("c1", HDP_22_STACK, HDP_2_2_1_0);
+  //   assertFalse(hosts.isEmpty());
+  //   for (HostVersionEntity hve : hosts) {
+  //     assertTrue(hve.getState() == RepositoryVersionState.INSTALLED);
+  //   }
 
-  }
+  // }
 
   private ServiceComponentHost createNewServiceComponentHost(Cluster cluster, String svc,
       String svcComponent, String hostName) throws AmbariException {

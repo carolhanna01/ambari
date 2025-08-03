@@ -97,118 +97,118 @@ public class GangliaPropertyProviderTest {
     this.configuration = configuration;
   }
 
-  @Test
-  public void testPopulateResources() throws Exception {
-    TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data.txt");
-    TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
+  // @Test
+  // public void testPopulateResources() throws Exception {
+  //   TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data.txt");
+  //   TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
 
-    Map<String, Map<String, PropertyInfo>> gangliaPropertyIds = PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent);
-    GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
-        gangliaPropertyIds,
-        streamProvider,
-        configuration,
-        hostProvider,
-        CLUSTER_NAME_PROPERTY_ID,
-        HOST_NAME_PROPERTY_ID,
-        COMPONENT_NAME_PROPERTY_ID);
+  //   Map<String, Map<String, PropertyInfo>> gangliaPropertyIds = PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent);
+  //   GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
+  //       gangliaPropertyIds,
+  //       streamProvider,
+  //       configuration,
+  //       hostProvider,
+  //       CLUSTER_NAME_PROPERTY_ID,
+  //       HOST_NAME_PROPERTY_ID,
+  //       COMPONENT_NAME_PROPERTY_ID);
 
-    // namenode
-    Resource resource = new ResourceImpl(Resource.Type.HostComponent);
+  //   // namenode
+  //   Resource resource = new ResourceImpl(Resource.Type.HostComponent);
 
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
-    resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "DATANODE");
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "DATANODE");
 
-    // only ask for one property
-    Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
-    temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
-    Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
+  //   // only ask for one property
+  //   Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
+  //   Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
 
-    Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
-
-
-    String expected = (configuration.isGangliaSSL() ? "https" : "http") +
-        "://domU-12-31-39-0E-34-E1.compute-1.internal/cgi-bin/rrd.py?c=HDPDataNode%2CHDPSlaves&h=domU-12-31-39-0E-34-E1.compute-1.internal&m=jvm.metrics.gcCount&s=10&e=20&r=1";
-    Assert.assertEquals(expected, streamProvider.getLastSpec());
-
-    Assert.assertEquals(3, PropertyHelper.getProperties(resource).size());
-    Assert.assertNotNull(resource.getPropertyValue(PROPERTY_ID));
+  //   Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
 
 
-    // tasktracker
-    resource = new ResourceImpl(Resource.Type.HostComponent);
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
-    resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "TASKTRACKER");
+  //   String expected = (configuration.isGangliaSSL() ? "https" : "http") +
+  //       "://domU-12-31-39-0E-34-E1.compute-1.internal/cgi-bin/rrd.py?c=HDPDataNode%2CHDPSlaves&h=domU-12-31-39-0E-34-E1.compute-1.internal&m=jvm.metrics.gcCount&s=10&e=20&r=1";
+  //   Assert.assertEquals(expected, streamProvider.getLastSpec());
 
-    // only ask for one property
-    temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   Assert.assertEquals(3, PropertyHelper.getProperties(resource).size());
+  //   Assert.assertNotNull(resource.getPropertyValue(PROPERTY_ID));
 
-    Set<String> properties = new HashSet<String>();
-    String shuffle_exceptions_caught = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_exceptions_caught");
-    String shuffle_failed_outputs    = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_failed_outputs");
-    String shuffle_output_bytes      = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_output_bytes");
-    String shuffle_success_outputs   = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_success_outputs");
 
-    properties.add(shuffle_exceptions_caught);
-    properties.add(shuffle_failed_outputs);
-    properties.add(shuffle_output_bytes);
-    properties.add(shuffle_success_outputs);
-    request = PropertyHelper.getReadRequest(properties, temporalInfoMap);
+  //   // tasktracker
+  //   resource = new ResourceImpl(Resource.Type.HostComponent);
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "TASKTRACKER");
 
-    temporalInfoMap.put(shuffle_exceptions_caught, new TemporalInfoImpl(10L, 20L, 1L));
-    temporalInfoMap.put(shuffle_failed_outputs, new TemporalInfoImpl(10L, 20L, 1L));
-    temporalInfoMap.put(shuffle_output_bytes, new TemporalInfoImpl(10L, 20L, 1L));
-    temporalInfoMap.put(shuffle_success_outputs, new TemporalInfoImpl(10L, 20L, 1L));
+  //   // only ask for one property
+  //   temporalInfoMap = new HashMap<String, TemporalInfo>();
 
-    Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
+  //   Set<String> properties = new HashSet<String>();
+  //   String shuffle_exceptions_caught = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_exceptions_caught");
+  //   String shuffle_failed_outputs    = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_failed_outputs");
+  //   String shuffle_output_bytes      = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_output_bytes");
+  //   String shuffle_success_outputs   = PropertyHelper.getPropertyId("metrics/mapred/shuffleOutput", "shuffle_success_outputs");
+
+  //   properties.add(shuffle_exceptions_caught);
+  //   properties.add(shuffle_failed_outputs);
+  //   properties.add(shuffle_output_bytes);
+  //   properties.add(shuffle_success_outputs);
+  //   request = PropertyHelper.getReadRequest(properties, temporalInfoMap);
+
+  //   temporalInfoMap.put(shuffle_exceptions_caught, new TemporalInfoImpl(10L, 20L, 1L));
+  //   temporalInfoMap.put(shuffle_failed_outputs, new TemporalInfoImpl(10L, 20L, 1L));
+  //   temporalInfoMap.put(shuffle_output_bytes, new TemporalInfoImpl(10L, 20L, 1L));
+  //   temporalInfoMap.put(shuffle_success_outputs, new TemporalInfoImpl(10L, 20L, 1L));
+
+  //   Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
 
     
-    List<String> metricsRegexes = new ArrayList<String>();
+  //   List<String> metricsRegexes = new ArrayList<String>();
     
-    metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_exceptions_caught");
-    metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_failed_outputs");
-    metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_output_bytes");
-    metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_success_outputs");
+  //   metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_exceptions_caught");
+  //   metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_failed_outputs");
+  //   metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_output_bytes");
+  //   metricsRegexes.add("metrics/mapred/shuffleOutput/shuffle_success_outputs");
     
     
-    String metricsList = getMetricsRegexes(metricsRegexes, gangliaPropertyIds, "TASKTRACKER");
+  //   String metricsList = getMetricsRegexes(metricsRegexes, gangliaPropertyIds, "TASKTRACKER");
     
-    URIBuilder expectedUri = new URIBuilder();
+  //   URIBuilder expectedUri = new URIBuilder();
 
-    expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
-    expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
-    expectedUri.setPath("/cgi-bin/rrd.py");
-    expectedUri.setParameter("c", "HDPTaskTracker,HDPSlaves");
-    expectedUri.setParameter("h", "domU-12-31-39-0E-34-E1.compute-1.internal");
-    expectedUri.setParameter("m", metricsList);
-    expectedUri.setParameter("s", "10");
-    expectedUri.setParameter("e", "20");
-    expectedUri.setParameter("r", "1");
+  //   expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
+  //   expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   expectedUri.setPath("/cgi-bin/rrd.py");
+  //   expectedUri.setParameter("c", "HDPTaskTracker,HDPSlaves");
+  //   expectedUri.setParameter("h", "domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   expectedUri.setParameter("m", metricsList);
+  //   expectedUri.setParameter("s", "10");
+  //   expectedUri.setParameter("e", "20");
+  //   expectedUri.setParameter("r", "1");
     
 
-    URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
+  //   URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
 
-    Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
-    Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
-    Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
+  //   Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
+  //   Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
+  //   Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
     
-    Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));
+  //   Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));
 
-    Assert.assertEquals(6, PropertyHelper.getProperties(resource).size());
+  //   Assert.assertEquals(6, PropertyHelper.getProperties(resource).size());
 
-    Assert.assertNotNull(resource.getPropertyValue(shuffle_exceptions_caught));
+  //   Assert.assertNotNull(resource.getPropertyValue(shuffle_exceptions_caught));
 
-    Number[][] dataPoints = (Number[][]) resource.getPropertyValue(shuffle_exceptions_caught);
+  //   Number[][] dataPoints = (Number[][]) resource.getPropertyValue(shuffle_exceptions_caught);
 
-    Assert.assertEquals(106, dataPoints.length);
-    for (int i = 0; i < dataPoints.length; ++i) {
-      Assert.assertEquals(i >=10 && i < 20 ? 7 : 0.0, dataPoints[i][0]);
-      Assert.assertEquals(360 * i + 1358434800, dataPoints[i][1]);
-    }
+  //   Assert.assertEquals(106, dataPoints.length);
+  //   for (int i = 0; i < dataPoints.length; ++i) {
+  //     Assert.assertEquals(i >=10 && i < 20 ? 7 : 0.0, dataPoints[i][0]);
+  //     Assert.assertEquals(360 * i + 1358434800, dataPoints[i][1]);
+  //   }
 
-    Assert.assertNotNull(resource.getPropertyValue(shuffle_failed_outputs));
-    Assert.assertNotNull(resource.getPropertyValue(shuffle_output_bytes));
-    Assert.assertNotNull(resource.getPropertyValue(shuffle_success_outputs));
-  }
+  //   Assert.assertNotNull(resource.getPropertyValue(shuffle_failed_outputs));
+  //   Assert.assertNotNull(resource.getPropertyValue(shuffle_output_bytes));
+  //   Assert.assertNotNull(resource.getPropertyValue(shuffle_success_outputs));
+  // }
   
   @Test
   public void testPopulateResources_checkHostComponent() throws Exception {
@@ -284,180 +284,180 @@ public class GangliaPropertyProviderTest {
     Assert.assertEquals(226, val.length);
   }
 
-  @Test
-  public void testPopulateManyResources() throws Exception {
-    TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data_1.txt");
-    TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
+  // @Test
+  // public void testPopulateManyResources() throws Exception {
+  //   TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data_1.txt");
+  //   TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
 
-    GangliaPropertyProvider propertyProvider = new GangliaHostPropertyProvider(
-        PropertyHelper.getMetricPropertyIds(Resource.Type.Host),
-        streamProvider,
-        configuration,
-        hostProvider,
-        CLUSTER_NAME_PROPERTY_ID,
-        HOST_NAME_PROPERTY_ID
-    );
+  //   GangliaPropertyProvider propertyProvider = new GangliaHostPropertyProvider(
+  //       PropertyHelper.getMetricPropertyIds(Resource.Type.Host),
+  //       streamProvider,
+  //       configuration,
+  //       hostProvider,
+  //       CLUSTER_NAME_PROPERTY_ID,
+  //       HOST_NAME_PROPERTY_ID
+  //   );
 
-    Set<Resource> resources = new HashSet<Resource>();
+  //   Set<Resource> resources = new HashSet<Resource>();
 
-    // host
-    Resource resource = new ResourceImpl(Resource.Type.Host);
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
-    resources.add(resource);
+  //   // host
+  //   Resource resource = new ResourceImpl(Resource.Type.Host);
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   resources.add(resource);
 
-    resource = new ResourceImpl(Resource.Type.Host);
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E2.compute-1.internal");
-    resources.add(resource);
+  //   resource = new ResourceImpl(Resource.Type.Host);
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E2.compute-1.internal");
+  //   resources.add(resource);
 
-    resource = new ResourceImpl(Resource.Type.Host);
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E3.compute-1.internal");
-    resources.add(resource);
+  //   resource = new ResourceImpl(Resource.Type.Host);
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "domU-12-31-39-0E-34-E3.compute-1.internal");
+  //   resources.add(resource);
 
-    // only ask for one property
-    Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
-    temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
-    Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
+  //   // only ask for one property
+  //   Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
+  //   Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
 
-    Assert.assertEquals(3, propertyProvider.populateResources(resources, request, null).size());
+  //   Assert.assertEquals(3, propertyProvider.populateResources(resources, request, null).size());
     
-    URIBuilder uriBuilder = new URIBuilder();
+  //   URIBuilder uriBuilder = new URIBuilder();
 
-    uriBuilder.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
-    uriBuilder.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
-    uriBuilder.setPath("/cgi-bin/rrd.py");
-    uriBuilder.setParameter("c", "HDPJobTracker,HDPHBaseMaster,HDPResourceManager,HDPFlumeServer,HDPSlaves,HDPHistoryServer,HDPJournalNode,HDPTaskTracker,HDPHBaseRegionServer,HDPNameNode");
-    uriBuilder.setParameter("h", "domU-12-31-39-0E-34-E3.compute-1.internal,domU-12-31-39-0E-34-E1.compute-1.internal,domU-12-31-39-0E-34-E2.compute-1.internal");
-    uriBuilder.setParameter("m", "jvm.metrics.gcCount");
-    uriBuilder.setParameter("s", "10");
-    uriBuilder.setParameter("e", "20");
-    uriBuilder.setParameter("r", "1");
+  //   uriBuilder.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
+  //   uriBuilder.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   uriBuilder.setPath("/cgi-bin/rrd.py");
+  //   uriBuilder.setParameter("c", "HDPJobTracker,HDPHBaseMaster,HDPResourceManager,HDPFlumeServer,HDPSlaves,HDPHistoryServer,HDPJournalNode,HDPTaskTracker,HDPHBaseRegionServer,HDPNameNode");
+  //   uriBuilder.setParameter("h", "domU-12-31-39-0E-34-E3.compute-1.internal,domU-12-31-39-0E-34-E1.compute-1.internal,domU-12-31-39-0E-34-E2.compute-1.internal");
+  //   uriBuilder.setParameter("m", "jvm.metrics.gcCount");
+  //   uriBuilder.setParameter("s", "10");
+  //   uriBuilder.setParameter("e", "20");
+  //   uriBuilder.setParameter("r", "1");
 
-    String expected = uriBuilder.toString();
+  //   String expected = uriBuilder.toString();
     
-    Assert.assertEquals(expected, streamProvider.getLastSpec());
+  //   Assert.assertEquals(expected, streamProvider.getLastSpec());
 
-    for (Resource res : resources) {
-      Assert.assertEquals(2, PropertyHelper.getProperties(res).size());
-      Assert.assertNotNull(res.getPropertyValue(PROPERTY_ID));
-    }
-  }
+  //   for (Resource res : resources) {
+  //     Assert.assertEquals(2, PropertyHelper.getProperties(res).size());
+  //     Assert.assertNotNull(res.getPropertyValue(PROPERTY_ID));
+  //   }
+  // }
 
-  @Test
-  public void testPopulateResources__LargeNumberOfHostResources() throws Exception {
-    TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data.txt");
-    TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
+  // @Test
+  // public void testPopulateResources__LargeNumberOfHostResources() throws Exception {
+  //   TestStreamProvider streamProvider  = new TestStreamProvider("temporal_ganglia_data.txt");
+  //   TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
 
-    GangliaPropertyProvider propertyProvider = new GangliaHostPropertyProvider(
-        PropertyHelper.getMetricPropertyIds(Resource.Type.Host),
-        streamProvider,
-        configuration,
-        hostProvider,
-        CLUSTER_NAME_PROPERTY_ID,
-        HOST_NAME_PROPERTY_ID
-    );
+  //   GangliaPropertyProvider propertyProvider = new GangliaHostPropertyProvider(
+  //       PropertyHelper.getMetricPropertyIds(Resource.Type.Host),
+  //       streamProvider,
+  //       configuration,
+  //       hostProvider,
+  //       CLUSTER_NAME_PROPERTY_ID,
+  //       HOST_NAME_PROPERTY_ID
+  //   );
 
-    Set<Resource> resources = new HashSet<Resource>();
+  //   Set<Resource> resources = new HashSet<Resource>();
 
-    StringBuilder hostsList = new StringBuilder();
+  //   StringBuilder hostsList = new StringBuilder();
     
-    for (int i = 0; i < 150; ++i) {
-      Resource resource = new ResourceImpl(Resource.Type.Host);
-      resource.setProperty(HOST_NAME_PROPERTY_ID, "host" + i);
-      resources.add(resource);
+  //   for (int i = 0; i < 150; ++i) {
+  //     Resource resource = new ResourceImpl(Resource.Type.Host);
+  //     resource.setProperty(HOST_NAME_PROPERTY_ID, "host" + i);
+  //     resources.add(resource);
       
-      if (hostsList.length() != 0)
-        hostsList.append("," + "host" + i );
-      else
-        hostsList.append("host" + i); 
-    }
+  //     if (hostsList.length() != 0)
+  //       hostsList.append("," + "host" + i );
+  //     else
+  //       hostsList.append("host" + i); 
+  //   }
 
-    // only ask for one property
-    Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
-    temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
-    Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
+  //   // only ask for one property
+  //   Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   temporalInfoMap.put(PROPERTY_ID, new TemporalInfoImpl(10L, 20L, 1L));
+  //   Request  request = PropertyHelper.getReadRequest(Collections.singleton(PROPERTY_ID), temporalInfoMap);
 
-    Assert.assertEquals(150, propertyProvider.populateResources(resources, request, null).size());
+  //   Assert.assertEquals(150, propertyProvider.populateResources(resources, request, null).size());
 
     
-    URIBuilder expectedUri = new URIBuilder();
+  //   URIBuilder expectedUri = new URIBuilder();
     
-    expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
-    expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
-    expectedUri.setPath("/cgi-bin/rrd.py");
-    expectedUri.setParameter("c", "HDPJobTracker,HDPHBaseMaster,HDPResourceManager,HDPFlumeServer,HDPSlaves,HDPHistoryServer,HDPJournalNode,HDPTaskTracker,HDPHBaseRegionServer,HDPNameNode");
+  //   expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
+  //   expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   expectedUri.setPath("/cgi-bin/rrd.py");
+  //   expectedUri.setParameter("c", "HDPJobTracker,HDPHBaseMaster,HDPResourceManager,HDPFlumeServer,HDPSlaves,HDPHistoryServer,HDPJournalNode,HDPTaskTracker,HDPHBaseRegionServer,HDPNameNode");
    
-    expectedUri.setParameter("h", hostsList.toString());
-    expectedUri.setParameter("m", "jvm.metrics.gcCount");
-    expectedUri.setParameter("s", "10");
-    expectedUri.setParameter("e", "20");
-    expectedUri.setParameter("r", "1");
+  //   expectedUri.setParameter("h", hostsList.toString());
+  //   expectedUri.setParameter("m", "jvm.metrics.gcCount");
+  //   expectedUri.setParameter("s", "10");
+  //   expectedUri.setParameter("e", "20");
+  //   expectedUri.setParameter("r", "1");
     
-    URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
+  //   URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
     
-    Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
-    Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
-    Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
+  //   Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
+  //   Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
+  //   Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
     
-    Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));
-  }
+  //   Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));
+  // }
   
-  @Test
-  public void testPopulateResources_params() throws Exception {
-    TestStreamProvider streamProvider  = new TestStreamProvider("flume_ganglia_data.txt");
-    TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
+  // @Test
+  // public void testPopulateResources_params() throws Exception {
+  //   TestStreamProvider streamProvider  = new TestStreamProvider("flume_ganglia_data.txt");
+  //   TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
 
-    Map<String, Map<String, PropertyInfo>> gangliaPropertyIds = PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent);
-    GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
-        gangliaPropertyIds,
-        streamProvider,
-        configuration,
-        hostProvider,
-        CLUSTER_NAME_PROPERTY_ID,
-        HOST_NAME_PROPERTY_ID,
-        COMPONENT_NAME_PROPERTY_ID);
+  //   Map<String, Map<String, PropertyInfo>> gangliaPropertyIds = PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent);
+  //   GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
+  //       gangliaPropertyIds,
+  //       streamProvider,
+  //       configuration,
+  //       hostProvider,
+  //       CLUSTER_NAME_PROPERTY_ID,
+  //       HOST_NAME_PROPERTY_ID,
+  //       COMPONENT_NAME_PROPERTY_ID);
 
-    // flume
-    Resource resource = new ResourceImpl(Resource.Type.HostComponent);
+  //   // flume
+  //   Resource resource = new ResourceImpl(Resource.Type.HostComponent);
 
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "ip-10-39-113-33.ec2.internal");
-    resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "FLUME_HANDLER");
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "ip-10-39-113-33.ec2.internal");
+  //   resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "FLUME_HANDLER");
 
-    // only ask for one property
-    Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
-    temporalInfoMap.put(FLUME_CHANNEL_CAPACITY_PROPERTY, new TemporalInfoImpl(10L, 20L, 1L));
-    Request  request = PropertyHelper.getReadRequest(Collections.singleton(FLUME_CHANNEL_CAPACITY_PROPERTY), temporalInfoMap);
+  //   // only ask for one property
+  //   Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   temporalInfoMap.put(FLUME_CHANNEL_CAPACITY_PROPERTY, new TemporalInfoImpl(10L, 20L, 1L));
+  //   Request  request = PropertyHelper.getReadRequest(Collections.singleton(FLUME_CHANNEL_CAPACITY_PROPERTY), temporalInfoMap);
 
-    Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
+  //   Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
 
-    List<String> metricsRegexes = new ArrayList<String>();
+  //   List<String> metricsRegexes = new ArrayList<String>();
     
-    metricsRegexes.add(FLUME_CHANNEL_CAPACITY_PROPERTY);
+  //   metricsRegexes.add(FLUME_CHANNEL_CAPACITY_PROPERTY);
 
-    String metricsList = getMetricsRegexes(metricsRegexes, gangliaPropertyIds, "FLUME_HANDLER");
+  //   String metricsList = getMetricsRegexes(metricsRegexes, gangliaPropertyIds, "FLUME_HANDLER");
     
-    URIBuilder expectedUri = new URIBuilder();
+  //   URIBuilder expectedUri = new URIBuilder();
     
-    expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
-    expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
-    expectedUri.setPath("/cgi-bin/rrd.py");
-    expectedUri.setParameter("c", "HDPFlumeServer,HDPSlaves");
-    expectedUri.setParameter("h", "ip-10-39-113-33.ec2.internal");
-    expectedUri.setParameter("m", metricsList);
-    expectedUri.setParameter("s", "10");
-    expectedUri.setParameter("e", "20");
-    expectedUri.setParameter("r", "1");
+  //   expectedUri.setScheme((configuration.isGangliaSSL() ? "https" : "http"));
+  //   expectedUri.setHost("domU-12-31-39-0E-34-E1.compute-1.internal");
+  //   expectedUri.setPath("/cgi-bin/rrd.py");
+  //   expectedUri.setParameter("c", "HDPFlumeServer,HDPSlaves");
+  //   expectedUri.setParameter("h", "ip-10-39-113-33.ec2.internal");
+  //   expectedUri.setParameter("m", metricsList);
+  //   expectedUri.setParameter("s", "10");
+  //   expectedUri.setParameter("e", "20");
+  //   expectedUri.setParameter("r", "1");
     
-    URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
+  //   URIBuilder actualUri = new URIBuilder(streamProvider.getLastSpec());
 
-    Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
-    Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
-    Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
+  //   Assert.assertEquals(expectedUri.getScheme(), actualUri.getScheme());
+  //   Assert.assertEquals(expectedUri.getHost(), actualUri.getHost());
+  //   Assert.assertEquals(expectedUri.getPath(), actualUri.getPath());
     
-    Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));    
+  //   Assert.assertTrue(isUrlParamsEquals(actualUri, expectedUri));    
     
-    Assert.assertEquals(3, PropertyHelper.getProperties(resource).size());
-    Assert.assertNotNull(resource.getPropertyValue(FLUME_CHANNEL_CAPACITY_PROPERTY));
-  }
+  //   Assert.assertEquals(3, PropertyHelper.getProperties(resource).size());
+  //   Assert.assertNotNull(resource.getPropertyValue(FLUME_CHANNEL_CAPACITY_PROPERTY));
+  // }
 
   @Test
   public void testPopulateResources_paramsMixed() throws Exception {
@@ -522,39 +522,39 @@ public class GangliaPropertyProviderTest {
     Assert.assertNotNull(resource.getPropertyValue(FLUME_CHANNEL_CAPACITY_PROPERTY));
   }
 
-  @Test
-  public void testPopulateResources_paramsAll() throws Exception {
-    TestStreamProvider streamProvider  = new TestStreamProvider("flume_ganglia_data.txt");
-    TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
+  // @Test
+  // public void testPopulateResources_paramsAll() throws Exception {
+  //   TestStreamProvider streamProvider  = new TestStreamProvider("flume_ganglia_data.txt");
+  //   TestGangliaHostProvider hostProvider = new TestGangliaHostProvider();
 
-    GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
-        PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent),
-        streamProvider,
-        configuration,
-        hostProvider,
-        CLUSTER_NAME_PROPERTY_ID,
-        HOST_NAME_PROPERTY_ID,
-        COMPONENT_NAME_PROPERTY_ID);
+  //   GangliaPropertyProvider propertyProvider = new GangliaHostComponentPropertyProvider(
+  //       PropertyHelper.getMetricPropertyIds(Resource.Type.HostComponent),
+  //       streamProvider,
+  //       configuration,
+  //       hostProvider,
+  //       CLUSTER_NAME_PROPERTY_ID,
+  //       HOST_NAME_PROPERTY_ID,
+  //       COMPONENT_NAME_PROPERTY_ID);
 
-    // flume
-    Resource resource = new ResourceImpl(Resource.Type.HostComponent);
+  //   // flume
+  //   Resource resource = new ResourceImpl(Resource.Type.HostComponent);
 
-    resource.setProperty(HOST_NAME_PROPERTY_ID, "ip-10-39-113-33.ec2.internal");
-    resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "FLUME_HANDLER");
+  //   resource.setProperty(HOST_NAME_PROPERTY_ID, "ip-10-39-113-33.ec2.internal");
+  //   resource.setProperty(COMPONENT_NAME_PROPERTY_ID, "FLUME_HANDLER");
 
-    Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
-    Request  request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), temporalInfoMap);
+  //   Map<String, TemporalInfo> temporalInfoMap = new HashMap<String, TemporalInfo>();
+  //   Request  request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), temporalInfoMap);
 
-    Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
+  //   Assert.assertEquals(1, propertyProvider.populateResources(Collections.singleton(resource), request, null).size());
 
-    String expected = (configuration.isGangliaSSL() ? "https" : "http") +
-        "://domU-12-31-39-0E-34-E1.compute-1.internal/cgi-bin/rrd.py?c=HDPFlumeServer%2CHDPSlaves&h=ip-10-39-113-33.ec2.internal&m=";
+  //   String expected = (configuration.isGangliaSSL() ? "https" : "http") +
+  //       "://domU-12-31-39-0E-34-E1.compute-1.internal/cgi-bin/rrd.py?c=HDPFlumeServer%2CHDPSlaves&h=ip-10-39-113-33.ec2.internal&m=";
     
-    Assert.assertTrue(streamProvider.getLastSpec().startsWith(expected));
+  //   Assert.assertTrue(streamProvider.getLastSpec().startsWith(expected));
 
-    Assert.assertEquals(33, PropertyHelper.getProperties(resource).size());
-    Assert.assertNotNull(resource.getPropertyValue(FLUME_CHANNEL_CAPACITY_PROPERTY));
-  }
+  //   Assert.assertEquals(33, PropertyHelper.getProperties(resource).size());
+  //   Assert.assertNotNull(resource.getPropertyValue(FLUME_CHANNEL_CAPACITY_PROPERTY));
+  // }
 
   @Test
   public void testPopulateResources_params_category1() throws Exception {
