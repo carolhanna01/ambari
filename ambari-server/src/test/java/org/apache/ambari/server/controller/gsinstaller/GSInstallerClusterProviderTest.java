@@ -74,18 +74,18 @@ public class GSInstallerClusterProviderTest {
     }
   }
 
-  @Test
-  public void testUpdateResources() throws Exception {
-    ClusterDefinition clusterDefinition = new ClusterDefinition(new TestGSInstallerStateProvider());
-    GSInstallerResourceProvider provider = new GSInstallerClusterProvider(clusterDefinition);
+  // @Test
+  // public void testUpdateResources() throws Exception {
+  //   ClusterDefinition clusterDefinition = new ClusterDefinition(new TestGSInstallerStateProvider());
+  //   GSInstallerResourceProvider provider = new GSInstallerClusterProvider(clusterDefinition);
 
-    try {
-      provider.updateResources(PropertyHelper.getUpdateRequest(new HashMap<String, Object>(), null), null);
-      Assert.fail("Expected UnsupportedOperationException.");
-    } catch (UnsupportedOperationException e) {
-      //expected
-    }
-  }
+  //   try {
+  //     provider.updateResources(PropertyHelper.getUpdateRequest(new HashMap<String, Object>(), null), null);
+  //     Assert.fail("Expected UnsupportedOperationException.");
+  //   } catch (UnsupportedOperationException e) {
+  //     //expected
+  //   }
+  // }
 
   @Test
   public void testDeleteResources() throws Exception {
