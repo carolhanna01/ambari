@@ -1,0 +1,148 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Siddharth Wagle
+        '@username': swagle
+      attachments:
+        attachment:
+          '@author': swagle
+          '@created': Wed, 8 Jul 2015 19:25:19 +0000
+          '@id': '12744306'
+          '@name': _thumb_61007.png
+          '@size': '7128'
+      comments:
+        comment:
+        - '#text': <p>Pushed to 2.1 and trunk.</p>
+          '@author': swagle
+          '@created': Wed, 8 Jul 2015 19:45:40 +0000
+          '@id': '14619243'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-branch-2.1 #190 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.1/190/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.1/190/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12338\" title=\"\
+            Accessing Cluster with read-only user throws error\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-12338\"><del>AMBARI-12338</del></a>. Accessing\
+            \ Cluster with read-only user throws error. (swagle) (swagle: <a href=\"\
+            http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=a0ed518838fcf780b58b7d40166d68f36d104417\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=a0ed518838fcf780b58b7d40166d68f36d104417</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/security/authorization/AmbariAuthorizationFilter.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariAuthorizationFilterTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 8 Jul 2015 21:34:28 +0000
+          '@id': '14619412'
+        - '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #3079 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/3079/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/3079/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-12338\" title=\"\
+            Accessing Cluster with read-only user throws error\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-12338\"><del>AMBARI-12338</del></a>. Accessing\
+            \ Cluster with read-only user throws error. (swagle) (swagle: <a href=\"\
+            http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=aee137f1c0f9ede614eaaec0cd8dee50c610b774\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=aee137f1c0f9ede614eaaec0cd8dee50c610b774</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/security/authorization/AmbariAuthorizationFilterTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/security/authorization/AmbariAuthorizationFilter.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Wed, 8 Jul 2015 22:03:11 +0000
+          '@id': '14619455'
+      component: ambari-server
+      created: Wed, 8 Jul 2015 19:24:46 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 10 years, 5 weeks, 3 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2h0dr:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: "<p>1) create a read-only user<br/>\n2) login, go to configs<br/>\n\
+        3) you are presented with an error and page reloads.</p>\n\n<p>I have two\
+        \ local only users: \u201Cadmin\u201D, and \u201Csree\u201D. Sree has \u201C\
+        Read-Only\u201D permissions for the cluster. However, as you can see from\
+        \ the screenshots, that user gets errors when trying to view any service configurations.\
+        \ The error flashes on screen for roughly a second before the page force reloads\
+        \ to the dashboard.</p>"
+      due: null
+      environment: null
+      fixVersion: 2.1.0
+      key:
+        '#text': AMBARI-12338
+        '@id': '12843614'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-12338
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Siddharth Wagle
+        '@username': swagle
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 8 Jul 2015 19:45:40 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Accessing Cluster with read-only user throws error
+      title: '[AMBARI-12338] Accessing Cluster with read-only user throws error'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 8 Jul 2015 22:03:11 +0000
+      version: 2.1.0
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
