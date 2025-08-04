@@ -744,6 +744,7 @@ public class AmbariManagementControllerImpl implements
     return response;
   }
 
+
   private Set<ConfigurationResponse> getConfigurations(
       ConfigurationRequest request) throws AmbariException {
     if (request.getClusterName() == null) {
@@ -1276,10 +1277,11 @@ public class AmbariManagementControllerImpl implements
               + ", serviceCheckRole=" + smokeTestRole);
           continue;
         }
-
+        Configuration configuration = injector.getInstance(Configuration.class);
         customCommandExecutionHelper.addServiceCheckAction(stage, clientHost,
             smokeTestRole, nowTimestamp, serviceName,
-            null, null, createDefaultHostParams(cluster));
+            null, null, null);
+
       }
 
       RoleCommandOrder rco = getRoleCommandOrder(cluster);
@@ -1289,19 +1291,6 @@ public class AmbariManagementControllerImpl implements
     }
 
     return null;
-  }
-
-  private TreeMap<String, String> createDefaultHostParams(Cluster cluster) {
-    StackId stackId = cluster.getDesiredStackVersion();
-    TreeMap<String, String> hostLevelParams = new TreeMap<String, String>();
-    hostLevelParams.put(JDK_LOCATION, getJdkResourceUrl());
-    hostLevelParams.put(JAVA_HOME, getJavaHome());
-    hostLevelParams.put(JDK_NAME, getJDKName());
-    hostLevelParams.put(JCE_NAME, getJCEName());
-    hostLevelParams.put(STACK_NAME, stackId.getStackName());
-    hostLevelParams.put(STACK_VERSION, stackId.getStackVersion());
-    hostLevelParams.putAll(getRcaParameters());
-    return hostLevelParams;
   }
 
   private void persistStages(List<Stage> stages) throws AmbariException {
@@ -2055,8 +2044,11 @@ public class AmbariManagementControllerImpl implements
     String clusterHostInfoJson = StageUtils.getGson().toJson(clusterHostInfo);
     Stage stage = createNewStage(cluster, actionManager.getNextRequestId(), requestContext, clusterHostInfoJson);
 
-
-    Map<String, String> params = createDefaultHostParams(cluster);
+    Map<String, String> params = new TreeMap<String, String>();
+    // TODO : Update parameter population to be done only here
+    params.put(JDK_LOCATION, this.jdkResourceUrl);
+    params.put(STACK_VERSION, cluster.getDesiredStackVersion().getStackVersion());
+    params.putAll(getRcaParameters());
 
     if (actionRequest.isCommand()) {
       customCommandExecutionHelper.addAction(actionRequest, stage, params);

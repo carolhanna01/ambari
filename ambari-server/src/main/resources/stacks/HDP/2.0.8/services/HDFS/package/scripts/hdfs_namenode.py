@@ -194,12 +194,11 @@ def decommission():
 
   hdfs_user = params.hdfs_user
   conf_dir = params.hadoop_conf_dir
-  user_group = params.user_group
 
   File(params.exclude_file_path,
        content=Template("exclude_hosts_list.j2"),
-       owner=hdfs_user,
-       group=user_group
+       owner=params.hdfs_user,
+       group=params.user_group
   )
 
   ExecuteHadoop('dfsadmin -refreshNodes',
