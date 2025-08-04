@@ -44,9 +44,8 @@ public class LdapServerProperties {
   private String groupMembershipAttr;
   private String groupNamingAttr;
   private String adminGroupMappingRules;
-  private boolean groupMappingEnabled;
-
   private String groupSearchFilter;
+
   private static final String userSearchFilter = "({attribute}={0})";
 
   public List<String> getLdapUrls() {
@@ -186,14 +185,6 @@ public class LdapServerProperties {
 
   public void setGroupSearchFilter(String groupSearchFilter) {
     this.groupSearchFilter = groupSearchFilter;
-  }
-
-  public boolean isGroupMappingEnabled() {
-    return groupMappingEnabled;
-  }
-
-  public void setGroupMappingEnabled(boolean groupMappingEnabled) {
-    this.groupMappingEnabled = groupMappingEnabled;
   }
 
   @Override

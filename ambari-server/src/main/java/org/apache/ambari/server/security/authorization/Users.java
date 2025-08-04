@@ -205,12 +205,10 @@ public class Users {
   public synchronized void addRoleToUser(User user, String role)
       throws AmbariException {
 
-    if (configuration.getLdapServerProperties().isGroupMappingEnabled() &&
-        userDAO.findLdapUserByName(user.getUserName()) != null) {
+    if (userDAO.findLdapUserByName(user.getUserName()) != null) {
       LOG.warn("Trying to add a role to the LDAP user"
           + ", user=" + user.getUserName());
-      throw new AmbariException("Ldap group mapping is enabled, " +
-          "roles for LDAP users should be managed on LDAP server");
+      throw new AmbariException("Roles are not editable for LDAP users");
     }
 
     UserEntity userEntity = userDAO.findByPK(user.getUserId());
@@ -241,12 +239,10 @@ public class Users {
   public synchronized void removeRoleFromUser(User user, String role)
       throws AmbariException {
 
-    if (configuration.getLdapServerProperties().isGroupMappingEnabled() &&
-        userDAO.findLdapUserByName(user.getUserName()) != null) {
+    if (userDAO.findLdapUserByName(user.getUserName()) != null) {
       LOG.warn("Trying to add a role to the LDAP user"
           + ", user=" + user.getUserName());
-      throw new AmbariException("Ldap group mapping is enabled, " +
-          "roles for LDAP users should be managed on LDAP server");
+      throw new AmbariException("Roles are not editable for LDAP users");
     }
 
     UserEntity userEntity = userDAO.findByPK(user.getUserId());
