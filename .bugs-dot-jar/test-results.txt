@@ -1,0 +1,216 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.ambari:ambari-server[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Ambari Server 1.3.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:2.5:clean[m [1m(default-clean)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 364 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:compile[m [1m(default-compile)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 503 source files to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/classes
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java uses or overrides a deprecated API.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: Recompile with -Xlint:deprecation for details.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Some input files use unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 54 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:testCompile[m [1m(default-testCompile)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 156 source files to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/test-classes
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;33mWARNING[m] COMPILATION WARNING : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/state/cluster/ClusterTest.java: Some input files use unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/state/cluster/ClusterTest.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 2 warnings 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[114,39] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[184,39] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[228,39] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[46,42] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[47,49] cannot find symbol
+  symbol:   variable SERVER_VERSION_KEY
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[49,47] cannot find symbol
+  symbol:   variable SERVER_VERSION_KEY
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[53,17] cannot find symbol
+  symbol:   variable metainfoDAO
+  location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[55,17] cannot find symbol
+  symbol:   method checkDBVersion()
+  location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[62,49] cannot find symbol
+  symbol:   variable SERVER_VERSION_KEY
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[64,47] cannot find symbol
+  symbol:   variable SERVER_VERSION_KEY
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[68,17] cannot find symbol
+  symbol:   variable metainfoDAO
+  location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[72,19] cannot find symbol
+  symbol:   method checkDBVersion()
+  location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerImplTest.java:[1480,45] cannot find symbol
+  symbol:   variable SERVER_VERSION_FILE
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaServiceTest.java:[70,29] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaInfoTest.java:[84,16] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaInfoTest.java:[249,37] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+      (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[142,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[428,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[455,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[486,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[542,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[566,38] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[634,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[1119,33] cannot find symbol
+  symbol:   method getServerVersion()
+  location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/orm/InMemoryDefaultTestModule.java:[34,41] cannot find symbol
+  symbol:   variable SERVER_VERSION_FILE
+  location: class org.apache.ambari.server.configuration.Configuration
+[[1;34mINFO[m] 25 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.146 s
+[[1;34mINFO[m] Finished at: 2025-08-04T22:57:32+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.0:testCompile[m [1m(default-testCompile)[m on project [36mambari-server[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[114,39] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[184,39] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatMonitor.java:[228,39] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[46,42] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable ambariMetaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[47,49] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_KEY
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[49,47] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_KEY
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[53,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable metainfoDAO
+[[1;31mERROR[m]   location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[55,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   method checkDBVersion()
+[[1;31mERROR[m]   location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[62,49] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_KEY
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[64,47] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_KEY
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[68,17] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable metainfoDAO
+[[1;31mERROR[m]   location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariServerTest.java:[72,19] cannot find symbol
+[[1;31mERROR[m]   symbol:   method checkDBVersion()
+[[1;31mERROR[m]   location: variable ambariServer of type org.apache.ambari.server.controller.AmbariServer
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerImplTest.java:[1480,45] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_FILE
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaServiceTest.java:[70,29] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaInfoTest.java:[84,16] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/api/services/AmbariMetaInfoTest.java:[249,37] no suitable constructor found for AmbariMetaInfo(java.io.File,java.io.File)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(org.apache.ambari.server.configuration.Configuration) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m]     constructor org.apache.ambari.server.api.services.AmbariMetaInfo.AmbariMetaInfo(java.io.File) is not applicable
+[[1;31mERROR[m]       (actual and formal argument lists differ in length)
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[142,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[428,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[455,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[486,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[542,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[566,38] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[634,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/agent/TestHeartbeatHandler.java:[1119,33] cannot find symbol
+[[1;31mERROR[m]   symbol:   method getServerVersion()
+[[1;31mERROR[m]   location: variable metaInfo of type org.apache.ambari.server.api.services.AmbariMetaInfo
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/orm/InMemoryDefaultTestModule.java:[34,41] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable SERVER_VERSION_FILE
+[[1;31mERROR[m]   location: class org.apache.ambari.server.configuration.Configuration
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
