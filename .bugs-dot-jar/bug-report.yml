@@ -1,0 +1,117 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Papirkovskyy Myroslav
+        '@username': mpapirkovskyy
+      attachments:
+        attachment:
+          '@author': mahadev
+          '@created': Wed, 10 Jul 2013 21:59:38 +0000
+          '@id': '12591740'
+          '@name': AMBARI-2622.patch
+          '@size': '25885'
+      comments:
+        comment:
+        - '#text': <p>Uploading patch on behalf of Myroslav.</p>
+          '@author': mahadev
+          '@created': Wed, 10 Jul 2013 21:59:38 +0000
+          '@id': '13705135'
+        - '#text': <p>+1 the patch looks good.</p>
+          '@author': mahadev
+          '@created': Wed, 10 Jul 2013 22:01:43 +0000
+          '@id': '13705136'
+        - '#text': <p>Committed.</p>
+          '@author': mahadev
+          '@created': Wed, 10 Jul 2013 22:12:11 +0000
+          '@id': '13705145'
+      created: Wed, 10 Jul 2013 21:57:16 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '337376'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 12 years, 5 weeks, 4 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i1m6y7:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '337699'
+      description: <p>ldap users cannot be elevated to be Ambari admin</p>
+      due: null
+      environment: null
+      fixVersion: 1.2.5
+      key:
+        '#text': AMBARI-2622
+        '@id': '12657153'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-2622
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Mahadev Konar
+        '@username': mahadev
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Wed, 10 Jul 2013 22:12:11 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: ldap users cannot be elevated to be Ambari admin
+      title: '[AMBARI-2622] ldap users cannot be elevated to be Ambari admin'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 10 Jul 2013 22:12:11 +0000
+      version: 1.2.5
+      votes: '0'
+      watches: '1'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
