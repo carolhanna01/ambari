@@ -323,15 +323,7 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
     uriBuilder.setScheme(masterProtocol);
     uriBuilder.setHost(masterHostname);
     uriBuilder.setPort(masterPort);
-
-    String[] parts = path.split("\\?");
-
-    if (parts.length > 1) {
-      uriBuilder.setPath(parts[0]);
-      uriBuilder.setQuery(parts[1]);
-    } else {
-      uriBuilder.setPath(path);
-    }
+    uriBuilder.setPath(path);
 
     return uriBuilder.toString();
   }
