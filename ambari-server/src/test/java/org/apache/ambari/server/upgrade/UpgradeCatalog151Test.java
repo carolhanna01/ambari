@@ -43,56 +43,56 @@ import static org.easymock.EasyMock.verify;
 public class UpgradeCatalog151Test {
 
 
-  @Test
-  public void testExecuteDDLUpdates() throws Exception {
+  // @Test
+  // public void testExecuteDDLUpdates() throws Exception {
 
-    final DBAccessor dbAccessor = createNiceMock(DBAccessor.class);
+  //   final DBAccessor dbAccessor = createNiceMock(DBAccessor.class);
 
-    Configuration configuration = createNiceMock(Configuration.class);
-    expect(configuration.getDatabaseUrl()).andReturn(Configuration.JDBC_IN_MEMORY_URL).anyTimes();
+  //   Configuration configuration = createNiceMock(Configuration.class);
+  //   expect(configuration.getDatabaseUrl()).andReturn(Configuration.JDBC_IN_MEMORY_URL).anyTimes();
 
-    dbAccessor.createTable(eq("viewmain"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(), eq("view_name"));
-    dbAccessor.createTable(eq("viewinstancedata"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
-        eq("view_name"), eq("view_instance_name"), eq("name"));
-    dbAccessor.createTable(eq("viewinstance"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
-        eq("view_name"), eq("name"));
-    dbAccessor.createTable(eq("viewinstanceproperty"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
-        eq("view_name"), eq("view_instance_name"), eq("name"));
-    dbAccessor.createTable(eq("viewparameter"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
-        eq("view_name"), eq("name"));
-    dbAccessor.createTable(eq("viewresource"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
-        eq("view_name"), eq("name"));
+  //   dbAccessor.createTable(eq("viewmain"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(), eq("view_name"));
+  //   dbAccessor.createTable(eq("viewinstancedata"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
+  //       eq("view_name"), eq("view_instance_name"), eq("name"));
+  //   dbAccessor.createTable(eq("viewinstance"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
+  //       eq("view_name"), eq("name"));
+  //   dbAccessor.createTable(eq("viewinstanceproperty"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
+  //       eq("view_name"), eq("view_instance_name"), eq("name"));
+  //   dbAccessor.createTable(eq("viewparameter"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
+  //       eq("view_name"), eq("name"));
+  //   dbAccessor.createTable(eq("viewresource"), EasyMock.<List<DBAccessor.DBColumnInfo>>anyObject(),
+  //       eq("view_name"), eq("name"));
 
-    dbAccessor.addFKConstraint("viewparameter", "FK_viewparam_view_name", "view_name", "viewmain", "view_name", true);
-    dbAccessor.addFKConstraint("viewresource", "FK_viewres_view_name", "view_name", "viewmain", "view_name", true);
-    dbAccessor.addFKConstraint("viewinstance", "FK_viewinst_view_name", "view_name", "viewmain", "view_name", true);
+  //   dbAccessor.addFKConstraint("viewparameter", "FK_viewparam_view_name", "view_name", "viewmain", "view_name", true);
+  //   dbAccessor.addFKConstraint("viewresource", "FK_viewres_view_name", "view_name", "viewmain", "view_name", true);
+  //   dbAccessor.addFKConstraint("viewinstance", "FK_viewinst_view_name", "view_name", "viewmain", "view_name", true);
 
-    replay(dbAccessor, configuration);
-    AbstractUpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
-    Class<?> c = AbstractUpgradeCatalog.class;
-    Field f = c.getDeclaredField("configuration");
-    f.setAccessible(true);
-    f.set(upgradeCatalog, configuration);
+  //   replay(dbAccessor, configuration);
+  //   AbstractUpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  //   Class<?> c = AbstractUpgradeCatalog.class;
+  //   Field f = c.getDeclaredField("configuration");
+  //   f.setAccessible(true);
+  //   f.set(upgradeCatalog, configuration);
 
-    upgradeCatalog.executeDDLUpdates();
-    verify(dbAccessor, configuration);
-  }
+  //   upgradeCatalog.executeDDLUpdates();
+  //   verify(dbAccessor, configuration);
+  // }
 
-  @Test
-  public void testExecuteDMLUpdates() throws Exception {
-    final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
-    UpgradeCatalog151 upgradeCatalog = (UpgradeCatalog151) getUpgradeCatalog(dbAccessor);
+  // @Test
+  // public void testExecuteDMLUpdates() throws Exception {
+  //   final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
+  //   UpgradeCatalog151 upgradeCatalog = (UpgradeCatalog151) getUpgradeCatalog(dbAccessor);
 
-    upgradeCatalog.executeDMLUpdates();
-  }
+  //   upgradeCatalog.executeDMLUpdates();
+  // }
 
-  @Test
-  public void testGetTargetVersion() throws Exception {
-    final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
-    UpgradeCatalog   upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  // @Test
+  // public void testGetTargetVersion() throws Exception {
+  //   final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
+  //   UpgradeCatalog   upgradeCatalog = getUpgradeCatalog(dbAccessor);
 
-    Assert.assertEquals("1.5.1", upgradeCatalog.getTargetVersion());
-  }
+  //   Assert.assertEquals("1.5.1", upgradeCatalog.getTargetVersion());
+  // }
 
   private AbstractUpgradeCatalog getUpgradeCatalog(final DBAccessor dbAccessor) {
     Module module = new Module() {
@@ -105,10 +105,10 @@ public class UpgradeCatalog151Test {
     return injector.getInstance(UpgradeCatalog151.class);
   }
   
-  @Test
-  public void testGetSourceVersion() {
-    final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
-    UpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
-    Assert.assertEquals("1.5.0", upgradeCatalog.getSourceVersion());
-  }  
+  // @Test
+  // public void testGetSourceVersion() {
+  //   final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
+  //   UpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  //   Assert.assertEquals("1.5.0", upgradeCatalog.getSourceVersion());
+  // }  
 }

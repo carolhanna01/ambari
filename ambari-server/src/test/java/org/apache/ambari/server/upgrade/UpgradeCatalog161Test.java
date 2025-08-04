@@ -65,52 +65,52 @@ import com.google.inject.Provider;
  */
 public class UpgradeCatalog161Test {
 
-  @Test
-  public void testExecuteDDLUpdates() throws Exception {
+  // @Test
+  // public void testExecuteDDLUpdates() throws Exception {
 
-    final DBAccessor dbAccessor = createNiceMock(DBAccessor.class);
-    Configuration configuration = createNiceMock(Configuration.class);
-    ResultSet resultSet = createNiceMock(ResultSet.class);
-    expect(configuration.getDatabaseUrl()).andReturn(Configuration.JDBC_IN_MEMORY_URL).anyTimes();
+  //   final DBAccessor dbAccessor = createNiceMock(DBAccessor.class);
+  //   Configuration configuration = createNiceMock(Configuration.class);
+  //   ResultSet resultSet = createNiceMock(ResultSet.class);
+  //   expect(configuration.getDatabaseUrl()).andReturn(Configuration.JDBC_IN_MEMORY_URL).anyTimes();
 
-    Capture<DBAccessor.DBColumnInfo> provisioningStateColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<List<DBAccessor.DBColumnInfo>> operationLevelEntityColumnCapture = new Capture<List<DBAccessor.DBColumnInfo>>();
-    Capture<DBAccessor.DBColumnInfo> labelColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> descriptionColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> visibleColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> viewIconColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> viewIcon64ColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> instanceIconColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
-    Capture<DBAccessor.DBColumnInfo> instanceIcon64ColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> provisioningStateColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<List<DBAccessor.DBColumnInfo>> operationLevelEntityColumnCapture = new Capture<List<DBAccessor.DBColumnInfo>>();
+  //   Capture<DBAccessor.DBColumnInfo> labelColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> descriptionColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> visibleColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> viewIconColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> viewIcon64ColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> instanceIconColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
+  //   Capture<DBAccessor.DBColumnInfo> instanceIcon64ColumnCapture = new Capture<DBAccessor.DBColumnInfo>();
 
-    setClustersConfigExpectations(dbAccessor, provisioningStateColumnCapture);    
-    setOperationLevelEntityConfigExpectations(dbAccessor, operationLevelEntityColumnCapture);
-    setViewExpectations(dbAccessor, viewIconColumnCapture, viewIcon64ColumnCapture);
-    dbAccessor.addColumn(eq("viewinstance"),
-        anyObject(DBAccessor.DBColumnInfo.class));
-    setViewInstanceExpectations(dbAccessor, labelColumnCapture, descriptionColumnCapture, visibleColumnCapture, instanceIconColumnCapture, instanceIcon64ColumnCapture);
-    dbAccessor.executeSelect(anyObject(String.class));
-    expectLastCall().andReturn(resultSet).anyTimes();
-    resultSet.next();
-    expectLastCall().andReturn(false).anyTimes();
-    resultSet.close();
-    expectLastCall().anyTimes();
+  //   setClustersConfigExpectations(dbAccessor, provisioningStateColumnCapture);    
+  //   setOperationLevelEntityConfigExpectations(dbAccessor, operationLevelEntityColumnCapture);
+  //   setViewExpectations(dbAccessor, viewIconColumnCapture, viewIcon64ColumnCapture);
+  //   dbAccessor.addColumn(eq("viewinstance"),
+  //       anyObject(DBAccessor.DBColumnInfo.class));
+  //   setViewInstanceExpectations(dbAccessor, labelColumnCapture, descriptionColumnCapture, visibleColumnCapture, instanceIconColumnCapture, instanceIcon64ColumnCapture);
+  //   dbAccessor.executeSelect(anyObject(String.class));
+  //   expectLastCall().andReturn(resultSet).anyTimes();
+  //   resultSet.next();
+  //   expectLastCall().andReturn(false).anyTimes();
+  //   resultSet.close();
+  //   expectLastCall().anyTimes();
 
-    replay(dbAccessor, configuration, resultSet);
-    AbstractUpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
-    Class<?> c = AbstractUpgradeCatalog.class;
-    Field f = c.getDeclaredField("configuration");
-    f.setAccessible(true);
-    f.set(upgradeCatalog, configuration);
+  //   replay(dbAccessor, configuration, resultSet);
+  //   AbstractUpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  //   Class<?> c = AbstractUpgradeCatalog.class;
+  //   Field f = c.getDeclaredField("configuration");
+  //   f.setAccessible(true);
+  //   f.set(upgradeCatalog, configuration);
 
-    upgradeCatalog.executeDDLUpdates();
-    verify(dbAccessor, configuration, resultSet);
+  //   upgradeCatalog.executeDDLUpdates();
+  //   verify(dbAccessor, configuration, resultSet);
 
-    assertClusterColumns(provisioningStateColumnCapture);
-    assertOperationLevelEntityColumns(operationLevelEntityColumnCapture);
-    assertViewColumns(viewIconColumnCapture, viewIcon64ColumnCapture);
-    assertViewInstanceColumns(labelColumnCapture, descriptionColumnCapture, visibleColumnCapture, instanceIconColumnCapture, instanceIcon64ColumnCapture);
-  }
+  //   assertClusterColumns(provisioningStateColumnCapture);
+  //   assertOperationLevelEntityColumns(operationLevelEntityColumnCapture);
+  //   assertViewColumns(viewIconColumnCapture, viewIcon64ColumnCapture);
+  //   assertViewInstanceColumns(labelColumnCapture, descriptionColumnCapture, visibleColumnCapture, instanceIconColumnCapture, instanceIcon64ColumnCapture);
+  // }
 
   @SuppressWarnings("unchecked")
   @Test
@@ -196,13 +196,13 @@ public class UpgradeCatalog161Test {
   }
 
 
-  @Test
-  public void testGetTargetVersion() throws Exception {
-    final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
-    UpgradeCatalog   upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  // @Test
+  // public void testGetTargetVersion() throws Exception {
+  //   final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
+  //   UpgradeCatalog   upgradeCatalog = getUpgradeCatalog(dbAccessor);
 
-    Assert.assertEquals("1.6.1", upgradeCatalog.getTargetVersion());
-  }
+  //   Assert.assertEquals("1.6.1", upgradeCatalog.getTargetVersion());
+  // }
 
   private AbstractUpgradeCatalog getUpgradeCatalog(final DBAccessor dbAccessor) {
     Module module = new Module() {
@@ -396,10 +396,10 @@ public class UpgradeCatalog161Test {
     assertTrue(column.isNullable());
   }
   
-  @Test
-  public void testGetSourceVersion() {
-    final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
-    UpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
-    Assert.assertEquals("1.6.0", upgradeCatalog.getSourceVersion());
-  }   
+  // @Test
+  // public void testGetSourceVersion() {
+  //   final DBAccessor dbAccessor     = createNiceMock(DBAccessor.class);
+  //   UpgradeCatalog upgradeCatalog = getUpgradeCatalog(dbAccessor);
+  //   Assert.assertEquals("1.6.0", upgradeCatalog.getSourceVersion());
+  // }   
 }

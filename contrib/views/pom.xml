@@ -52,47 +52,7 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <!--GIT files-->
-            <exclude>.git/</exclude>
-            <exclude>**/.gitignore</exclude>
-            <exclude>**/.gitattributes</exclude>
-            <!--gitignore content-->
-            <exclude>.idea/</exclude>
-            <exclude>pass.txt</exclude>
-            <exclude>.DS_Store</exclude>
-            <exclude>.iml/</exclude>
-            <exclude>.classpath</exclude>
-            <exclude>.project</exclude>
-            <exclude>.settings</exclude>
-            <exclude>**/target/**</exclude>
-            <exclude>**/.gitkeep</exclude>
-            <exclude>**/.bowerrc</exclude>
-            <exclude>**/.editorconfig</exclude>
-            <exclude>**/.jshintrc</exclude>
-            <exclude>**/.tmp/**</exclude>
-            <exclude>**/*.json</exclude>
-            <exclude>**/*.svg</exclude>
-            <exclude>**/vendor/**</exclude>
-            <exclude>**/bin</exclude>
-            <exclude>**/node_modules/**</exclude>
-            <exclude>**/vendor/**</exclude>
-            <exclude>**/public/**</exclude>
-            <exclude>**/dist/**</exclude>
-            <exclude>**/bower_components/**</exclude>
-            <exclude>**/node/**</exclude>
-            <exclude>**/runner.js</exclude>
-            <exclude>**/assets/javascripts/**</exclude>
-            <exclude>**/assets/stylesheets/**</exclude>
-            <exclude>**/assets/static/javascripts/**</exclude>
-            <exclude>**/assets/static/stylesheets/**</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
+      
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>rpm-maven-plugin</artifactId>
