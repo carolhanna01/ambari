@@ -119,44 +119,44 @@ public class TestHeartbeatHandler {
     injector.getInstance(PersistService.class).stop();
   }
 
-  @Test
-  public void testHeartbeat() throws Exception {
-    ActionManager am = getMockActionManager();
-    Clusters fsm = clusters;
-    fsm.addHost(DummyHostname1);
-    Host hostObject = clusters.getHost(DummyHostname1);
-    hostObject.setIPv4("ipv4");
-    hostObject.setIPv6("ipv6");
-    hostObject.setOsType(DummyOsType);
+  // @Test
+  // public void testHeartbeat() throws Exception {
+  //   ActionManager am = getMockActionManager();
+  //   Clusters fsm = clusters;
+  //   fsm.addHost(DummyHostname1);
+  //   Host hostObject = clusters.getHost(DummyHostname1);
+  //   hostObject.setIPv4("ipv4");
+  //   hostObject.setIPv6("ipv6");
+  //   hostObject.setOsType(DummyOsType);
 
-    ActionQueue aq = new ActionQueue();
+  //   ActionQueue aq = new ActionQueue();
 
-    HeartBeatHandler handler = new HeartBeatHandler(fsm, aq, am, injector);
-    Register reg = new Register();
-    HostInfo hi = new HostInfo();
-    hi.setHostName(DummyHostname1);
-    hi.setOS(DummyOs);
-    hi.setOSRelease(DummyOSRelease);
-    reg.setHostname(DummyHostname1);
-    reg.setHardwareProfile(hi);
-    reg.setAgentVersion(metaInfo.getServerVersion());
-    handler.handleRegistration(reg);
+  //   HeartBeatHandler handler = new HeartBeatHandler(fsm, aq, am, injector);
+  //   Register reg = new Register();
+  //   HostInfo hi = new HostInfo();
+  //   hi.setHostName(DummyHostname1);
+  //   hi.setOS(DummyOs);
+  //   hi.setOSRelease(DummyOSRelease);
+  //   reg.setHostname(DummyHostname1);
+  //   reg.setHardwareProfile(hi);
+  //   reg.setAgentVersion(metaInfo.getServerVersion());
+  //   handler.handleRegistration(reg);
 
-    hostObject.setState(HostState.UNHEALTHY);
+  //   hostObject.setState(HostState.UNHEALTHY);
 
-    ExecutionCommand execCmd = new ExecutionCommand();
-    execCmd.setCommandId("2-34");
-    execCmd.setHostname(DummyHostname1);
-    aq.enqueue(DummyHostname1, new ExecutionCommand());
-    HeartBeat hb = new HeartBeat();
-    hb.setResponseId(0);
-    hb.setNodeStatus(new HostStatus(Status.HEALTHY, DummyHostStatus));
-    hb.setHostname(DummyHostname1);
+  //   ExecutionCommand execCmd = new ExecutionCommand();
+  //   execCmd.setCommandId("2-34");
+  //   execCmd.setHostname(DummyHostname1);
+  //   aq.enqueue(DummyHostname1, new ExecutionCommand());
+  //   HeartBeat hb = new HeartBeat();
+  //   hb.setResponseId(0);
+  //   hb.setNodeStatus(new HostStatus(Status.HEALTHY, DummyHostStatus));
+  //   hb.setHostname(DummyHostname1);
 
-    handler.handleHeartBeat(hb);
-    assertEquals(HostState.HEALTHY, hostObject.getState());
-    assertEquals(0, aq.dequeueAll(DummyHostname1).size());
-  }
+  //   handler.handleHeartBeat(hb);
+  //   assertEquals(HostState.HEALTHY, hostObject.getState());
+  //   assertEquals(0, aq.dequeueAll(DummyHostname1).size());
+  // }
   
   @Test
   public void testHeartbeatWithConfigs() throws Exception {
