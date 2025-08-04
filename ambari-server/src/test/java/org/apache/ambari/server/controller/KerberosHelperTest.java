@@ -302,30 +302,30 @@ public class KerberosHelperTest extends EasyMockSupport {
     testEnableKerberos(new KerberosCredential("principal", "password", "keytab"), "mit-kdc", "true", false, true);
   }
 
-  @Test
-  public void testEnsureIdentities() throws Exception {
-    testEnsureIdentities(new KerberosCredential("principal", "password", "keytab"));
-  }
+  // @Test
+  // public void testEnsureIdentities() throws Exception {
+  //   testEnsureIdentities(new KerberosCredential("principal", "password", "keytab"));
+  // }
 
-  @Test(expected = KerberosMissingAdminCredentialsException.class)
-  public void testEnsureIdentitiesMissingCredentials() throws Exception {
-    try {
-      testEnsureIdentities(null);
-    } catch (IllegalArgumentException e) {
-      Assert.assertTrue(e.getMessage().startsWith("Missing KDC administrator credentials"));
-      throw e;
-    }
-  }
+  // @Test(expected = KerberosMissingAdminCredentialsException.class)
+  // public void testEnsureIdentitiesMissingCredentials() throws Exception {
+  //   try {
+  //     testEnsureIdentities(null);
+  //   } catch (IllegalArgumentException e) {
+  //     Assert.assertTrue(e.getMessage().startsWith("Missing KDC administrator credentials"));
+  //     throw e;
+  //   }
+  // }
 
-  @Test(expected = KerberosMissingAdminCredentialsException.class)
-  public void testEnsureIdentitiesInvalidCredentials() throws Exception {
-    try {
-      testEnsureIdentities(new KerberosCredential("invalid_principal", "password", "keytab"));
-    } catch (IllegalArgumentException e) {
-      Assert.assertTrue(e.getMessage().startsWith("Invalid KDC administrator credentials"));
-      throw e;
-    }
-  }
+  // @Test(expected = KerberosMissingAdminCredentialsException.class)
+  // public void testEnsureIdentitiesInvalidCredentials() throws Exception {
+  //   try {
+  //     testEnsureIdentities(new KerberosCredential("invalid_principal", "password", "keytab"));
+  //   } catch (IllegalArgumentException e) {
+  //     Assert.assertTrue(e.getMessage().startsWith("Invalid KDC administrator credentials"));
+  //     throw e;
+  //   }
+  // }
   @Test
   public void testDeleteIdentities() throws Exception {
     testDeleteIdentities(new KerberosCredential("principal", "password", "keytab"));

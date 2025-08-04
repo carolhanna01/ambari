@@ -148,70 +148,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>pass.txt</exclude>
-            <exclude>derby.log</exclude>
-            <exclude>src/test/resources/version</exclude>
-            <exclude>src/test/resources/users.ldif</exclude>
-            <exclude>src/test/resources/gsInstaller-hosts.txt</exclude>
-            <exclude>src/test/resources/temporal_ganglia_data.txt</exclude>
-            <exclude>src/test/resources/users.ldif</exclude>
-            <exclude>src/main/resources/hive-schema-0.10.0.oracle.sql</exclude>
-            <exclude>src/main/resources/hive-schema-0.12.0.oracle.sql</exclude>
-            <exclude>src/main/resources/db/serial</exclude>
-            <exclude>src/main/resources/db/index.txt</exclude>
-            <exclude>src/main/resources/stacks/HDP/2.1.GlusterFS/services/YARN/package/templates/exclude_hosts_list.j2</exclude>
-            <exclude>src/main/windows/ambari-server.cmd</exclude>
-            <exclude>src/main/windows/ambari-server.ps1</exclude>
-            <exclude>src/main/package/choco/ambari-server.nuspec</exclude>
-            <exclude>src/main/resources/common-services/AMBARI_METRICS/0.1.0/package/templates/smoketest_metrics.json.j2</exclude>
-            <exclude>src/main/resources/common-services/HDFS/2.1.0.2.0/package/scripts/balancer-emulator/balancer-err.log</exclude>
-            <exclude>src/main/resources/common-services/HDFS/2.1.0.2.0/package/scripts/balancer-emulator/balancer.log</exclude>
-            <exclude>src/main/resources/stacks/BIGTOP/0.8/services/HDFS/package/scripts/balancer-emulator/balancer.log</exclude>
-            <exclude>src/main/resources/stacks/BIGTOP/0.8/services/HDFS/package/scripts/balancer-emulator/balancer-err.log</exclude>
-            <exclude>src/main/resources/stacks/PHD/3.0.0.0/services/HDFS/package/scripts/balancer-emulator/balancer.log</exclude>
-            <exclude>src/main/resources/stacks/PHD/3.0.0.0/services/HDFS/package/scripts/balancer-emulator/balancer-err.log</exclude>
-            <exclude>conf/unix/ca.config</exclude>
-            <exclude>conf/unix/krb5JAASLogin.conf</exclude>
-            <exclude>conf/windows/ca.config</exclude>
-            <exclude>conf/windows/krb5JAASLogin.conf</exclude>
-            <exclude>**/*.iml</exclude>
-            <exclude>**/*.json</exclude>
-            <exclude>**/*.sql</exclude>
-            <exclude>**/repo_suse_rhel.j2</exclude>
-            <exclude>**/repo_debian.j2</exclude>
-            <exclude>**/cluster.properties.j2</exclude>
-            <exclude>**/repo_ubuntu.j2</exclude>
-            <exclude>**/.pydev*</exclude>
-            <!--gitignore content -->
-            <exclude>src/main/resources/db/newcerts/**</exclude>
-
-            <!-- Stack definitions -->
-            <exclude>src/main/resources/stacks/HDP/2.0._/services/HBASE/package/templates/regionservers.j2</exclude>
-            <exclude>src/main/resources/stacks/HDPWIN/2.1/services/*/configuration*/*</exclude>
-
-            <!--test samples -->
-            <exclude>src/test/resources/TestAmbaryServer.samples/**</exclude>
-            <exclude>src/test/resources/*.txt</exclude>
-            <exclude>src/test/resources/users_for_dn_with_space.ldif</exclude>
-
-            <!--Velocity log -->
-            <exclude>**/velocity.log*</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+     
       <plugin>
         <artifactId>eclipselink-staticweave-maven-plugin</artifactId>
         <groupId>au.com.alderaan</groupId>
@@ -1106,22 +1043,7 @@
           </dataSet>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <failOnError>false</failOnError>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+     
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>

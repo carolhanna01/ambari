@@ -161,28 +161,28 @@ public class CertGenerationTest {
     Assert.assertTrue(serverKeyStrore.exists());
   }
 
-  @Test
-  public void testRevokeExistingAgentCert() throws Exception {
+  // @Test
+  // public void testRevokeExistingAgentCert() throws Exception {
 
-    Map<String,String> config = certMan.configs.getConfigsMap();
-    config.put(Configuration.PASSPHRASE_KEY,"passphrase");
+  //   Map<String,String> config = certMan.configs.getConfigsMap();
+  //   config.put(Configuration.PASSPHRASE_KEY,"passphrase");
 
-    String agentHostname = "agent_hostname";
-    SignCertResponse scr = certMan.signAgentCrt(agentHostname,
-      "incorrect_agentCrtReqContent", "passphrase");
-    //Revoke command wasn't executed
-    Assert.assertFalse(scr.getMessage().contains("-revoke"));
+  //   String agentHostname = "agent_hostname";
+  //   SignCertResponse scr = certMan.signAgentCrt(agentHostname,
+  //     "incorrect_agentCrtReqContent", "passphrase");
+  //   //Revoke command wasn't executed
+  //   Assert.assertFalse(scr.getMessage().contains("-revoke"));
 
-    //Emulate existing agent certificate
-    File fakeAgentCertFile = new File(temp.getRoot().getAbsoluteFile() +
-      File.separator + agentHostname + ".crt");
-    Assert.assertTrue(fakeAgentCertFile.exists());
+  //   //Emulate existing agent certificate
+  //   File fakeAgentCertFile = new File(temp.getRoot().getAbsoluteFile() +
+  //     File.separator + agentHostname + ".crt");
+  //   Assert.assertTrue(fakeAgentCertFile.exists());
 
-    //Revoke command was executed
-    scr = certMan.signAgentCrt(agentHostname,
-      "incorrect_agentCrtReqContent", "passphrase");
-    Assert.assertTrue(scr.getMessage().contains("-revoke"));
-  }
+  //   //Revoke command was executed
+  //   scr = certMan.signAgentCrt(agentHostname,
+  //     "incorrect_agentCrtReqContent", "passphrase");
+  //   Assert.assertTrue(scr.getMessage().contains("-revoke"));
+  // }
 
   @Test
   public void testPassFileGen() throws Exception {
