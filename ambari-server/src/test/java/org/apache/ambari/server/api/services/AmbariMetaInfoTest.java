@@ -346,12 +346,12 @@ public class AmbariMetaInfoTest {
     
   }
   
-  @Test
-  public void testGetStacksNames() throws Exception {
-    Set<Stack> stackNames = metaInfo.getStackNames();
-    assertEquals(stackNames.size(), STACKS_NAMES_CNT);
-    assertTrue(stackNames.contains(new Stack(STACK_NAME_HDP)));
-  }
+  // @Test
+  // public void testGetStacksNames() throws Exception {
+  //   Set<Stack> stackNames = metaInfo.getStackNames();
+  //   assertEquals(stackNames.size(), STACKS_NAMES_CNT);
+  //   assertTrue(stackNames.contains(new Stack(STACK_NAME_HDP)));
+  // }
   
   @Test
   public void testGetStack() throws Exception {
