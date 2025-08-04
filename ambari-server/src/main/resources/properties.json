@@ -16,7 +16,6 @@
         "Services/display_name",
         "Services/attributes",
         "ServiceInfo/desired_configs",
-        "params/run_smoke_test",
         "_"
     ],
     "Host":[
@@ -48,7 +47,6 @@
         "ServiceComponents/display_name",
         "ServiceComponents/description",
         "ServiceComponentInfo/desired_configs",
-        "params/run_smoke_test",
         "_"
     ],
     "HostComponent":[
@@ -62,7 +60,6 @@
         "HostRoles/desired_configs",
         "HostRoles/stack_id",
         "HostRoles/desired_stack_id",
-        "params/run_smoke_test",
         "_"
     ],
     "Configuration":[
