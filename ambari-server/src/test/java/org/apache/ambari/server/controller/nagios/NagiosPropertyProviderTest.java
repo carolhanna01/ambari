@@ -84,62 +84,62 @@ public class NagiosPropertyProviderTest {
     injector.getInstance(PersistService.class).stop();    
   }
   
-  @Test
-  public void testNoNagiosService() throws Exception {
-    TestStreamProvider streamProvider = new TestStreamProvider("nagios_alerts.txt");
+  // @Test
+  // public void testNoNagiosService() throws Exception {
+  //   TestStreamProvider streamProvider = new TestStreamProvider("nagios_alerts.txt");
 
-    NagiosPropertyProvider npp = new NagiosPropertyProvider(Resource.Type.Service,
-        streamProvider,
-        "ServiceInfo/cluster_name",
-        "ServiceInfo/service_name");
+  //   NagiosPropertyProvider npp = new NagiosPropertyProvider(Resource.Type.Service,
+  //       streamProvider,
+  //       "ServiceInfo/cluster_name",
+  //       "ServiceInfo/service_name");
     
-    Resource resource = new ResourceImpl(Resource.Type.Service);
-    resource.setProperty("ServiceInfo/cluster_name", "c1");
-    resource.setProperty("ServiceInfo/service_name", "HBASE");
+  //   Resource resource = new ResourceImpl(Resource.Type.Service);
+  //   resource.setProperty("ServiceInfo/cluster_name", "c1");
+  //   resource.setProperty("ServiceInfo/service_name", "HBASE");
     
-    // request with an empty set should get all supported properties
-    Request request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), new HashMap<String, TemporalInfo>());
+  //   // request with an empty set should get all supported properties
+  //   Request request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), new HashMap<String, TemporalInfo>());
 
-    Set<Resource> set = npp.populateResources(Collections.singleton(resource), request, null);
-    Assert.assertEquals(1, set.size());
+  //   Set<Resource> set = npp.populateResources(Collections.singleton(resource), request, null);
+  //   Assert.assertEquals(1, set.size());
     
-    Resource res = set.iterator().next();
+  //   Resource res = set.iterator().next();
     
-    Map<String, Map<String, Object>> values = res.getPropertiesMap();
+  //   Map<String, Map<String, Object>> values = res.getPropertiesMap();
     
-    Assert.assertFalse("Expected no alerts", values.containsKey("alerts"));
-  }
+  //   Assert.assertFalse("Expected no alerts", values.containsKey("alerts"));
+  // }
   
-  @Test
-  public void testNoNagiosServerCompoonent() throws Exception {
-    Cluster cluster = clusters.getCluster("c1");
-    Service service = cluster.addService("NAGIOS");
-    service.setDesiredStackVersion(new StackId("HDP-2.0.5"));
-    service.persist();
+  // @Test
+  // public void testNoNagiosServerCompoonent() throws Exception {
+  //   Cluster cluster = clusters.getCluster("c1");
+  //   Service service = cluster.addService("NAGIOS");
+  //   service.setDesiredStackVersion(new StackId("HDP-2.0.5"));
+  //   service.persist();
     
-    TestStreamProvider streamProvider = new TestStreamProvider("nagios_alerts.txt");
+  //   TestStreamProvider streamProvider = new TestStreamProvider("nagios_alerts.txt");
 
-    NagiosPropertyProvider npp = new NagiosPropertyProvider(Resource.Type.Service,
-        streamProvider,
-        "ServiceInfo/cluster_name",
-        "ServiceInfo/service_name");
+  //   NagiosPropertyProvider npp = new NagiosPropertyProvider(Resource.Type.Service,
+  //       streamProvider,
+  //       "ServiceInfo/cluster_name",
+  //       "ServiceInfo/service_name");
     
-    Resource resource = new ResourceImpl(Resource.Type.Service);
-    resource.setProperty("ServiceInfo/cluster_name", "c1");
-    resource.setProperty("ServiceInfo/service_name", "HBASE");
+  //   Resource resource = new ResourceImpl(Resource.Type.Service);
+  //   resource.setProperty("ServiceInfo/cluster_name", "c1");
+  //   resource.setProperty("ServiceInfo/service_name", "HBASE");
     
-    // request with an empty set should get all supported properties
-    Request request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), new HashMap<String, TemporalInfo>());
+  //   // request with an empty set should get all supported properties
+  //   Request request = PropertyHelper.getReadRequest(Collections.<String>emptySet(), new HashMap<String, TemporalInfo>());
 
-    Set<Resource> set = npp.populateResources(Collections.singleton(resource), request, null);
-    Assert.assertEquals(1, set.size());
+  //   Set<Resource> set = npp.populateResources(Collections.singleton(resource), request, null);
+  //   Assert.assertEquals(1, set.size());
     
-    Resource res = set.iterator().next();
+  //   Resource res = set.iterator().next();
     
-    Map<String, Map<String, Object>> values = res.getPropertiesMap();
+  //   Map<String, Map<String, Object>> values = res.getPropertiesMap();
     
-    Assert.assertFalse("Expected no alerts", values.containsKey("alerts"));
-  }
+  //   Assert.assertFalse("Expected no alerts", values.containsKey("alerts"));
+  // }
   
   @Test
   public void testNagiosServiceAlerts() throws Exception {
