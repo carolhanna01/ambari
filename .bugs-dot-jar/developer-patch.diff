@@ -1,0 +1,182 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+index 6e6571f31c..6af54c02df 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+@@ -504,7 +504,7 @@ public class Configuration {
+ 
+   public String getBootSetupAgentScript() {
+     return properties.getProperty(BOOTSTRAP_SETUP_AGENT_SCRIPT,
+-        "/usr/lib/python2.7/site-packages/ambari_server/setupAgent.py");
++        "/usr/lib/python2.6/site-packages/ambari_server/setupAgent.py");
+   }
+ 
+   public String getBootSetupAgentPassword() {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
+index 0ac7e6a718..6548be8a8d 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariCustomCommandExecutionHelper.java
+@@ -44,6 +44,7 @@ import org.apache.ambari.server.state.ServiceComponentHostEvent;
+ import org.apache.ambari.server.state.ServiceInfo;
+ import org.apache.ambari.server.state.ServiceOsSpecific;
+ import org.apache.ambari.server.state.StackId;
++import org.apache.ambari.server.state.State;
+ import org.apache.ambari.server.state.svccomphost.ServiceComponentHostOpInProgressEvent;
+ import org.apache.ambari.server.utils.StageUtils;
+ import org.slf4j.Logger;
+@@ -241,15 +242,6 @@ public class AmbariCustomCommandExecutionHelper {
+       execCmd.setClusterHostInfo(
+           StageUtils.getClusterHostInfo(clusters.getHostsForCluster(clusterName), cluster));
+ 
+-      if (hostLevelParams == null) {
+-        hostLevelParams = new TreeMap<String, String>();
+-      }
+-      hostLevelParams.put(JDK_LOCATION, amc.getJdkResourceUrl());
+-      hostLevelParams.put(JAVA_HOME, amc.getJavaHome());
+-      hostLevelParams.put(JDK_NAME, amc.getJDKName());
+-      hostLevelParams.put(JCE_NAME, amc.getJCEName());
+-      hostLevelParams.put(STACK_NAME, stackId.getStackName());
+-      hostLevelParams.put(STACK_VERSION, stackId.getStackVersion());
+       hostLevelParams.put(CUSTOM_COMMAND, commandName);
+       execCmd.setHostLevelParams(hostLevelParams);
+ 
+@@ -283,7 +275,6 @@ public class AmbariCustomCommandExecutionHelper {
+           serviceInfo.getServiceMetadataFolder());
+ 
+       execCmd.setCommandParams(commandParams);
+-
+     }
+   }
+ 
+@@ -333,7 +324,6 @@ public class AmbariCustomCommandExecutionHelper {
+           .iterator().next();
+     }
+ 
+-
+     addServiceCheckAction(stage, hostName, smokeTestRole, nowTimestamp,
+         serviceName, componentName, actionParameters,
+         hostLevelParams);
+@@ -387,13 +377,6 @@ public class AmbariCustomCommandExecutionHelper {
+     if (hostLevelParams == null) {
+       hostLevelParams = new TreeMap<String, String>();
+     }
+-    hostLevelParams.put(JDK_LOCATION, amc.getJdkResourceUrl());
+-    hostLevelParams.put(JAVA_HOME, amc.getJavaHome());
+-    hostLevelParams.put(JDK_NAME, amc.getJDKName());
+-    hostLevelParams.put(JCE_NAME, amc.getJCEName());
+-    hostLevelParams.put(STACK_NAME, stackId.getStackName());
+-    hostLevelParams.put(STACK_VERSION, stackId.getStackVersion());
+-    hostLevelParams.putAll(amc.getRcaParameters());
+     execCmd.setHostLevelParams(hostLevelParams);
+ 
+     Map<String, String> commandParams = new TreeMap<String, String>();
+@@ -500,6 +483,14 @@ public class AmbariCustomCommandExecutionHelper {
+       throw new AmbariException("Component " + slaveCompType + " is not supported for decommissioning.");
+     }
+ 
++    // Decommission only if the sch is in state STARTED or INSTALLED
++    for (ServiceComponentHost sch : svcComponents.get(slaveCompType).getServiceComponentHosts().values()) {
++      if (excludedHosts.contains(sch.getHostName()) && sch.getState() != State.STARTED) {
++        throw new AmbariException("Component " + slaveCompType + " on host " + sch.getHostName() + " cannot be " +
++            "decommissioned as its not in STARTED state. Aborting the whole request.");
++      }
++    }
++
+     // Set/reset decommissioned flag on all components
+     for (ServiceComponentHost sch : svcComponents.get(slaveCompType).getServiceComponentHosts().values()) {
+       if (excludedHosts.contains(sch.getHostName())) {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index 570e57499c..a9b63648c2 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -744,7 +744,6 @@ public class AmbariManagementControllerImpl implements
+     return response;
+   }
+ 
+-
+   private Set<ConfigurationResponse> getConfigurations(
+       ConfigurationRequest request) throws AmbariException {
+     if (request.getClusterName() == null) {
+@@ -1277,11 +1276,10 @@ public class AmbariManagementControllerImpl implements
+               + ", serviceCheckRole=" + smokeTestRole);
+           continue;
+         }
+-        Configuration configuration = injector.getInstance(Configuration.class);
++
+         customCommandExecutionHelper.addServiceCheckAction(stage, clientHost,
+             smokeTestRole, nowTimestamp, serviceName,
+-            null, null, null);
+-
++            null, null, createDefaultHostParams(cluster));
+       }
+ 
+       RoleCommandOrder rco = getRoleCommandOrder(cluster);
+@@ -1293,6 +1291,19 @@ public class AmbariManagementControllerImpl implements
+     return null;
+   }
+ 
++  private TreeMap<String, String> createDefaultHostParams(Cluster cluster) {
++    StackId stackId = cluster.getDesiredStackVersion();
++    TreeMap<String, String> hostLevelParams = new TreeMap<String, String>();
++    hostLevelParams.put(JDK_LOCATION, getJdkResourceUrl());
++    hostLevelParams.put(JAVA_HOME, getJavaHome());
++    hostLevelParams.put(JDK_NAME, getJDKName());
++    hostLevelParams.put(JCE_NAME, getJCEName());
++    hostLevelParams.put(STACK_NAME, stackId.getStackName());
++    hostLevelParams.put(STACK_VERSION, stackId.getStackVersion());
++    hostLevelParams.putAll(getRcaParameters());
++    return hostLevelParams;
++  }
++
+   private void persistStages(List<Stage> stages) throws AmbariException {
+     if (stages != null && !stages.isEmpty()) {
+       persistRequest(requestFactory.createNewFromStages(stages));
+@@ -2044,11 +2055,8 @@ public class AmbariManagementControllerImpl implements
+     String clusterHostInfoJson = StageUtils.getGson().toJson(clusterHostInfo);
+     Stage stage = createNewStage(cluster, actionManager.getNextRequestId(), requestContext, clusterHostInfoJson);
+ 
+-    Map<String, String> params = new TreeMap<String, String>();
+-    // TODO : Update parameter population to be done only here
+-    params.put(JDK_LOCATION, this.jdkResourceUrl);
+-    params.put(STACK_VERSION, cluster.getDesiredStackVersion().getStackVersion());
+-    params.putAll(getRcaParameters());
++
++    Map<String, String> params = createDefaultHostParams(cluster);
+ 
+     if (actionRequest.isCommand()) {
+       customCommandExecutionHelper.addAction(actionRequest, stage, params);
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
+index d1ad1a9bb9..dbc81a2b62 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/HostComponentResourceProvider.java
+@@ -73,8 +73,8 @@ public class HostComponentResourceProvider extends AbstractControllerResourcePro
+       = PropertyHelper.getPropertyId("HostRoles", "actual_configs");
+   protected static final String HOST_COMPONENT_STALE_CONFIGS_PROPERTY_ID
+       = PropertyHelper.getPropertyId("HostRoles", "stale_configs");
+-  protected static final String HOST_COMPONENT_ADMIN_STATE_PROPERTY_ID
+-      = PropertyHelper.getPropertyId("HostRoles", "admin_state");
++  protected static final String HOST_COMPONENT_DESIRED_ADMIN_STATE_PROPERTY_ID
++      = PropertyHelper.getPropertyId("HostRoles", "desired_admin_state");
+   //Component name mappings
+   private static final Map<String, PropertyProvider> HOST_COMPONENT_PROPERTIES_PROVIDER = new HashMap<String, PropertyProvider>();
+   private static final int HOST_COMPONENT_HTTP_PROPERTY_REQUEST_CONNECT_TIMEOUT = 1500;   //milliseconds
+@@ -193,7 +193,7 @@ public class HostComponentResourceProvider extends AbstractControllerResourcePro
+       setResourceProperty(resource, HOST_COMPONENT_STALE_CONFIGS_PROPERTY_ID,
+           Boolean.valueOf(response.isStaleConfig()), requestedIds);
+       if (response.getAdminState() != null) {
+-        setResourceProperty(resource, HOST_COMPONENT_ADMIN_STATE_PROPERTY_ID,
++        setResourceProperty(resource, HOST_COMPONENT_DESIRED_ADMIN_STATE_PROPERTY_ID,
+             response.getAdminState(), requestedIds);
+       }
+ 
+@@ -302,9 +302,9 @@ public class HostComponentResourceProvider extends AbstractControllerResourcePro
+       serviceComponentHostRequest.setStaleConfig(
+           properties.get(HOST_COMPONENT_STALE_CONFIGS_PROPERTY_ID).toString().toLowerCase());
+     }
+-    if (properties.get(HOST_COMPONENT_ADMIN_STATE_PROPERTY_ID) != null) {
++    if (properties.get(HOST_COMPONENT_DESIRED_ADMIN_STATE_PROPERTY_ID) != null) {
+       serviceComponentHostRequest.setAdminState(
+-          properties.get(HOST_COMPONENT_ADMIN_STATE_PROPERTY_ID).toString());
++          properties.get(HOST_COMPONENT_DESIRED_ADMIN_STATE_PROPERTY_ID).toString());
+     }
+ 
+     return serviceComponentHostRequest;
