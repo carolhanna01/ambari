@@ -66,7 +66,7 @@ class Controller(threading.Thread):
   def start(self):
     self.actionQueue = ActionQueue(self.config)
     self.actionQueue.start()
-    self.register = Register(self.config)
+    self.register = Register()
     self.heartbeat = Heartbeat(self.actionQueue)
     pass
   

@@ -18,7 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
-import sys, os
+import sys
 import json
 from Hardware import Hardware
 from ActionQueue import ActionQueue
@@ -34,9 +34,8 @@ firstContact = True
 class Register:
   """ Registering with the server. Get the hardware profile and 
   declare success for now """
-  def __init__(self, config):
+  def __init__(self):
     self.hardware = Hardware()
-    self.config = config
 
   def build(self, id='-1'):
     global clusterId, clusterDefinitionRevision, firstContact
@@ -45,27 +44,15 @@ class Register:
     hostInfo = HostInfo() 
     agentEnv = { }
     hostInfo.register(agentEnv)
-
-    version = self.read_agent_version()
     
     register = { 'responseId'        : int(id),
                   'timestamp'         : timestamp,
                   'hostname'          : hostname.hostname(),
                   'publicHostname'    : hostname.public_hostname(),
                   'hardwareProfile'   : self.hardware.get(),
-                  'agentEnv'          : agentEnv,
-                  'agentVersion'      : version
+                  'agentEnv'          : agentEnv
                 }
     return register
-
-  def read_agent_version(self):
-    data_dir = self.config.get('agent', 'prefix')
-    ver_file = os.path.join(data_dir, 'version')
-    f = open(ver_file, "r")
-    version = f.read()
-    f.close()
-    return version
-
 
 def doExec(vals, key, command, preLF=False):
   template = "{0}: {1} {2}"
@@ -108,3 +95,14 @@ def machineInfo():
   doExec(vals, "yum_repos", ["sh", "-c", "yum -C repolist enabled | egrep \"(AMBARI|HDP)\""], True)
   # for SUSE-based agents
   doExec(vals, "zypper_repos", ["sh", "-c", "zypper repos | egrep \"(AMBARI|HDP)\""], True)
+  
+  
+def main(argv=None):
+  if len(argv) == 1:
+    register = Register()
+    print json.dumps(register.build())
+  else:
+    machineInfo()
+
+if __name__ == '__main__':
+  main(sys.argv)

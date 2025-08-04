@@ -25,9 +25,7 @@ import org.apache.ambari.server.AmbariException;
 import org.apache.ambari.server.ObjectNotFoundException;
 import org.apache.ambari.server.StackAccessException;
 import org.apache.ambari.server.configuration.Configuration;
-import org.apache.ambari.server.resources.ResourceManager;
 import org.apache.ambari.server.state.*;
-import org.apache.ambari.server.state.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.*;
@@ -39,7 +37,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * ServiceInfo responsible getting information about cluster.
@@ -47,10 +50,8 @@ import java.util.*;
 @Singleton
 public class AmbariMetaInfo {
 
-    private String serverVersion = "undefined";
     private List<StackInfo> stacksResult = new ArrayList<StackInfo>();
     private File stackRoot;
-    private File serverVersionFile;
     private final static Logger LOG = LoggerFactory
             .getLogger(AmbariMetaInfo.class);
     
@@ -103,16 +104,13 @@ public class AmbariMetaInfo {
      */
     @Inject
     public AmbariMetaInfo(Configuration conf) throws Exception {
-      String stackPath = conf.getMetadataPath();
-      String serverVersionFilePath = conf.getServerVersionFilePath();
-      this.stackRoot = new File(stackPath);
-      this.serverVersionFile = new File(serverVersionFilePath);
+        String stackPath = conf.getMetadataPath();
+        this.stackRoot = new File(stackPath);
     }
 
     @Inject
-    public AmbariMetaInfo(File stackRoot, File serverVersionFile) throws Exception {
-      this.stackRoot = stackRoot;
-      this.serverVersionFile = serverVersionFile;
+    public AmbariMetaInfo(File stackRoot) throws Exception {
+        this.stackRoot = stackRoot;
     }
 
 
@@ -123,7 +121,6 @@ public class AmbariMetaInfo {
      */
     @Inject
     public void init() throws Exception {
-        readServerVersion();
         getConfigurationInformation(stackRoot);
     }
 
@@ -590,16 +587,8 @@ public class AmbariMetaInfo {
       return resultOperatingSystem;
   }
 
-
-    private void readServerVersion() throws  Exception{
-      File versionFile = this.serverVersionFile;
-      String t = (new File(".")).getAbsolutePath();
-      if (! versionFile.exists()) {
-        throw new AmbariException("Server version file does not exist");
-      }
-      serverVersion = new Scanner(versionFile).useDelimiter("\\Z").next();
-    }
-
+   
+    
     private void getConfigurationInformation(File stackRoot) throws Exception {
 
         if (LOG.isDebugEnabled()) {
@@ -686,10 +675,6 @@ public class AmbariMetaInfo {
             }
         }
     }
-
-  public String getServerVersion() {
-    return serverVersion;
-  }
 
   private StackInfo getStackInfo(File stackVersionFolder) {
 

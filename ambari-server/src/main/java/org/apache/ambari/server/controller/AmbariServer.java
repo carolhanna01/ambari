@@ -36,7 +36,6 @@ import org.apache.ambari.server.bootstrap.BootStrapImpl;
 import org.apache.ambari.server.configuration.Configuration;
 import org.apache.ambari.server.orm.GuiceJpaInitializer;
 import org.apache.ambari.server.orm.PersistenceType;
-import org.apache.ambari.server.orm.dao.MetainfoDAO;
 import org.apache.ambari.server.resources.ResourceManager;
 import org.apache.ambari.server.resources.api.rest.GetResource;
 import org.apache.ambari.server.security.CertificateManager;
@@ -97,8 +96,6 @@ public class AmbariServer {
   Injector injector;
   @Inject
   AmbariMetaInfo ambariMetaInfo;
-  @Inject
-  MetainfoDAO metainfoDAO;
 
   public String getServerOsType() {
     return configs.getServerOsType();
@@ -116,8 +113,6 @@ public class AmbariServer {
     addInMemoryUsers();
     server = new Server();
     serverForAgent = new Server();
-
-    checkDBVersion();
 
     try {
       ClassPathXmlApplicationContext parentSpringAppContext =
@@ -374,21 +369,6 @@ public class AmbariServer {
         throw new RuntimeException(e);
       }
     }
-  }
-
-  protected void checkDBVersion() throws AmbariException {
-    LOG.info("Checking DB store version");
-    String databaseVersion = metainfoDAO.findByKey(Configuration.SERVER_VERSION_KEY).getMetainfoValue();
-    String serverVersion = ambariMetaInfo.getServerVersion();
-    if (! databaseVersion.equals(serverVersion)) {
-      String error = "Current database store version is not compatible with " +
-              "current server version"
-              + ", serverVersion=" + serverVersion
-              + ", databaseVersion=" + databaseVersion;
-      LOG.warn(error);
-      throw new AmbariException(error);
-    }
-    LOG.info("DB store version is compatible");
   }
 
   public void stop() throws Exception {
