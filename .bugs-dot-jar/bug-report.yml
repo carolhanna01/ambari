@@ -1,0 +1,127 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Tom Beerbower
+        '@username': tbeerbower
+      attachments: null
+      comments:
+        comment:
+          '#text': "<p>SUCCESS: Integrated in Ambari-trunk-Commit #2645 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/2645/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/2645/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-11229\" title=\"\
+            Views: AmbariStreamProvider is encoding the url provided\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-11229\"><del>AMBARI-11229</del></a> - Views:\
+            \ AmbariStreamProvider is encoding the url provided (tbeerbower) (tbeerbower:\
+            \ <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e3d5fd61864872121f994e769e8a7e4e496912c1\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=e3d5fd61864872121f994e769e8a7e4e496912c1</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/controller/AmbariManagementControllerImplTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 19 May 2015 15:59:12 +0000
+          '@id': '14550667'
+      created: Mon, 18 May 2015 21:25:48 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '0.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 10 years, 12 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i2ewa7:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: '<p>Using AmbariStreamProvider with a query string but it''s encoding
+        the ?.</p>
+
+
+        <p>Believe this might need to change slight to account for people who want
+        to pass in a path with a query string.</p>
+
+
+        <p><a href="https://github.com/apache/ambari/blob/trunk/ambari-server/src/main/java/org/apache/ambari/server/view/ViewAmbariStreamProvider.java#L104"
+        class="external-link" target="_blank" rel="nofollow noopener">https://github.com/apache/ambari/blob/trunk/ambari-server/src/main/java/org/apache/ambari/server/view/ViewAmbariStreamProvider.java#L104</a></p>
+
+
+        <p>Because the controller getAmbariServerURI uses URIBuilder, which might
+        encode the path.</p>'
+      due: null
+      environment: null
+      fixVersion: 2.1.0
+      key:
+        '#text': AMBARI-11229
+        '@id': '12830834'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-11229
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Tom Beerbower
+        '@username': tbeerbower
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Tue, 19 May 2015 14:08:02 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'Views: AmbariStreamProvider is encoding the url provided'
+      title: '[AMBARI-11229] Views: AmbariStreamProvider is encoding the url provided'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 19 May 2015 15:59:12 +0000
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA

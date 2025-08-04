@@ -1,0 +1,21 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index d1aebaef10..266d29969b 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -323,7 +323,15 @@ public class AmbariManagementControllerImpl implements AmbariManagementControlle
+     uriBuilder.setScheme(masterProtocol);
+     uriBuilder.setHost(masterHostname);
+     uriBuilder.setPort(masterPort);
+-    uriBuilder.setPath(path);
++
++    String[] parts = path.split("\\?");
++
++    if (parts.length > 1) {
++      uriBuilder.setPath(parts[0]);
++      uriBuilder.setQuery(parts[1]);
++    } else {
++      uriBuilder.setPath(path);
++    }
+ 
+     return uriBuilder.toString();
+   }
