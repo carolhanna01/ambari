@@ -304,7 +304,7 @@ public class Configuration {
 
   public String getBootSetupAgentScript() {
     return properties.getProperty(BOOTSTRAP_SETUP_AGENT_SCRIPT,
-        "/usr/lib/python2.6/site-packages/ambari_server/setupAgent.py");
+        "/usr/lib/python2.7/site-packages/ambari_server/setupAgent.py");
   }
 
   public String getBootSetupAgentPassword() {
