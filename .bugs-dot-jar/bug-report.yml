@@ -1,0 +1,167 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Nate Cole
+        '@username': ncole@hortonworks.com
+      attachments:
+        attachment:
+          '@author': ncole@hortonworks.com
+          '@created': Mon, 23 Mar 2015 20:20:34 +0000
+          '@id': '12706710'
+          '@name': AMBARI-10189.patch
+          '@size': '7993'
+      comments:
+        comment:
+        - '#text': "<p>ABORTED: Integrated in Ambari-branch-2.0.0 #112 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.0.0/112/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.0.0/112/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-10189\" title=\"\
+            RU: Adding new host fails after finalized upgrade\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-10189\"><del>AMBARI-10189</del></a>. RU: Adding\
+            \ new host fails after finalized upgrade (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/FinalizeUpgradeAction.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/UpgradeActionTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 23 Mar 2015 22:18:11 +0000
+          '@id': '14376756'
+        - '#text': "<p>ABORTED: Integrated in Ambari-trunk-Commit #2095 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-trunk-Commit/2095/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-trunk-Commit/2095/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-10189\" title=\"\
+            RU: Adding new host fails after finalized upgrade\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-10189\"><del>AMBARI-10189</del></a>. RU: Adding\
+            \ new host fails after finalized upgrade (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=b56adfff348ad05b10b5b5b524af8ee5ea770e77\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=b56adfff348ad05b10b5b5b524af8ee5ea770e77</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/UpgradeActionTest.java</li>\n\
+            \t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/FinalizeUpgradeAction.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 23 Mar 2015 23:21:24 +0000
+          '@id': '14376892'
+        - '#text': "<p>ABORTED: Integrated in Ambari-branch-2.0.0 #119 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.0.0/119/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.0.0/119/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-10189\" title=\"\
+            RU: Adding new host fails after finalized upgrade\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-10189\"><del>AMBARI-10189</del></a>. RU: Adding\
+            \ new host fails after finalized upgrade (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/FinalizeUpgradeAction.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/UpgradeActionTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Mon, 27 Apr 2015 12:28:06 +0000
+          '@id': '14514034'
+        - '#text': "<p>ABORTED: Integrated in Ambari-branch-2.0.0 #122 (See <a href=\"\
+            https://builds.apache.org/job/Ambari-branch-2.0.0/122/\" class=\"external-link\"\
+            \ target=\"_blank\" rel=\"nofollow noopener\">https://builds.apache.org/job/Ambari-branch-2.0.0/122/</a>)<br/>\n\
+            <a href=\"https://issues.apache.org/jira/browse/AMBARI-10189\" title=\"\
+            RU: Adding new host fails after finalized upgrade\" class=\"issue-link\"\
+            \ data-issue-key=\"AMBARI-10189\"><del>AMBARI-10189</del></a>. RU: Adding\
+            \ new host fails after finalized upgrade (ncole) (ncole: <a href=\"http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e\"\
+            \ class=\"external-link\" target=\"_blank\" rel=\"nofollow noopener\"\
+            >http://git-wip-us.apache.org/repos/asf?p=ambari.git&amp;a=commit&amp;h=78d41cd6afd5024726b3a44c2f4a73182e32c18e</a>)</p>\n\
+            <ul>\n\t<li>ambari-server/src/main/java/org/apache/ambari/server/serveraction/upgrades/FinalizeUpgradeAction.java</li>\n\
+            \t<li>ambari-server/src/test/java/org/apache/ambari/server/serveraction/upgrades/UpgradeActionTest.java</li>\n\
+            </ul>"
+          '@author': hudson
+          '@created': Tue, 30 Jun 2015 14:03:32 +0000
+          '@id': '14608317'
+      component: ambari-server
+      created: Mon, 23 Mar 2015 19:54:13 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 10 years, 6 weeks, 5 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i278u7:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '9223372036854775807'
+      description: <p>When adding a host, that action pulls from the stack repository
+        values, not for the cluster.  Quick fix is to set the stack version in Finalize
+        until it can be addressed later.</p>
+      due: null
+      environment: null
+      fixVersion: 2.0.0
+      key:
+        '#text': AMBARI-10189
+        '@id': '12784968'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-10189
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Nate Cole
+        '@username': ncole@hortonworks.com
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Mon, 23 Mar 2015 21:05:02 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: 'RU: Adding new host fails after finalized upgrade'
+      title: '[AMBARI-10189] RU: Adding new host fails after finalized upgrade'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Tue, 30 Jun 2015 14:03:32 +0000
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA
