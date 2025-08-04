@@ -1,0 +1,26 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/api/services/AmbariMetaInfo.java b/ambari-server/src/main/java/org/apache/ambari/server/api/services/AmbariMetaInfo.java
+index 43845b8596..cf0e8822ce 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/api/services/AmbariMetaInfo.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/api/services/AmbariMetaInfo.java
+@@ -55,7 +55,7 @@ public class AmbariMetaInfo {
+   private static final String SERVICES_FOLDER_NAME = "services";
+   private static final String SERVICE_METAINFO_FILE_NAME = "metainfo.xml";
+   private static final String SERVICE_CONFIG_FOLDER_NAME = "configuration";
+-  private static final String SERVICE_CONFIG_FILE_NAME_POSTFIX = "-site.xml";
++  private static final String SERVICE_CONFIG_FILE_NAME_POSTFIX = ".xml";
+   private static final String REPOSITORY_FILE_NAME = "repoinfo.xml";
+   private static final String REPOSITORY_FOLDER_NAME = "repos";
+   private static final String REPOSITORY_XML_MAIN_BLOCK_NAME = "os";
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+index b34f3e5f3a..5ec4659520 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+@@ -326,7 +326,7 @@ public class Configuration {
+ 
+   public String getBootSetupAgentScript() {
+     return properties.getProperty(BOOTSTRAP_SETUP_AGENT_SCRIPT,
+-        "/usr/lib/python2.7/site-packages/ambari_server/setupAgent.py");
++        "/usr/lib/python2.6/site-packages/ambari_server/setupAgent.py");
+   }
+ 
+   public String getBootSetupAgentPassword() {
