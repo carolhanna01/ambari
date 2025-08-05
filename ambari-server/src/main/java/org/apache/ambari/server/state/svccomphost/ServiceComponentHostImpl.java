@@ -314,19 +314,6 @@ public class ServiceComponentHostImpl implements ServiceComponentHost {
          ServiceComponentHostEventType.HOST_SVCCOMP_WIPEOUT,
          new ServiceComponentHostOpStartedTransition())
 
-      .addTransition(State.INSTALLED,
-          State.MAINTENANCE,
-          ServiceComponentHostEventType.HOST_SVCCOMP_MAINTENANCE,
-          new ServiceComponentHostOpCompletedTransition())
-      .addTransition(State.MAINTENANCE,
-          State.MAINTENANCE,
-          ServiceComponentHostEventType.HOST_SVCCOMP_MAINTENANCE,
-          new ServiceComponentHostOpCompletedTransition())
-      .addTransition(State.MAINTENANCE,
-          State.INSTALLED,
-          ServiceComponentHostEventType.HOST_SVCCOMP_RESTORE,
-          new ServiceComponentHostOpCompletedTransition())
-
      .installTopology();
 
   private static final StateMachineFactory
@@ -1278,7 +1265,7 @@ public class ServiceComponentHostImpl implements ServiceComponentHost {
   }
 
   @Override
-  public void delete() {
+  public void delete() throws AmbariException {
     try {
       writeLock.lock();
       if (persisted) {
