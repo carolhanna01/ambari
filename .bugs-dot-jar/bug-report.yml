@@ -1,0 +1,118 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Mahadev Konar
+        '@username': mahadev
+      attachments:
+        attachment:
+          '@author': mahadev
+          '@created': Thu, 14 Mar 2013 21:19:31 +0000
+          '@id': '12573772'
+          '@name': AMBARI-1642.patch
+          '@size': '44930'
+      comments:
+        comment:
+        - '#text': <p>attached patch allows that.</p>
+          '@author': mahadev
+          '@created': Thu, 14 Mar 2013 21:19:31 +0000
+          '@id': '13602769'
+        - '#text': <p>+1</p>
+          '@author': sumitmohanty
+          '@created': Thu, 14 Mar 2013 21:19:57 +0000
+          '@id': '13602770'
+        - '#text': <p>Just committed. </p>
+          '@author': mahadev
+          '@created': Thu, 14 Mar 2013 21:20:53 +0000
+          '@id': '13602772'
+      created: Thu, 14 Mar 2013 21:16:26 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '317583'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 12 years, 22 weeks, 4 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i1iss7:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '317924'
+      description: null
+      due: null
+      environment: null
+      fixVersion: 1.2.3
+      key:
+        '#text': AMBARI-1642
+        '@id': '12637091'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-1642
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Mahadev Konar
+        '@username': mahadev
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Thu, 14 Mar 2013 21:20:53 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: Add ability for maintainence mode in Host Role Component in Ambari.
+      title: '[AMBARI-1642] Add ability for maintainence mode in Host Role Component
+        in Ambari.'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 8 May 2013 05:16:51 +0000
+      version: 1.2.3
+      votes: '0'
+      watches: '3'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA

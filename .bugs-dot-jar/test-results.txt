@@ -1,0 +1,90 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.ambari:ambari-server[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Ambari Server 1.3.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:2.5:clean[m [1m(default-clean)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 362 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:compile[m [1m(default-compile)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 482 source files to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/classes
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;33mWARNING[m] COMPILATION WARNING : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java uses or overrides a deprecated API.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: Recompile with -Xlint:deprecation for details.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Some input files use unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 4 warnings 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2975,12] cannot find symbol
+  symbol:   variable processingUpgradeRequest
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2976,9] cannot find symbol
+  symbol:   variable processingUpgradeRequest
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2978,13] cannot find symbol
+  symbol:   variable numberOfRequestsProcessed
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2982,9] cannot find symbol
+  symbol:   variable fromStackVersion
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2985,11] cannot find symbol
+  symbol:   variable processingUpgradeRequest
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2985,10] illegal start of type
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3073,9] cannot find symbol
+  symbol:   variable processingUpgradeRequest
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3073,8] illegal start of type
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3076,75] cannot find symbol
+  symbol:   variable fromStackVersion
+  location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;34mINFO[m] 9 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  4.484 s
+[[1;34mINFO[m] Finished at: 2025-08-05T09:31:14+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.0:compile[m [1m(default-compile)[m on project [36mambari-server[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2975,12] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable processingUpgradeRequest
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2976,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable processingUpgradeRequest
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2978,13] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable numberOfRequestsProcessed
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2982,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable fromStackVersion
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2985,11] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable processingUpgradeRequest
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[2985,10] illegal start of type
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3073,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable processingUpgradeRequest
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3073,8] illegal start of type
+[[1;31mERROR[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java:[3076,75] cannot find symbol
+[[1;31mERROR[m]   symbol:   variable fromStackVersion
+[[1;31mERROR[m]   location: class org.apache.ambari.server.controller.AmbariManagementControllerImpl
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
