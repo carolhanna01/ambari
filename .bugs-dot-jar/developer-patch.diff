@@ -1,0 +1,131 @@
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionDBAccessorImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionDBAccessorImpl.java
+index def147db81..9c78706126 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionDBAccessorImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/actionmanager/ActionDBAccessorImpl.java
+@@ -323,21 +323,22 @@ public class ActionDBAccessorImpl implements ActionDBAccessor {
+   @Override
+   public List<Long> getRequestsByStatus(RequestStatus status) {
+     boolean match = true;
++    boolean checkAllTasks = false;
+     Set<HostRoleStatus> statuses = new HashSet<HostRoleStatus>();
+     if (status == RequestStatus.IN_PROGRESS) {
+       statuses.addAll( Arrays.asList(HostRoleStatus.PENDING,
+           HostRoleStatus.IN_PROGRESS, HostRoleStatus.QUEUED));
+     } else if (status == RequestStatus.COMPLETED) {
+       match = false;
++      checkAllTasks = true;
+       statuses.addAll( Arrays.asList(HostRoleStatus.PENDING,
+           HostRoleStatus.IN_PROGRESS, HostRoleStatus.QUEUED,
+           HostRoleStatus.ABORTED, HostRoleStatus.FAILED,
+-          HostRoleStatus.FAILED, HostRoleStatus.TIMEDOUT));
++          HostRoleStatus.TIMEDOUT));
+     } else if (status == RequestStatus.FAILED) {
+       statuses.addAll( Arrays.asList(HostRoleStatus.ABORTED,
+-          HostRoleStatus.FAILED, HostRoleStatus.FAILED,
+-          HostRoleStatus.TIMEDOUT));
++          HostRoleStatus.FAILED, HostRoleStatus.TIMEDOUT));
+     }
+-    return hostRoleCommandDAO.getRequestsByTaskStatus(statuses, match);
++    return hostRoleCommandDAO.getRequestsByTaskStatus(statuses, match, checkAllTasks);
+   }
+ }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+index 38fab71b74..fa77589d8b 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/configuration/Configuration.java
+@@ -282,7 +282,7 @@ public class Configuration {
+ 
+   public String getBootSetupAgentScript() {
+     return properties.getProperty(BOOTSTRAP_SETUP_AGENT_SCRIPT,
+-        "/usr/lib/python2.7/site-packages/ambari_server/setupAgent.py");
++        "/usr/lib/python2.6/site-packages/ambari_server/setupAgent.py");
+   }
+ 
+   public String getBootSetupAgentPassword() {
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+index 56c7be5a96..1abcb1da2d 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariManagementControllerImpl.java
+@@ -3497,7 +3497,7 @@ public class AmbariManagementControllerImpl implements
+       RequestStatusRequest request) throws AmbariException{
+     Set<RequestStatusResponse> response = new HashSet<RequestStatusResponse>();
+     if (request.getRequestId() == null) {
+-      RequestStatus requestStatus = RequestStatus.IN_PROGRESS;
++      RequestStatus requestStatus = null;
+       if (request.getRequestStatus() != null) {
+         requestStatus = RequestStatus.valueOf(request.getRequestStatus());
+       }
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/RequestResourceProvider.java b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/RequestResourceProvider.java
+index b4a3dc1e7e..094dca91d3 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/RequestResourceProvider.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/controller/internal/RequestResourceProvider.java
+@@ -100,6 +100,9 @@ class RequestResourceProvider extends AbstractControllerResourceProvider {
+       setResourceProperty(resource, REQUEST_CLUSTER_NAME_PROPERTY_ID, clusterName, requestedIds);
+       setResourceProperty(resource, REQUEST_ID_PROPERTY_ID, response.getRequestId(), requestedIds);
+       setResourceProperty(resource, REQUEST_CONTEXT_ID, response.getRequestContext(), requestedIds);
++      if (requestStatusRequest.getRequestStatus() != null) {
++        setResourceProperty(resource, REQUEST_STATUS_PROPERTY_ID, requestStatusRequest.getRequestStatus(), requestedIds);
++      }
+       resources.add(resource);
+     }
+     return resources;
+diff --git a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
+index d9c5ee9228..313042b5d1 100644
+--- a/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
++++ b/ambari-server/src/main/java/org/apache/ambari/server/orm/dao/HostRoleCommandDAO.java
+@@ -148,18 +148,45 @@ public class HostRoleCommandDAO {
+ 
+   @Transactional
+   public List<Long> getRequestsByTaskStatus(
+-      Collection<HostRoleStatus> statuses, boolean match) {
+-    String queryStr = "SELECT DISTINCT command.requestId "
+-        + " FROM HostRoleCommandEntity command WHERE "
+-        + " command.status";
+-    if (!match) {
+-      queryStr += " NOT";
++      Collection<HostRoleStatus> statuses, boolean match, boolean checkAllTasks) {
++    List<Long> results = null;
++    StringBuilder queryStr = new StringBuilder();
++    Integer resultsLimit = null;
++    queryStr.append("SELECT DISTINCT command.requestId ").append(
++        "FROM HostRoleCommandEntity command ");
++    if (statuses != null && !statuses.isEmpty()) {
++      queryStr.append("WHERE ");
++
++      if (checkAllTasks) {
++        queryStr.append("command.requestId ");
++        if (!match) {
++          queryStr.append("NOT ");
++        }
++        queryStr.append("IN (").append("SELECT c.requestId ")
++            .append("FROM HostRoleCommandEntity c ")
++            .append("WHERE c.requestId = command.requestId ")
++            .append("AND c.status IN ?1) ");
++      } else {
++        queryStr.append("command.status ");
++        if (!match) {
++          queryStr.append("NOT ");
++        }
++        queryStr.append("IN ?1 ");
++      }
++      resultsLimit = 20;
+     }
+-    queryStr += " IN ?1"
+-        + " ORDER BY command.requestId DESC";
+-    TypedQuery<Long> query = entityManagerProvider.get().createQuery(queryStr,
++    queryStr.append("ORDER BY command.requestId DESC");
++    TypedQuery<Long> query = entityManagerProvider.get().createQuery(queryStr.toString(),
+         Long.class);
+-    return daoUtils.selectList(query, statuses);
++    if (resultsLimit != null) {
++      query.setMaxResults(resultsLimit);
++    }
++    if (statuses != null && !statuses.isEmpty()) {
++      results = daoUtils.selectList(query, statuses);
++    } else {
++      results = daoUtils.selectList(query);
++    }
++    return results;
+   }
+ 
+ }

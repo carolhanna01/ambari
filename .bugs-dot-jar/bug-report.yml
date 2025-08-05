@@ -1,0 +1,122 @@
+rss:
+  '@version': '0.92'
+  channel:
+    build-info:
+      build-date: 22-06-2022
+      build-number: '820010'
+      version: 8.20.10
+    description: This file is an XML representation of an issue
+    item:
+      assignee:
+        '#text': Siddharth Wagle
+        '@username': swagle
+      attachments:
+        attachment:
+          '@author': swagle
+          '@created': Fri, 22 Mar 2013 20:31:58 +0000
+          '@id': '12575095'
+          '@name': AMBARI-1688.patch
+          '@size': '7541'
+      comments:
+        comment:
+        - '#text': <p>+1</p>
+          '@author': sumitmohanty
+          '@created': Fri, 22 Mar 2013 20:32:21 +0000
+          '@id': '13611195'
+        - '#text': <p>Committed</p>
+          '@author': swagle
+          '@created': Fri, 22 Mar 2013 20:35:11 +0000
+          '@id': '13611198'
+      created: Fri, 22 Mar 2013 20:30:22 +0000
+      customfields:
+        customfield:
+        - '@id': customfield_12310310
+          '@key': com.atlassian.jira.toolkit:attachments
+          customfieldname: Attachment count
+          customfieldvalues:
+            customfieldvalue: '1.0'
+        - '@id': customfield_12314020
+          '@key': com.atlassian.jira.plugins.jira-development-integration-plugin:devsummary
+          customfieldname: Development
+          customfieldvalues: null
+        - '@id': customfield_12313422
+          '@key': com.atlassian.jirafisheyeplugin:jobcheckbox
+          customfieldname: Enable Automatic Patch Review
+          customfieldvalues:
+            customfieldvalue: 'false'
+        - '@id': customfield_12310420
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Global Rank
+          customfieldvalues:
+            customfieldvalue: '319063'
+        - '@id': customfield_12312521
+          '@key': com.atlassian.jira.toolkit:LastCommentDate
+          customfieldname: Last public comment date
+          customfieldvalues: 12 years, 21 weeks, 3 days ago
+        - '@id': customfield_12311820
+          '@key': com.pyxis.greenhopper.jira:gh-lexo-rank
+          customfieldname: Rank
+          customfieldvalues:
+            customfieldvalue: '0|i1j1x3:'
+        - '@id': customfield_12310920
+          '@key': com.pyxis.greenhopper.jira:gh-global-rank
+          customfieldname: Rank (Obsolete)
+          customfieldvalues:
+            customfieldvalue: '319404'
+      description: '<p>The modification is<br/>
+
+        1) An unfiltered request for Request resources currently returns all ''IN_PROGRESS''
+        requests. Change this behavior so that an unfiltered request will return the
+        last 20 requests regardless of what the status is. This is still a bit of
+        a hack but no worse than what we already have. It should be okay until pagination
+        is done.<br/>
+
+        2) To get the in progress requests we should do something like ''requests?Requests/request_status=IN_PROGRESS''.
+        This is what we should have been doing all along.</p>'
+      due: null
+      environment: null
+      fixVersion: 1.2.3
+      key:
+        '#text': AMBARI-1688
+        '@id': '12638587'
+      labels: null
+      link: https://issues.apache.org/jira/browse/AMBARI-1688
+      priority:
+        '#text': Major
+        '@iconUrl': https://issues.apache.org/jira/images/icons/priorities/major.svg
+        '@id': '3'
+      project:
+        '#text': Ambari
+        '@id': '12312020'
+        '@key': AMBARI
+      reporter:
+        '#text': Sumit Mohanty
+        '@username': sumitmohanty
+      resolution:
+        '#text': Fixed
+        '@id': '1'
+      resolved: Fri, 22 Mar 2013 20:35:11 +0000
+      status:
+        '#text': Resolved
+        '@description': A resolution has been taken, and it is awaiting verification
+          by reporter. From here issues are either reopened, or are closed.
+        '@iconUrl': https://issues.apache.org/jira/images/icons/statuses/resolved.png
+        '@id': '5'
+      statusCategory:
+        '@colorName': green
+        '@id': '3'
+        '@key': done
+      subtasks: null
+      summary: API support to return 10 most recent requests
+      title: '[AMBARI-1688] API support to return 10 most recent requests'
+      type:
+        '#text': Bug
+        '@iconUrl': https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype
+        '@id': '1'
+      updated: Wed, 8 May 2013 05:12:56 +0000
+      version: 1.2.3
+      votes: '0'
+      watches: '2'
+    language: en-uk
+    link: https://issues.apache.org/jira
+    title: ASF JIRA

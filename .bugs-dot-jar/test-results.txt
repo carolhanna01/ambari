@@ -1,0 +1,339 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.ambari:ambari-server[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Ambari Server 1.3.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:2.5:clean[m [1m(default-clean)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 362 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:compile[m [1m(default-compile)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 499 source files to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/classes
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java uses or overrides a deprecated API.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/AmbariServer.java: Recompile with -Xlint:deprecation for details.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Some input files use unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/main/java/org/apache/ambari/server/controller/predicate/ComparisonPredicate.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 54 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:testCompile[m [1m(default-testCompile)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 155 source files to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/test-classes
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/state/cluster/ClusterTest.java: Some input files use unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/src/test/java/org/apache/ambari/server/state/cluster/ClusterTest.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12:test[m [1m(default-test)[m @ [36mambari-server[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.apache.ambari.server.utils.TestStageUtils
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.016 sec
+Running org.apache.ambari.server.security.SslExecutionTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.568 sec
+Running org.apache.ambari.server.security.TestPassFileGeneration
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.518 sec
+Running org.apache.ambari.server.security.authorization.LdapServerPropertiesTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.16 sec
+Running org.apache.ambari.server.security.authorization.TestUsers
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.695 sec
+Running org.apache.ambari.server.security.authorization.AuthorizationHelperTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 sec
+Running org.apache.ambari.server.security.authorization.AmbariLocalUserDetailsServiceTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.695 sec
+Running org.apache.ambari.server.security.authorization.AmbariLdapAuthenticationProviderTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.834 sec
+Running org.apache.ambari.server.security.CertGenerationTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.688 sec
+Running org.apache.ambari.server.orm.entities.StageEntityTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 sec
+Running org.apache.ambari.server.orm.TestOrmImpl
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.137 sec
+Running org.apache.ambari.server.orm.dao.HostConfigMappingDAOTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.617 sec
+Running org.apache.ambari.server.controller.ivory.FeedTest
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 sec
+Running org.apache.ambari.server.controller.ivory.InstanceTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 sec
+Running org.apache.ambari.server.controller.ivory.ClusterTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 sec
+Running org.apache.ambari.server.controller.AmbariManagementControllerImplTest
+Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.897 sec
+Running org.apache.ambari.server.controller.AmbariManagementControllerTest
+Tests run: 62, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.224 sec
+Running org.apache.ambari.server.controller.ClusterRequestTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 sec
+Running org.apache.ambari.server.controller.ganglia.GangliaHelperTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.051 sec
+Running org.apache.ambari.server.controller.gsinstaller.GSInstallerHostProviderTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.239 sec
+Running org.apache.ambari.server.controller.gsinstaller.GSInstallerServiceProviderTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.196 sec
+Running org.apache.ambari.server.controller.gsinstaller.GSInstallerClusterProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.225 sec
+Running org.apache.ambari.server.controller.gsinstaller.GSInstallerComponentProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.236 sec
+Running org.apache.ambari.server.controller.gsinstaller.GSInstallerHostComponentProviderTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.192 sec
+Running org.apache.ambari.server.controller.ClusterResponseTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 sec
+Running org.apache.ambari.server.controller.jmx.JMXPropertyProviderTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.297 sec
+Running org.apache.ambari.server.controller.predicate.CategoryIsEmptyPredicateTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 sec
+Running org.apache.ambari.server.controller.predicate.GreaterPredicateTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.165 sec
+Running org.apache.ambari.server.controller.predicate.LessEqualsPredicateTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.188 sec
+Running org.apache.ambari.server.controller.predicate.GreaterEqualsPredicateTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.174 sec
+Running org.apache.ambari.server.controller.predicate.OrPredicateTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.195 sec
+Running org.apache.ambari.server.controller.predicate.LessPredicateTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.189 sec
+Running org.apache.ambari.server.controller.predicate.CategoryPredicateTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.172 sec
+Running org.apache.ambari.server.controller.predicate.AndPredicateTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.205 sec
+Running org.apache.ambari.server.controller.predicate.PredicateVisitorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.171 sec
+Running org.apache.ambari.server.controller.predicate.EqualsPredicateTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.19 sec
+Running org.apache.ambari.server.controller.predicate.NotPredicateTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.23 sec
+Running org.apache.ambari.server.controller.internal.PropertyPredicateVisitorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.291 sec
+Running org.apache.ambari.server.controller.internal.BaseProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.395 sec
+Running org.apache.ambari.server.controller.internal.RequestImplTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.321 sec
+Running org.apache.ambari.server.controller.internal.UserResourceProviderTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.47 sec
+Running org.apache.ambari.server.controller.internal.ClusterResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.475 sec
+Running org.apache.ambari.server.controller.internal.SimplifyingPredicateVisitorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.348 sec
+Running org.apache.ambari.server.controller.internal.HostComponentResourceProviderTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.549 sec
+Running org.apache.ambari.server.controller.internal.ClusterControllerImplTest
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.395 sec
+Running org.apache.ambari.server.controller.internal.ResourceImplTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.376 sec
+Running org.apache.ambari.server.controller.internal.TaskResourceProviderTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.481 sec
+Running org.apache.ambari.server.controller.internal.SchemaImplTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.319 sec
+Running org.apache.ambari.server.controller.internal.HttpPropertyProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.365 sec
+Running org.apache.ambari.server.controller.internal.ServiceResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.489 sec
+Running org.apache.ambari.server.controller.internal.AbstractDRResourceProviderTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.362 sec
+Running org.apache.ambari.server.controller.internal.AbstractControllerResourceProviderTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.368 sec
+Running org.apache.ambari.server.controller.internal.HostResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.481 sec
+Running org.apache.ambari.server.controller.internal.FeedResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.434 sec
+Running org.apache.ambari.server.controller.internal.AbstractResourceProviderTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.375 sec
+Running org.apache.ambari.server.controller.internal.TargetClusterResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.477 sec
+Running org.apache.ambari.server.controller.internal.ConfigurationResourceProviderTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.492 sec
+Running org.apache.ambari.server.controller.internal.InstanceResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.383 sec
+Running org.apache.ambari.server.controller.internal.ActionResourceProviderTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.438 sec
+Running org.apache.ambari.server.controller.internal.RequestResourceProviderTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.45 sec
+Running org.apache.ambari.server.controller.internal.AbstractPropertyProviderTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.349 sec
+Running org.apache.ambari.server.controller.internal.ComponentResourceProviderTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.482 sec
+Running org.apache.ambari.server.controller.internal.JMXHostProviderTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.918 sec
+Running org.apache.ambari.server.controller.utilities.PropertyHelperTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.325 sec
+Running org.apache.ambari.server.controller.utilities.PredicateBuilderTest
+Tests run: 34, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.345 sec
+Running org.apache.ambari.server.state.action.JobTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.132 sec
+Running org.apache.ambari.server.state.ServiceComponentTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.315 sec
+Running org.apache.ambari.server.state.DesiredConfigTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 sec
+Running org.apache.ambari.server.state.svccomphost.ServiceComponentHostTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.82 sec
+Running org.apache.ambari.server.state.svccomphost.HBaseMasterPortScannerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.652 sec
+Running org.apache.ambari.server.state.ServiceTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.988 sec
+Running org.apache.ambari.server.state.host.HostTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.605 sec
+Running org.apache.ambari.server.state.cluster.ClustersTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.629 sec
+Running org.apache.ambari.server.state.cluster.ClusterTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.305 sec
+Running org.apache.ambari.server.api.TestSuite
+Tests run: 219, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.826 sec
+Running org.apache.ambari.server.api.services.ClusterServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.365 sec
+Running org.apache.ambari.server.api.services.HostComponentServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.359 sec
+Running org.apache.ambari.server.api.services.AmbariMetaServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.656 sec
+Running org.apache.ambari.server.api.services.PersistenceManagerImplTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.335 sec
+Running org.apache.ambari.server.api.services.PutRequestTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.478 sec
+Running org.apache.ambari.server.api.services.RequestBodyTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 sec
+Running org.apache.ambari.server.api.services.HostServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.376 sec
+Running org.apache.ambari.server.api.services.PersistServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.857 sec
+Running org.apache.ambari.server.api.services.FeedServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.361 sec
+Running org.apache.ambari.server.api.services.InstanceServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.345 sec
+Running org.apache.ambari.server.api.services.ActionServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.347 sec
+Running org.apache.ambari.server.api.services.ComponentServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.36 sec
+Running org.apache.ambari.server.api.services.DeleteRequestTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.485 sec
+Running org.apache.ambari.server.api.services.PostRequestTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.492 sec
+Running org.apache.ambari.server.api.services.ServiceServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.375 sec
+Running org.apache.ambari.server.api.services.serializers.JsonSerializerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 sec
+Running org.apache.ambari.server.api.services.ConfigurationServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.353 sec
+Running org.apache.ambari.server.api.services.parsers.BodyParseExceptionTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 sec
+Running org.apache.ambari.server.api.services.parsers.JsonRequestBodyParserTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.388 sec
+Running org.apache.ambari.server.api.services.QueryPostRequestTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.497 sec
+Running org.apache.ambari.server.api.services.AmbariMetaInfoTest
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.834 sec
+Running org.apache.ambari.server.api.services.NamedPropertySetTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 sec
+Running org.apache.ambari.server.api.services.StacksServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.375 sec
+Running org.apache.ambari.server.api.services.TargetClusterServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.35 sec
+Running org.apache.ambari.server.api.services.PersistKeyValueImplTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.067 sec
+Running org.apache.ambari.server.api.services.GetRequestTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.488 sec
+Running org.apache.ambari.server.api.query.QueryImplTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.396 sec
+Running org.apache.ambari.server.api.handlers.DeleteHandlerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.637 sec
+Running org.apache.ambari.server.api.handlers.CreateHandlerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.615 sec
+Running org.apache.ambari.server.api.handlers.ReadHandlerTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.38 sec
+Running org.apache.ambari.server.api.handlers.QueryCreateHandlerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.493 sec
+Running org.apache.ambari.server.api.handlers.UpdateHandlerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.557 sec
+Running org.apache.ambari.server.api.resources.InstanceResourceDefinitionTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 sec
+Running org.apache.ambari.server.api.resources.ResourceInstanceImplTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.468 sec
+Running org.apache.ambari.server.api.resources.FeedResourceDefinitionTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.apache.ambari.server.api.resources.TargetClusterResourceDefinitionTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+Running org.apache.ambari.server.api.predicate.operators.AndOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.apache.ambari.server.api.predicate.operators.IsEmptyOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.065 sec
+Running org.apache.ambari.server.api.predicate.operators.LessOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+Running org.apache.ambari.server.api.predicate.operators.EqualsOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.apache.ambari.server.api.predicate.operators.LessEqualsOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.apache.ambari.server.api.predicate.operators.GreaterEqualsOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 sec
+Running org.apache.ambari.server.api.predicate.operators.NotEqualsOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 sec
+Running org.apache.ambari.server.api.predicate.operators.InOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec
+Running org.apache.ambari.server.api.predicate.operators.GreaterOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 sec
+Running org.apache.ambari.server.api.predicate.operators.NotOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.062 sec
+Running org.apache.ambari.server.api.predicate.operators.OrOperatorTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.067 sec
+Running org.apache.ambari.server.api.predicate.QueryParserTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.08 sec
+Running org.apache.ambari.server.api.predicate.QueryLexerTest
+Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 sec
+Running org.apache.ambari.server.resources.TestResources
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.344 sec
+Running org.apache.ambari.server.agent.TestHeartbeatMonitor
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.274 sec
+Running org.apache.ambari.server.agent.AgentResourceTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.022 sec
+Running org.apache.ambari.server.agent.TestHeartbeatHandler
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.29 sec
+Running org.apache.ambari.server.agent.AgentHostInfoTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.264 sec
+Running org.apache.ambari.server.bootstrap.BootStrapTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.348 sec
+Running org.apache.ambari.server.bootstrap.BootStrapResourceTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.188 sec
+Running org.apache.ambari.server.actionmanager.TestStage
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.125 sec
+Running org.apache.ambari.server.actionmanager.TestActionScheduler
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.519 sec
+Running org.apache.ambari.server.actionmanager.TestActionManager
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.759 sec
+Running org.apache.ambari.server.actionmanager.TestActionDBAccessorImpl
+Tests run: 7, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.4 sec <<< FAILURE!
+Running org.apache.ambari.server.metadata.RoleGraphTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 sec
+Running org.apache.ambari.server.stageplanner.TestStagePlanner
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.214 sec
+
+Results :
+
+Tests in error: 
+  testGetRequestsByStatus(org.apache.ambari.server.actionmanager.TestActionDBAccessorImpl): (..)
+
+Tests run: 943, Failures: 0, Errors: 1, Skipped: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  03:42 min
+[[1;34mINFO[m] Finished at: 2025-08-05T09:06:11+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-surefire-plugin:2.12:test[m [1m(default-test)[m on project [36mambari-server[m: [1;31mThere are test failures.[m
+[[1;31mERROR[m] [1;31m[m
+[[1;31mERROR[m] [1;31mPlease refer to /home/carol/Downloads/Workspaces/bugs-dot-jar/ambari/ambari-server/target/surefire-reports for the individual test results.[m
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
