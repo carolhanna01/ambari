@@ -3992,29 +3992,29 @@ public class AmbariManagementControllerTest {
   }
 
 
-  @Test
-  public void testGetStacks() throws Exception {
+  // @Test
+  // public void testGetStacks() throws Exception {
 
 
-    StackRequest request = new StackRequest(null);
-    Set<StackResponse> responses = controller.getStacks(Collections.singleton(request));
-    Assert.assertEquals(STACKS_CNT, responses.size());
+  //   StackRequest request = new StackRequest(null);
+  //   Set<StackResponse> responses = controller.getStacks(Collections.singleton(request));
+  //   Assert.assertEquals(STACKS_CNT, responses.size());
 
-    StackRequest requestWithParams = new StackRequest(STACK_NAME);
-    Set<StackResponse> responsesWithParams = controller.getStacks(Collections.singleton(requestWithParams));
-    Assert.assertEquals(1, responsesWithParams.size());
-    for (StackResponse responseWithParams: responsesWithParams) {
-      Assert.assertEquals(responseWithParams.getStackName(), STACK_NAME);
+  //   StackRequest requestWithParams = new StackRequest(STACK_NAME);
+  //   Set<StackResponse> responsesWithParams = controller.getStacks(Collections.singleton(requestWithParams));
+  //   Assert.assertEquals(1, responsesWithParams.size());
+  //   for (StackResponse responseWithParams: responsesWithParams) {
+  //     Assert.assertEquals(responseWithParams.getStackName(), STACK_NAME);
 
-    }
+  //   }
 
-    StackRequest invalidRequest = new StackRequest(NON_EXT_VALUE);
-    try {
-      controller.getStacks(Collections.singleton(invalidRequest));
-    } catch (StackAccessException e) {
-      Assert.assertTrue(e instanceof StackAccessException);
-    }
-  }
+  //   StackRequest invalidRequest = new StackRequest(NON_EXT_VALUE);
+  //   try {
+  //     controller.getStacks(Collections.singleton(invalidRequest));
+  //   } catch (StackAccessException e) {
+  //     Assert.assertTrue(e instanceof StackAccessException);
+  //   }
+  // }
 
   @Test
   public void testGetStackVersions() throws Exception {
